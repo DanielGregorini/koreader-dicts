@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #fbfaf8;
+  --color-ink: #1c1b19;
+  --color-line: #e2ded7;
+  --color-card: #ffffff;
+  --color-accent: #4b45c4;
+  --color-accent-soft: #ebeafa;
+
+  --color-paper-dark: #161513;
+  --color-ink-dark: #eceae6;
+  --color-line-dark: #302e2a;
+  --color-card-dark: #1e1d1a;
+  --color-accent-dark: #a9a3f2;
+  --color-accent-soft-dark: #232043;
+}
+
+/* Dark mode follows the system setting; there is no toggle. */
+@custom-variant dark (&:where(.dark, .dark *), @media (prefers-color-scheme: dark));
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--color-paper-dark);
+    color: var(--color-ink-dark);
+  }
+}

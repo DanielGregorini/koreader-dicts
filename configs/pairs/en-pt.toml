@@ -1,0 +1,47 @@
+# The MVP pair, and the one this project started from.
+#
+# Portuguese Wiktionary alone gives ~12.7k English entries. WordNet 3.0 pivoted
+# through OpenWN-PT gives an order of magnitude more, and the two together are
+# what beats the paid incumbent.
+
+id = "en-pt"
+source_lang = "en"
+target_lang = "pt"
+tier = 1
+name = "English to Portuguese"
+bookname = "en-pt"
+basename = "en-pt"
+description = """\
+English to Brazilian Portuguese, built by pivoting Princeton WordNet 3.0 \
+through OpenWN-PT and enriching with the Portuguese Wiktionary. Includes an \
+inflection index, so looking up a word as it appears in a book works."""
+
+[pivot]
+source_side = "pwn30"
+target_side = "omw-pt"
+# OpenWN-PT carries no <Definition> elements, so in practice every gloss comes
+# from the English WordNet. Listing Portuguese first costs nothing and means
+# the day OpenWN-PT adds definitions, they are used without a code change.
+gloss_providers = ["omw-pt", "pwn30"]
+gloss_langs = ["pt", "en"]
+keep_gloss_only = true
+max_translations = 5
+
+[[enrich]]
+source = "wikt-pt"
+add_new_headwords = true
+
+# The English edition's translation tables. Shallower than the Portuguese
+# edition's prose, but far wider, and it is where the inflected forms come from.
+[[enrich]]
+source = "wikt-en-pt"
+add_new_headwords = true
+
+[inflections]
+wordnet_exceptions = "pwn30"
+rules = true
+from_sources = ["wikt-pt", "wikt-en-pt"]
+
+[benchmark]
+frequency_list = "freq/en_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)"

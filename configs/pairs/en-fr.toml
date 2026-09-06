@@ -1,0 +1,34 @@
+# French is the licence edge case, and it ships as its own bundle.
+#
+# WOLF is CeCILL-C: a French copyleft licence that is not compatible with CC
+# BY-SA in either direction. So this pair deliberately has NO Wiktionary
+# enrichment -- adding it would make the bundle unlicensable, and the build
+# would (correctly) refuse to produce a file. The result is a smaller, weaker
+# en->fr than we could otherwise ship, which is the honest outcome.
+
+id = "en-fr"
+source_lang = "en"
+target_lang = "fr"
+tier = 1
+name = "English to French"
+bookname = "en-fr"
+basename = "en-fr"
+description = """\
+English to French via WOLF. Distributed under CeCILL-C, separately from the \
+Creative Commons bundles, because those licences cannot be combined."""
+
+[pivot]
+source_side = "pwn30"
+target_side = "omw-fr"
+gloss_providers = ["pwn30"]
+gloss_langs = ["en"]
+keep_gloss_only = false
+max_translations = 5
+
+[inflections]
+wordnet_exceptions = "pwn30"
+rules = true
+
+[benchmark]
+frequency_list = "freq/en_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)"

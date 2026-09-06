@@ -1,0 +1,51 @@
+name: pages
+
+# Builds the site and publishes it to GitHub Pages.
+# Only the site: the dictionaries are built separately and uploaded to
+# Releases, so nothing here needs Python.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let a running deploy finish rather than cancelling it halfway.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    defaults:
+      run:
+        working-directory: web/koreader-dicts
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/koreader-dicts/package-lock.json
+
+      - run: npm ci
+
+      # The site reads dictionaries/catalog.json, which is committed, and
+      # writes a static export to out/.
+      - run: npm run build
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: web/koreader-dicts/out
+
+      - id: deploy
+        uses: actions/deploy-pages@v5

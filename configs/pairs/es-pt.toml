@@ -1,0 +1,32 @@
+# Tier 3: free from the pivot.
+#
+# There is no Spanish-Portuguese resource anywhere in this build. Both
+# languages are mapped onto the same Princeton WordNet synset ids, so the pair
+# falls out of the same pipeline with nothing but this file. That is the whole
+# argument for the synset pivot, and it is why a Wiktionary-only generator
+# cannot follow us here.
+
+id = "es-pt"
+source_lang = "es"
+target_lang = "pt"
+tier = 3
+name = "Spanish to Portuguese"
+bookname = "es-pt"
+basename = "es-pt"
+description = """\
+Spanish to Portuguese, generated entirely through the WordNet interlingual \
+pivot: no direct Spanish-Portuguese resource is involved."""
+
+[pivot]
+source_side = "omw-es"
+target_side = "omw-pt"
+# Neither side has definitions, so glosses come from English WordNet. They are
+# still worth shipping: a Spanish reader with some English gets a disambiguating
+# hint, and the alternative is a bare word list.
+gloss_providers = ["pwn30"]
+gloss_langs = ["pt", "es", "en"]
+keep_gloss_only = false
+max_translations = 5
+
+[benchmark]
+frequency_list_name = ""

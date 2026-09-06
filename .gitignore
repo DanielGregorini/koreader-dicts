@@ -1,0 +1,68 @@
+# Fetched source data and generated dictionaries NEVER go in git. They are
+# downloaded or built on demand and published to GitHub Releases; a clone stays
+# small and fast.
+/data/*
+!/data/README.md
+# Everything under dictionaries/ except the catalog, which is small metadata
+# the site build reads. Git cannot re-include a file inside an excluded
+# directory, so the contents are excluded rather than the directory itself.
+/dictionaries/*
+!/dictionaries/catalog.json
+!/dictionaries/README.md
+/build/
+/dist/
+/cache/
+/out/
+
+# Instructions for AI agents; not part of the project.
+AGENTS.md
+
+# Caches of every kind
+.cache/
+**/.cache/
+/data/.cache/
+.tmp/
+*.part
+*.tmp
+*.dict
+*.dict.dz
+*.idx
+*.syn
+*.ifo
+*.tab
+*.jsonl
+*.jsonl.gz
+*.tar.gz
+*.tar.bz2
+*.zip
+!tests/data/**
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.dmypy.json
+*.egg-info/
+.coverage
+htmlcov/
+
+# Node / Next.js
+node_modules/
+.eslintcache
+.next/
+web/koreader-dicts/.next/
+web/koreader-dicts/out/
+web/.next/
+web/out/
+web/.turbo/
+.env*.local
+
+# OS
+.DS_Store
+
+# TypeScript incremental build info
+web/tsconfig.tsbuildinfo

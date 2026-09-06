@@ -1,0 +1,453 @@
+{
+  "dictionaries": [
+    {
+      "archive_bytes": 15445808,
+      "basename": "en-es-kdicts",
+      "built": true,
+      "description": "English to Spanish, built by pivoting Princeton WordNet 3.0 through the Multilingual Central Repository. Includes an inflection index.",
+      "metrics": {
+        "bundle_license": "CC-BY-SA-4.0",
+        "coverage": [
+          {
+            "cutoff": 1000,
+            "form_hits": 84,
+            "headword_hits": 903,
+            "hits": 987,
+            "percent": 98.7,
+            "sampled": 1000
+          },
+          {
+            "cutoff": 5000,
+            "form_hits": 736,
+            "headword_hits": 4117,
+            "hits": 4853,
+            "percent": 97.06,
+            "sampled": 5000
+          },
+          {
+            "cutoff": 10000,
+            "form_hits": 1805,
+            "headword_hits": 7599,
+            "hits": 9404,
+            "percent": 94.04,
+            "sampled": 10000
+          },
+          {
+            "cutoff": 50000,
+            "form_hits": 10849,
+            "headword_hits": 27528,
+            "hits": 38377,
+            "percent": 76.75,
+            "sampled": 50000
+          }
+        ],
+        "entries": 174258,
+        "entries_gloss_only": 77126,
+        "entries_with_example": 34201,
+        "entries_with_forms": 170187,
+        "entries_with_pronunciation": 34305,
+        "entries_with_translation": 97132,
+        "frequency_list": "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)",
+        "generated_at": "2026-09-06T13:41:23+00:00",
+        "inflected_forms": 396782,
+        "licenses": [
+          "CC-BY-3.0",
+          "CC-BY-SA-4.0",
+          "WordNet-3.0"
+        ],
+        "mean_definition_chars": 65.1,
+        "mean_forms_per_entry": 2.33,
+        "mean_translations_per_entry": 1.54,
+        "median_definition_chars": 54.0,
+        "pair": "en-es",
+        "percent_entries_with_example": 19.63,
+        "percent_entries_with_forms": 97.66,
+        "percent_entries_with_translation": 55.74,
+        "senses": 288937,
+        "senses_gloss_only": 131557,
+        "senses_with_translation": 157380,
+        "source_lang": "en",
+        "sources": [
+          {
+            "credit": "Multilingual Central Repository (Spanish), via Open Multilingual Wordnet 1.4",
+            "id": "omw-es",
+            "kind": "omw-lmf",
+            "license": "CC-BY-3.0",
+            "url": "https://github.com/omwn/omw-data/releases/download/v1.4/omw-1.4.tar.xz"
+          },
+          {
+            "credit": "Princeton University WordNet 3.0",
+            "id": "pwn30",
+            "kind": "wordnet",
+            "license": "WordNet-3.0",
+            "url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+          },
+          {
+            "credit": "English Wiktionary via kaikki.org (wiktextract)",
+            "id": "wikt-en-es",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+          }
+        ],
+        "target_lang": "es"
+      },
+      "name": "English to Spanish",
+      "pair": "en-es",
+      "source_lang": "en",
+      "target_lang": "es",
+      "tier": 1
+    },
+    {
+      "archive_bytes": 6859879,
+      "basename": "en-fr-kdicts",
+      "built": true,
+      "description": "English to French via WOLF. Distributed under CeCILL-C, separately from the Creative Commons bundles, because those licences cannot be combined.",
+      "metrics": {
+        "bundle_license": "CECILL-C",
+        "coverage": [
+          {
+            "cutoff": 1000,
+            "form_hits": 82,
+            "headword_hits": 819,
+            "hits": 901,
+            "percent": 90.1,
+            "sampled": 1000
+          },
+          {
+            "cutoff": 5000,
+            "form_hits": 878,
+            "headword_hits": 3674,
+            "hits": 4552,
+            "percent": 91.04,
+            "sampled": 5000
+          },
+          {
+            "cutoff": 10000,
+            "form_hits": 2054,
+            "headword_hits": 6688,
+            "hits": 8742,
+            "percent": 87.42,
+            "sampled": 10000
+          },
+          {
+            "cutoff": 50000,
+            "form_hits": 10313,
+            "headword_hits": 21725,
+            "hits": 32038,
+            "percent": 64.08,
+            "sampled": 50000
+          }
+        ],
+        "entries": 84803,
+        "entries_gloss_only": 0,
+        "entries_with_example": 21881,
+        "entries_with_forms": 84580,
+        "entries_with_pronunciation": 0,
+        "entries_with_translation": 84803,
+        "frequency_list": "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)",
+        "generated_at": "2026-09-06T13:41:31+00:00",
+        "inflected_forms": 127148,
+        "licenses": [
+          "CECILL-C",
+          "WordNet-3.0"
+        ],
+        "mean_definition_chars": 63.2,
+        "mean_forms_per_entry": 1.51,
+        "mean_translations_per_entry": 2.74,
+        "median_definition_chars": 53.0,
+        "pair": "en-fr",
+        "percent_entries_with_example": 25.8,
+        "percent_entries_with_forms": 99.74,
+        "percent_entries_with_translation": 100.0,
+        "senses": 120863,
+        "senses_gloss_only": 0,
+        "senses_with_translation": 120863,
+        "source_lang": "en",
+        "sources": [
+          {
+            "credit": "WOLF (Wordnet Libre du Français), via Open Multilingual Wordnet 1.4",
+            "id": "omw-fr",
+            "kind": "omw-lmf",
+            "license": "CECILL-C",
+            "url": "https://github.com/omwn/omw-data/releases/download/v1.4/omw-1.4.tar.xz"
+          },
+          {
+            "credit": "Princeton University WordNet 3.0",
+            "id": "pwn30",
+            "kind": "wordnet",
+            "license": "WordNet-3.0",
+            "url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+          }
+        ],
+        "target_lang": "fr"
+      },
+      "name": "English to French",
+      "pair": "en-fr",
+      "source_lang": "en",
+      "target_lang": "fr",
+      "tier": 1
+    },
+    {
+      "archive_bytes": 0,
+      "basename": "en-id-kdicts",
+      "built": false,
+      "description": "English to Indonesian, built by pivoting Princeton WordNet 3.0 through the Indonesian wordnet in the Open Multilingual Wordnet.",
+      "name": "English to Indonesian",
+      "pair": "en-id",
+      "source_lang": "en",
+      "target_lang": "id",
+      "tier": 1
+    },
+    {
+      "archive_bytes": 0,
+      "basename": "en-it-kdicts",
+      "built": false,
+      "description": "English to Italian, built by pivoting Princeton WordNet 3.0 through the Italian wordnet in the Open Multilingual Wordnet.",
+      "name": "English to Italian",
+      "pair": "en-it",
+      "source_lang": "en",
+      "target_lang": "it",
+      "tier": 1
+    },
+    {
+      "archive_bytes": 0,
+      "basename": "en-ja-kdicts",
+      "built": false,
+      "description": "English to Japanese, built by pivoting Princeton WordNet 3.0 through the Japanese wordnet in the Open Multilingual Wordnet.",
+      "name": "English to Japanese",
+      "pair": "en-ja",
+      "source_lang": "en",
+      "target_lang": "ja",
+      "tier": 1
+    },
+    {
+      "archive_bytes": 15095343,
+      "basename": "en-pt-kdicts",
+      "built": true,
+      "description": "English to Brazilian Portuguese, built by pivoting Princeton WordNet 3.0 through OpenWN-PT and enriching with the Portuguese Wiktionary. Includes an inflection index, so looking up a word as it appears in a book works.",
+      "metrics": {
+        "bundle_license": "CC-BY-SA-4.0",
+        "coverage": [
+          {
+            "cutoff": 1000,
+            "form_hits": 76,
+            "headword_hits": 913,
+            "hits": 989,
+            "percent": 98.9,
+            "sampled": 1000
+          },
+          {
+            "cutoff": 5000,
+            "form_hits": 724,
+            "headword_hits": 4133,
+            "hits": 4857,
+            "percent": 97.14,
+            "sampled": 5000
+          },
+          {
+            "cutoff": 10000,
+            "form_hits": 1805,
+            "headword_hits": 7629,
+            "hits": 9434,
+            "percent": 94.34,
+            "sampled": 10000
+          },
+          {
+            "cutoff": 50000,
+            "form_hits": 10874,
+            "headword_hits": 27509,
+            "hits": 38383,
+            "percent": 76.77,
+            "sampled": 50000
+          }
+        ],
+        "entries": 172838,
+        "entries_gloss_only": 73723,
+        "entries_with_example": 34709,
+        "entries_with_forms": 169369,
+        "entries_with_pronunciation": 30991,
+        "entries_with_translation": 99115,
+        "frequency_list": "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)",
+        "generated_at": "2026-09-06T13:42:51+00:00",
+        "inflected_forms": 395314,
+        "licenses": [
+          "CC-BY-SA-4.0",
+          "WordNet-3.0"
+        ],
+        "mean_definition_chars": 61.8,
+        "mean_forms_per_entry": 2.35,
+        "mean_translations_per_entry": 1.62,
+        "median_definition_chars": 51.0,
+        "pair": "en-pt",
+        "percent_entries_with_example": 20.08,
+        "percent_entries_with_forms": 97.99,
+        "percent_entries_with_translation": 57.35,
+        "senses": 299285,
+        "senses_gloss_only": 122206,
+        "senses_with_translation": 177079,
+        "source_lang": "en",
+        "sources": [
+          {
+            "credit": "OpenWN-PT (de Paiva & Rademaker), via Open Multilingual Wordnet 1.4",
+            "id": "omw-pt",
+            "kind": "omw-lmf",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://github.com/omwn/omw-data/releases/download/v1.4/omw-1.4.tar.xz"
+          },
+          {
+            "credit": "Princeton University WordNet 3.0",
+            "id": "pwn30",
+            "kind": "wordnet",
+            "license": "WordNet-3.0",
+            "url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+          },
+          {
+            "credit": "English Wiktionary via kaikki.org (wiktextract)",
+            "id": "wikt-en-pt",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+          },
+          {
+            "credit": "Portuguese Wiktionary via kaikki.org (wiktextract)",
+            "id": "wikt-pt",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/ptwiktionary/raw-wiktextract-data.jsonl.gz"
+          }
+        ],
+        "target_lang": "pt"
+      },
+      "name": "English to Portuguese",
+      "pair": "en-pt",
+      "source_lang": "en",
+      "target_lang": "pt",
+      "tier": 1
+    },
+    {
+      "archive_bytes": 1721702,
+      "basename": "es-pt-kdicts",
+      "built": true,
+      "description": "Spanish to Portuguese, generated entirely through the WordNet interlingual pivot: no direct Spanish-Portuguese resource is involved.",
+      "metrics": {
+        "bundle_license": "CC-BY-SA-4.0",
+        "coverage": [],
+        "entries": 20263,
+        "entries_gloss_only": 0,
+        "entries_with_example": 6882,
+        "entries_with_forms": 0,
+        "entries_with_pronunciation": 0,
+        "entries_with_translation": 20263,
+        "frequency_list": "",
+        "generated_at": "2026-09-06T13:42:56+00:00",
+        "inflected_forms": 0,
+        "licenses": [
+          "CC-BY-3.0",
+          "CC-BY-SA-4.0",
+          "WordNet-3.0"
+        ],
+        "mean_definition_chars": 52.5,
+        "mean_forms_per_entry": 0.0,
+        "mean_translations_per_entry": 3.1,
+        "median_definition_chars": 44.0,
+        "pair": "es-pt",
+        "percent_entries_with_example": 33.96,
+        "percent_entries_with_forms": 0.0,
+        "percent_entries_with_translation": 100.0,
+        "senses": 32556,
+        "senses_gloss_only": 0,
+        "senses_with_translation": 32556,
+        "source_lang": "es",
+        "sources": [
+          {
+            "credit": "Multilingual Central Repository (Spanish), via Open Multilingual Wordnet 1.4",
+            "id": "omw-es",
+            "kind": "omw-lmf",
+            "license": "CC-BY-3.0",
+            "url": "https://github.com/omwn/omw-data/releases/download/v1.4/omw-1.4.tar.xz"
+          },
+          {
+            "credit": "OpenWN-PT (de Paiva & Rademaker), via Open Multilingual Wordnet 1.4",
+            "id": "omw-pt",
+            "kind": "omw-lmf",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://github.com/omwn/omw-data/releases/download/v1.4/omw-1.4.tar.xz"
+          },
+          {
+            "credit": "Princeton University WordNet 3.0",
+            "id": "pwn30",
+            "kind": "wordnet",
+            "license": "WordNet-3.0",
+            "url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+          }
+        ],
+        "target_lang": "pt"
+      },
+      "name": "Spanish to Portuguese",
+      "pair": "es-pt",
+      "source_lang": "es",
+      "target_lang": "pt",
+      "tier": 3
+    },
+    {
+      "archive_bytes": 3619517,
+      "basename": "pt-en-kdicts",
+      "built": true,
+      "description": "Portuguese to English, generated by inverting the WordNet pivot: OpenWN-PT lemmas resolved to Princeton WordNet synsets and back out to English.",
+      "metrics": {
+        "bundle_license": "CC-BY-SA-4.0",
+        "coverage": [],
+        "entries": 54042,
+        "entries_gloss_only": 0,
+        "entries_with_example": 14141,
+        "entries_with_forms": 0,
+        "entries_with_pronunciation": 0,
+        "entries_with_translation": 54042,
+        "frequency_list": "",
+        "generated_at": "2026-09-06T13:43:00+00:00",
+        "inflected_forms": 0,
+        "licenses": [
+          "CC-BY-SA-4.0",
+          "WordNet-3.0"
+        ],
+        "mean_definition_chars": 65.1,
+        "mean_forms_per_entry": 0.0,
+        "mean_translations_per_entry": 2.93,
+        "median_definition_chars": 55.0,
+        "pair": "pt-en",
+        "percent_entries_with_example": 26.17,
+        "percent_entries_with_forms": 0.0,
+        "percent_entries_with_translation": 100.0,
+        "senses": 73951,
+        "senses_gloss_only": 0,
+        "senses_with_translation": 73951,
+        "source_lang": "pt",
+        "sources": [
+          {
+            "credit": "OpenWN-PT (de Paiva & Rademaker), via Open Multilingual Wordnet 1.4",
+            "id": "omw-pt",
+            "kind": "omw-lmf",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://github.com/omwn/omw-data/releases/download/v1.4/omw-1.4.tar.xz"
+          },
+          {
+            "credit": "Princeton University WordNet 3.0",
+            "id": "pwn30",
+            "kind": "wordnet",
+            "license": "WordNet-3.0",
+            "url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+          }
+        ],
+        "target_lang": "en"
+      },
+      "name": "Portuguese to English",
+      "pair": "pt-en",
+      "source_lang": "pt",
+      "target_lang": "en",
+      "tier": 4
+    }
+  ],
+  "generated_at": "2026-09-06T14:18:28+00:00",
+  "schema": 1
+}

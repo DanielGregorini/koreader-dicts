@@ -1,0 +1,27 @@
+# Declared so the pair is listed on the site as planned. The wordnet is already
+# declared in sources.toml; building it is `kdicts fetch omw-id && kdicts build en-id`.
+
+id = "en-id"
+source_lang = "en"
+target_lang = "id"
+tier = 1
+name = "English to Indonesian"
+bookname = "en-id"
+basename = "en-id"
+description = "English to Indonesian, built by pivoting Princeton WordNet 3.0 through the Indonesian wordnet in the Open Multilingual Wordnet."
+
+[pivot]
+source_side = "pwn30"
+target_side = "omw-id"
+gloss_providers = ["omw-id", "pwn30"]
+gloss_langs = ["id", "en"]
+keep_gloss_only = true
+max_translations = 5
+
+[inflections]
+wordnet_exceptions = "pwn30"
+rules = true
+
+[benchmark]
+frequency_list = "freq/en_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)"

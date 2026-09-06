@@ -1,0 +1,27 @@
+# Declared so the pair is listed on the site as planned. The wordnet is already
+# declared in sources.toml; building it is `kdicts fetch omw-it && kdicts build en-it`.
+
+id = "en-it"
+source_lang = "en"
+target_lang = "it"
+tier = 1
+name = "English to Italian"
+bookname = "en-it"
+basename = "en-it"
+description = "English to Italian, built by pivoting Princeton WordNet 3.0 through the Italian wordnet in the Open Multilingual Wordnet."
+
+[pivot]
+source_side = "pwn30"
+target_side = "omw-it"
+gloss_providers = ["omw-it", "pwn30"]
+gloss_langs = ["it", "en"]
+keep_gloss_only = true
+max_translations = 5
+
+[inflections]
+wordnet_exceptions = "pwn30"
+rules = true
+
+[benchmark]
+frequency_list = "freq/en_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)"

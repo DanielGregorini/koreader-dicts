@@ -1,0 +1,38 @@
+# The biggest opportunity by audience: 561M speakers, and the Spanish side of
+# OMW (the Multilingual Central Repository) is both large and CC BY 3.0, which
+# is less restrictive than the Portuguese side.
+#
+# Note what is *not* here: no new adapter, no new code. A tier-1 pair is a
+# config file.
+
+id = "en-es"
+source_lang = "en"
+target_lang = "es"
+tier = 1
+name = "English to Spanish"
+bookname = "en-es"
+basename = "en-es"
+description = """\
+English to Spanish, built by pivoting Princeton WordNet 3.0 through the \
+Multilingual Central Repository. Includes an inflection index."""
+
+[pivot]
+source_side = "pwn30"
+target_side = "omw-es"
+gloss_providers = ["omw-es", "pwn30"]
+gloss_langs = ["es", "en"]
+keep_gloss_only = true
+max_translations = 5
+
+[[enrich]]
+source = "wikt-en-es"
+add_new_headwords = true
+
+[inflections]
+wordnet_exceptions = "pwn30"
+rules = true
+from_sources = ["wikt-en-es"]
+
+[benchmark]
+frequency_list = "freq/en_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)"

@@ -1,0 +1,61 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "kdicts"
+version = "0.1.0"
+description = "Generate high-quality open bilingual dictionaries for e-readers by merging multiple open sources"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "koreader-dicts contributors" }]
+keywords = ["stardict", "koreader", "dictionary", "wordnet", "wiktionary"]
+classifiers = [
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Text Processing :: Linguistic",
+]
+# Deliberately empty. The MVP path -- fetch, merge, write StarDict -- runs on
+# the standard library alone, so the build farm needs no wheel resolution and a
+# contributor needs no environment. Optional extras carry everything else.
+dependencies = []
+
+[project.optional-dependencies]
+# PyGlossary is only needed for the non-StarDict formats (Kobo, Kindle, XDXF).
+# Format conversion is a solved problem and we use it as a library rather than
+# reimplementing it -- with one exception, the StarDict writer, which we own.
+formats = ["pyglossary>=4.6"]
+dev = ["pytest>=8", "pytest-cov>=5", "mypy>=1.10", "ruff>=0.5"]
+
+[project.scripts]
+kdicts = "kdicts.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["tooling/kdicts"]
+
+[tool.pytest.ini_options]
+# Lets `pytest` run straight from a checkout with no install step, which is
+# what the CI build farm and a first-time contributor both want.
+pythonpath = ["tooling"]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.mypy]
+python_version = "3.11"
+files = ["tooling/kdicts"]
+strict = true
+warn_unreachable = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+# IPA transcriptions legitimately use characters ruff considers confusable with
+# ASCII (U+0261 LATIN SMALL LETTER SCRIPT G, for one). That is what IPA is.
+"tests/*" = ["RUF001"]

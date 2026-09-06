@@ -1,0 +1,174 @@
+# Data sources.
+#
+# Nothing here is committed to the repository -- `kdicts fetch` downloads into
+# the data root, and builds publish to GitHub Releases. `sha256` pins the
+# artifact: leave it empty for a first run, then paste in what `kdicts fetch`
+# reports. A scheduled rebuild against an unpinned source can silently change
+# what a published dictionary contains.
+#
+# LICENSING: every wordnet carries its own terms. `license_id` here is checked
+# against what the data file itself declares, and a mismatch is a hard error --
+# it means upstream changed the terms under a dictionary we already published.
+
+# --- English spine ----------------------------------------------------------
+
+[[source]]
+id = "pwn30"
+kind = "wordnet"
+path = "wordnet/dict"
+lang = "en"
+version = "3.0"
+# The full source tarball, not WNdb-3.0.tar.gz: WNdb ships only the index and
+# data files, and we also need the hand-curated exception files (noun.exc,
+# verb.exc, adj.exc, adv.exc) that map "went" to "go". Nothing else generates
+# those, and without them the inflection index misses every irregular.
+url = "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+sha256 = "640db279c949a88f61f851dd54ebbb22d003f8b90b85267042ef85a3781d3a52"
+archive_member = "WordNet-3.0/dict"
+license_id = "WordNet-3.0"
+credit = "Princeton University WordNet 3.0"
+
+# --- Open Multilingual Wordnet 1.4 -----------------------------------------
+#
+# All lexicons come out of one archive; `archive_member` picks the one file.
+# The licences below are what each lexicon declares in its own <Lexicon
+# license="..."> attribute. They are not uniform and must not be assumed to be:
+#
+#   CC BY-SA 3.0   arb, lt, sk, sl
+#   CC BY-SA 4.0   nl
+#   CC BY-SA (unversioned, read as 4.0)   pt, ro
+#   CC BY 3.0      bg, ca, es, eu, fi, gl, hr, is, it, sq, sv
+#   WordNet        cmn, da, he, ja, nb, nn, pl, th, en
+#   MIT            id, zsm
+#   Apache-2.0     el
+#   ODC-By-1.0     iwn
+#   CeCILL-C       fr   <-- CANNOT be bundled with CC BY-SA material
+#
+# German is absent from OMW 1.4 entirely; en->de needs OdeNet added separately.
+
+[[source]]
+id = "omw-pt"
+kind = "omw-lmf"
+path = "omw/omw-pt/omw-pt.xml"
+lang = "pt"
+version = "1.4"
+url = "https://github.com/omwn/omw-data/releases/download/v1.4/omw-1.4.tar.xz"
+sha256 = "28be99fcb038171403cd057f62e7213d1ea4ea1cf00ab2fb99af190f39bb1d99"
+archive_member = "omw-1.4/omw-pt/omw-pt.xml"
+license_id = "CC-BY-SA-4.0"
+credit = "OpenWN-PT (de Paiva & Rademaker), via Open Multilingual Wordnet 1.4"
+
+[[source]]
+id = "omw-es"
+kind = "omw-lmf"
+path = "omw/omw-es/omw-es.xml"
+lang = "es"
+version = "1.4"
+url = "https://github.com/omwn/omw-data/releases/download/v1.4/omw-1.4.tar.xz"
+sha256 = "28be99fcb038171403cd057f62e7213d1ea4ea1cf00ab2fb99af190f39bb1d99"
+archive_member = "omw-1.4/omw-es/omw-es.xml"
+license_id = "CC-BY-3.0"
+credit = "Multilingual Central Repository (Spanish), via Open Multilingual Wordnet 1.4"
+
+[[source]]
+id = "omw-it"
+kind = "omw-lmf"
+path = "omw/omw-it/omw-it.xml"
+lang = "it"
+version = "1.4"
+url = "https://github.com/omwn/omw-data/releases/download/v1.4/omw-1.4.tar.xz"
+sha256 = "28be99fcb038171403cd057f62e7213d1ea4ea1cf00ab2fb99af190f39bb1d99"
+archive_member = "omw-1.4/omw-it/omw-it.xml"
+license_id = "CC-BY-3.0"
+credit = "MultiWordNet (Italian), via Open Multilingual Wordnet 1.4"
+
+[[source]]
+id = "omw-ja"
+kind = "omw-lmf"
+path = "omw/omw-ja/omw-ja.xml"
+lang = "ja"
+version = "1.4"
+url = "https://github.com/omwn/omw-data/releases/download/v1.4/omw-1.4.tar.xz"
+sha256 = "28be99fcb038171403cd057f62e7213d1ea4ea1cf00ab2fb99af190f39bb1d99"
+archive_member = "omw-1.4/omw-ja/omw-ja.xml"
+license_id = "WordNet-3.0"
+credit = "Japanese Wordnet, via Open Multilingual Wordnet 1.4"
+
+[[source]]
+id = "omw-id"
+kind = "omw-lmf"
+path = "omw/omw-id/omw-id.xml"
+lang = "id"
+version = "1.4"
+url = "https://github.com/omwn/omw-data/releases/download/v1.4/omw-1.4.tar.xz"
+sha256 = "28be99fcb038171403cd057f62e7213d1ea4ea1cf00ab2fb99af190f39bb1d99"
+archive_member = "omw-1.4/omw-id/omw-id.xml"
+license_id = "MIT"
+credit = "Wordnet Bahasa (Indonesian), via Open Multilingual Wordnet 1.4"
+
+# Present so that the licence guard has something to refuse. Any pair that
+# includes this source alongside CC BY-SA material must fail to build.
+[[source]]
+id = "omw-fr"
+kind = "omw-lmf"
+path = "omw/omw-fr/omw-fr.xml"
+lang = "fr"
+version = "1.4"
+url = "https://github.com/omwn/omw-data/releases/download/v1.4/omw-1.4.tar.xz"
+sha256 = "28be99fcb038171403cd057f62e7213d1ea4ea1cf00ab2fb99af190f39bb1d99"
+archive_member = "omw-1.4/omw-fr/omw-fr.xml"
+license_id = "CECILL-C"
+credit = "WOLF (Wordnet Libre du Français), via Open Multilingual Wordnet 1.4"
+
+# --- Wiktionary via kaikki.org (wiktextract) --------------------------------
+#
+# Deliberately unpinned. kaikki regenerates these dumps as Wiktionary changes,
+# so a fixed sha256 would break every scheduled rebuild rather than protect
+# anything. The checksum of whatever was actually used is recorded in the build
+# metadata instead, which is what reproducibility needs here.
+
+[[source]]
+id = "wikt-pt"
+kind = "kaikki"
+path = "kaikki/ptwiktionary.jsonl.gz"
+lang = "pt"
+url = "https://kaikki.org/ptwiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Portuguese Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "foreign_entries", source_lang = "en", target_lang = "pt" }
+
+# The English edition, ~500 MB compressed. It is the only bulk source of
+# English inflected forms, which is what fills the .syn file. `translations`
+# mode filters the translation tables to one target language, so there is one
+# declaration per target -- they all share the same file on disk.
+
+[[source]]
+id = "wikt-en-pt"
+kind = "kaikki"
+path = "kaikki/enwiktionary-english.jsonl.gz"
+lang = "en"
+url = "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "en", target_lang = "pt" }
+
+[[source]]
+id = "wikt-en-es"
+kind = "kaikki"
+path = "kaikki/enwiktionary-english.jsonl.gz"
+lang = "en"
+url = "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "en", target_lang = "es" }
+
+# --- Benchmark inputs (never shipped, never merged) -------------------------
+
+[[source]]
+id = "freq-en"
+kind = "frequency"
+path = "freq/en_50k.txt"
+lang = "en"
+url = "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/en/en_50k.txt"
+license_id = "CC-BY-SA-4.0"
+credit = "hermitdave/FrequencyWords (OpenSubtitles 2018)"
