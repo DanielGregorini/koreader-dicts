@@ -100,6 +100,19 @@ def extract(archive: Path, destination: Path) -> Path:
     return destination
 
 
+def _cache_name(url: str) -> str:
+    """Cache filename for *url*, unique to the whole URL and not just its tail.
+
+    Every kaikki edition is published as ``raw-wiktextract-data.jsonl.gz``, so
+    naming the cache entry after the last path segment made six different
+    downloads collide on one file and silently hand five sources the contents
+    of the first. The digest prefix is what makes them distinct; the readable
+    tail is kept so the cache stays greppable.
+    """
+    tail = url.rstrip("/").rsplit("/", 1)[-1] or "download"
+    return f"{hashlib.sha256(url.encode()).hexdigest()[:12]}-{tail}"
+
+
 def ensure_source(
     *,
     url: str,
@@ -121,7 +134,7 @@ def ensure_source(
         return target
 
     cache_dir = Path(cache_dir or data_root / ".cache")
-    filename = url.rstrip("/").rsplit("/", 1)[-1] or "download"
+    filename = _cache_name(url)
     archive = cache_dir / filename
     download(url, archive, sha256=sha256, force=force)
 
