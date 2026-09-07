@@ -195,6 +195,11 @@ def build_pivot(
     target_lang = target_side.lang  # type: ignore[attr-defined]
     dictionary = Dictionary(source_lang=source_lang, target_lang=target_lang)
 
+    # A monolingual pair pivots a wordnet against itself, so every lemma turns
+    # up in its own synset. Listing a word as its own equivalent is noise, and
+    # what is left after removing it is the synonym set.
+    monolingual = source_lang == target_lang
+
     preference = config.gloss_langs or (target_lang, source_lang, "en")
     glosses = _collect_glosses(list(gloss_providers), preference)
     target_lemmas = synset_to_lemmas(target_side)
@@ -230,7 +235,10 @@ def build_pivot(
             if config.max_senses_per_entry and len(senses) >= config.max_senses_per_entry:
                 break
 
-            translations = tuple(target_lemmas.get(synset, ())[: config.max_translations])
+            candidates = target_lemmas.get(synset, ())
+            if monolingual:
+                candidates = [word for word in candidates if word != lemma]
+            translations = tuple(candidates[: config.max_translations])
             gloss, gloss_lang, examples, pos, gloss_source = glosses.get(
                 synset, ("", "", (), Pos.from_wordnet_tag(synset[-1]), "")
             )

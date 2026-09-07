@@ -18,6 +18,13 @@ Two extraction modes, because the two useful shapes of the data are different:
     by Portuguese speakers.  Far better prose, far fewer headwords (the whole
     reason this project exists -- the pt edition has ~12.7k English entries).
 
+``definitions``
+    Monolingual.  Read an edition and keep the pages it writes about its own
+    language, so nothing is translated: the gloss is a definition and the
+    ``synonyms`` lists are synonyms.  Same reader as ``foreign_entries`` with
+    the equivalence guess turned off, because in one language a short gloss is
+    a short definition, not a translation.
+
 Licence: CC BY-SA 4.0 for all Wiktionary text.
 """
 
@@ -25,6 +32,7 @@ from __future__ import annotations
 
 import json
 import re
+from collections import defaultdict
 from collections.abc import Iterable, Iterator
 from pathlib import Path
 from typing import Any
@@ -58,6 +66,10 @@ INFLECTION_TAG_DENYLIST: frozenset[str] = frozenset({
     "inflection-template", "class", "auxiliary", "error-unrecognized-form",
     "no-gloss", "hyphenation", "rhymes",
 })
+
+#: Synonyms shown on one entry. Six is what fits on an e-reader popup above the
+#: definition; past that the reader is scrolling to reach the meaning.
+MAX_SYNONYMS = 6
 
 #: Rows whose form field is one of these are wiktextract placeholders rather
 #: than real forms. The three dash characters are distinct on purpose --
@@ -110,7 +122,7 @@ class KaikkiSource:
         self.path = require_existing(Path(path), spec)
         options = spec.options
         self.mode = str(options.get("mode", "translations"))
-        if self.mode not in {"translations", "foreign_entries"}:
+        if self.mode not in {"translations", "foreign_entries", "definitions"}:
             raise SourceError(f"source {spec.id!r}: unknown kaikki mode {self.mode!r}")
         self._source_lang = str(options.get("source_lang", "en"))
         self._target_lang = str(options.get("target_lang", spec.lang))
@@ -149,6 +161,10 @@ class KaikkiSource:
             yield from self._entries_from_translations()
         else:
             yield from self._entries_from_foreign_pages()
+
+    @property
+    def monolingual(self) -> bool:
+        return self.mode == "definitions"
 
     def _translations_for(self, rows: Iterable[Any] | None) -> tuple[str, ...]:
         return dedupe_preserving_order(
@@ -237,7 +253,12 @@ class KaikkiSource:
             )
 
     def _entries_from_foreign_pages(self) -> Iterator[Entry]:
-        """Pages in the target language's edition that describe source-language words."""
+        """Pages describing source-language words, glossed in the target language.
+
+        In ``definitions`` mode the two languages are the same, which changes
+        one thing: the gloss is never reinterpreted as an equivalent, and the
+        page's synonym lists take its place.
+        """
         provenance = (self.spec.provenance(self.license_id),)
         for page in self._pages():
             if page.get("lang_code") != self._source_lang:
@@ -246,6 +267,7 @@ class KaikkiSource:
             if not headword:
                 continue
             pos = _pos(page.get("pos", ""))
+            page_synonyms = self._page_synonyms(page) if self.monolingual else {}
             senses: list[Sense] = []
             for rank, raw in enumerate(page.get("senses", ())[: self.max_senses], start=1):
                 glosses = raw.get("glosses") or raw.get("raw_glosses") or ()
@@ -267,7 +289,11 @@ class KaikkiSource:
                         # is a real definition. Only the short ones are safe to
                         # treat as translations.
                         translations=(
-                            _split_equivalents(text) if _looks_like_a_bare_equivalent(text) else ()
+                            self._synonyms(raw, page_synonyms, rank, headword)
+                            if self.monolingual
+                            else _split_equivalents(text)
+                            if _looks_like_a_bare_equivalent(text)
+                            else ()
                         ),
                         gloss=text,
                         gloss_lang=self._target_lang,
@@ -290,6 +316,47 @@ class KaikkiSource:
                 forms=self._forms(page, headword),
                 pronunciations=self._pronunciations(page),
             )
+
+    # -- synonyms (monolingual only) -----------------------------------------
+
+    @staticmethod
+    def _page_synonyms(page: dict[str, Any]) -> dict[int, list[str]]:
+        """Page-level synonym rows, keyed by the 1-based sense they belong to.
+
+        Editions differ on where they put these. The English edition mostly
+        attaches them to the sense; the Portuguese edition mostly lists them on
+        the page with a ``sense_index`` pointing back. Rows with no index land
+        under 0 and are attached to the first sense.
+        """
+        grouped: dict[int, list[str]] = defaultdict(list)
+        for row in page.get("synonyms", ()) or ():
+            if not isinstance(row, dict):
+                continue
+            word = normalise_headword(str(row.get("word", "")))
+            if word:
+                try:
+                    index = int(row.get("sense_index") or 0)
+                except (TypeError, ValueError):
+                    index = 0
+                grouped[index].append(word)
+        return grouped
+
+    @staticmethod
+    def _synonyms(
+        sense: dict[str, Any],
+        page_synonyms: dict[int, list[str]],
+        rank: int,
+        headword: str,
+    ) -> tuple[str, ...]:
+        words = [
+            normalise_headword(str(row.get("word", "")))
+            for row in (sense.get("synonyms") or ())
+            if isinstance(row, dict)
+        ]
+        words += page_synonyms.get(rank, [])
+        if rank == 1:
+            words += page_synonyms.get(0, [])
+        return dedupe_preserving_order(w for w in words if w and w != headword)[:MAX_SYNONYMS]
 
     # -- inflections ---------------------------------------------------------
 
