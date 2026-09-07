@@ -34,6 +34,7 @@ def workspace(tmp_path):
                   "http://www.cecill.info/licenses/Licence_CeCILL-C_V1-en.html",
                   entries=[("chien", "n", [("02084071", "n")])])
     write_kaikki(data, edition="pt")
+    write_kaikki(data, edition="en")
     (data / "freq").mkdir()
     (data / "freq" / "en.txt").write_text("dog 100\ndevil 50\nchase 20\nnothere 1\n", encoding="utf-8")
 
@@ -79,6 +80,15 @@ lang = "pt"
 license_id = "CC-BY-SA-4.0"
 credit = "Portuguese Wiktionary"
 options = { mode = "foreign_entries", source_lang = "en", target_lang = "pt" }
+
+[[source]]
+id = "wikt-en"
+kind = "kaikki"
+path = "enwiktionary.jsonl"
+lang = "en"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary"
+options = { mode = "translations", source_lang = "en", target_lang = "pt" }
 """,
         encoding="utf-8",
     )
@@ -108,10 +118,13 @@ gloss_langs = ["pt", "en"]
 [[enrich]]
 source = "wikt-pt"
 
+[[enrich]]
+source = "wikt-en"
+
 [inflections]
 wordnet_exceptions = "pwn30"
 rules = true
-from_sources = ["wikt-pt"]
+from_sources = ["wikt-pt", "wikt-en"]
 
 [benchmark]
 frequency_list = "freq/en.txt"
@@ -179,7 +192,7 @@ def test_metrics_are_written_and_honest(workspace, tmp_path):
     assert metrics["entries_with_translation"] + metrics["entries_gloss_only"] == metrics["entries"]
     assert metrics["bundle_license"] == "CC-BY-SA-4.0"
     assert sorted(metrics["licenses"]) == ["CC-BY-SA-4.0", "WordNet-3.0"]
-    assert {s["id"] for s in metrics["sources"]} == {"pwn30", "omw-pt", "wikt-pt"}
+    assert {s["id"] for s in metrics["sources"]} == {"pwn30", "omw-pt", "wikt-pt", "wikt-en"}
 
     coverage = {c["cutoff"]: c for c in metrics["coverage"]}
     assert coverage[1000]["sampled"] == 4
