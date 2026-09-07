@@ -46,6 +46,11 @@ __all__ = ["OmwLmfSource"]
 
 _SYNSET_SUFFIX = re.compile(r"(\d{8})-([nvars])$")
 
+#: MultiWordNet marks a synset with no Italian word of its own by attaching a
+#: literal "GAP!" lemma. Shipping those as translations is worse than shipping
+#: nothing: the entry is exactly the gloss-only case the metrics count.
+_PLACEHOLDER_LEMMAS = frozenset({"GAP!", "PSEUDOGAP!"})
+
 
 class OmwLmfSource:
     """Reader for one ``omw-<code>/omw-<code>.xml`` lexicon."""
@@ -119,7 +124,7 @@ class OmwLmfSource:
             lemma_element = element.find("Lemma")
             written = (lemma_element.get("writtenForm", "") if lemma_element is not None else "")
             written = written.replace("_", " ").strip()
-            if written:
+            if written and written not in _PLACEHOLDER_LEMMAS:
                 for rank, sense in enumerate(element.findall("Sense"), start=1):
                     synset = self._strip_prefix(sense.get("synset", ""))
                     if synset:
