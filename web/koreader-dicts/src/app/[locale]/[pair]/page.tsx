@@ -11,6 +11,7 @@ import {
   builtDictionaries,
   downloadUrl,
   formatNumber,
+  isMonolingual,
   languageName,
   loadCatalog,
   sizeMb,
@@ -48,28 +49,35 @@ function PairContent({
   const t = useTranslations("pair");
   const ti = useTranslations("inside");
   const metrics = record.metrics!;
+  const mono = isMonolingual(record);
 
   const rows: [string, string][] = [
     [
-      ti("withTranslation"),
-      `${formatNumber(metrics.entries_with_translation)} (${metrics.percent_entries_with_translation}%)`,
+      ti(mono ? "withSynonym" : "withTranslation"),
+      `${formatNumber(metrics.entries_with_translation, locale)} (${metrics.percent_entries_with_translation}%)`,
     ],
-    [ti("glossOnly"), formatNumber(metrics.entries_gloss_only)],
+    [
+      ti(mono ? "definitionOnly" : "glossOnly"),
+      formatNumber(metrics.entries_gloss_only, locale),
+    ],
     [
       ti("withExample"),
-      `${formatNumber(metrics.entries_with_example)} (${metrics.percent_entries_with_example}%)`,
+      `${formatNumber(metrics.entries_with_example, locale)} (${metrics.percent_entries_with_example}%)`,
     ],
     [
       ti("withForms"),
-      `${formatNumber(metrics.entries_with_forms)} (${metrics.percent_entries_with_forms}%)`,
+      `${formatNumber(metrics.entries_with_forms, locale)} (${metrics.percent_entries_with_forms}%)`,
     ],
-    [ti("withPronunciation"), formatNumber(metrics.entries_with_pronunciation)],
-    [ti("senses"), formatNumber(metrics.senses)],
+    [ti("withPronunciation"), formatNumber(metrics.entries_with_pronunciation, locale)],
+    [ti("senses"), formatNumber(metrics.senses, locale)],
     [
       ti("definitionLength"),
       ti("characters", { n: metrics.mean_definition_chars }),
     ],
-    [ti("translationsPerEntry"), String(metrics.mean_translations_per_entry)],
+    [
+      ti(mono ? "synonymsPerEntry" : "translationsPerEntry"),
+      String(metrics.mean_translations_per_entry),
+    ],
   ];
 
   return (
@@ -84,8 +92,14 @@ function PairContent({
         </Link>
       </p>
       <h1 className="mt-3 text-3xl leading-tight font-bold">
-        {languageName(record.source_lang)} &rarr;{" "}
-        {languageName(record.target_lang)}
+        {mono ? (
+          languageName(record.source_lang, locale)
+        ) : (
+          <>
+            {languageName(record.source_lang, locale)} &rarr;{" "}
+            {languageName(record.target_lang, locale)}
+          </>
+        )}
       </h1>
       <p className="mt-3 max-w-2xl text-neutral-500 dark:text-neutral-400">
         {record.description}
@@ -115,7 +129,7 @@ function PairContent({
         </p>
         <pre className="mt-2 overflow-x-auto rounded-md bg-accent-soft p-3 font-mono text-xs dark:bg-accent-soft-dark">{`koreader/data/dict/${record.basename}/${record.basename}.ifo`}</pre>
         <p className="mt-2 text-sm text-neutral-500 dark:text-neutral-400">
-          {t("installAfter")}
+          {metrics.inflected_forms ? t("installAfterForms") : t("installAfter")}
         </p>
         <p className="mt-2 text-sm text-neutral-500 dark:text-neutral-400">
           <Link
@@ -158,7 +172,7 @@ function PairContent({
         </table>
       </div>
       <p className="mt-2 text-sm text-neutral-500 dark:text-neutral-400">
-        {t("insideNote")}
+        {t(mono ? "insideNoteMono" : "insideNote")}
       </p>
 
       <h2 className="mt-12 text-xl font-bold">{t("sourcesTitle")}</h2>

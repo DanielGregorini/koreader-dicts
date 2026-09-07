@@ -1,17 +1,18 @@
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Rich, raw } from "@/components/rich";
 import type { Metrics } from "@/lib/dictionaries";
-import { formatNumber } from "@/lib/dictionaries";
+import { formatNumber, isMonolingual } from "@/lib/dictionaries";
 
 export function StatRow({ metrics }: { metrics: Metrics }) {
   const t = useTranslations("stats");
+  const locale = useLocale();
   return (
     <div className="mt-5 flex flex-wrap gap-x-8 gap-y-3">
-      <Stat value={formatNumber(metrics.entries)} label={t("entries")} />
-      <Stat value={formatNumber(metrics.inflected_forms)} label={t("forms")} />
+      <Stat value={formatNumber(metrics.entries, locale)} label={t("entries")} />
+      <Stat value={formatNumber(metrics.inflected_forms, locale)} label={t("forms")} />
       <Stat
         value={`${metrics.percent_entries_with_translation}%`}
-        label={t("withTranslation")}
+        label={t(isMonolingual(metrics) ? "withSynonym" : "withTranslation")}
       />
       <Stat
         value={metrics.coverage.length ? `${topCoverage(metrics)}%` : "—"}
@@ -37,6 +38,7 @@ export function topCoverage(metrics: Metrics, cutoff = 10000): number | string {
 // Coverage against a frequency list, counting inflected forms.
 export function CoverageTable({ metrics }: { metrics: Metrics }) {
   const t = useTranslations("coverage");
+  const locale = useLocale();
   if (!metrics.coverage.length) {
     return <p className="mt-3 text-sm text-neutral-500 dark:text-neutral-400">{t("none")}</p>;
   }
@@ -55,10 +57,10 @@ export function CoverageTable({ metrics }: { metrics: Metrics }) {
         <tbody>
           {metrics.coverage.map((point) => (
             <tr key={point.cutoff} className="border-b border-line dark:border-line-dark">
-              <td className="py-2 pr-3">{t("top", { n: formatNumber(point.cutoff) })}</td>
-              <td className="py-2 pr-3 text-right tabular-nums">{formatNumber(point.hits)}</td>
-              <td className="py-2 pr-3 text-right tabular-nums">{formatNumber(point.headword_hits)}</td>
-              <td className="py-2 pr-3 text-right tabular-nums">{formatNumber(point.form_hits)}</td>
+              <td className="py-2 pr-3">{t("top", { n: formatNumber(point.cutoff, locale) })}</td>
+              <td className="py-2 pr-3 text-right tabular-nums">{formatNumber(point.hits, locale)}</td>
+              <td className="py-2 pr-3 text-right tabular-nums">{formatNumber(point.headword_hits, locale)}</td>
+              <td className="py-2 pr-3 text-right tabular-nums">{formatNumber(point.form_hits, locale)}</td>
               <td className="py-2 pr-3">
                 <div
                   className="h-2 rounded-sm bg-accent-soft dark:bg-accent-soft-dark"

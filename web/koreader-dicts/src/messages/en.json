@@ -25,6 +25,7 @@
     "entries": "entries",
     "forms": "inflected forms",
     "withTranslation": "with a translation",
+    "withSynonym": "with a synonym",
     "coverage10k": "top-10k coverage"
   },
   "pair": {
@@ -33,13 +34,15 @@
     "downloadSize": "{size} MB · StarDict · {licence}",
     "installTitle": "Install on your e-reader",
     "installBody": "Unzip and copy the folder onto your device so that you end up with:",
-    "installAfter": "Restart KOReader. The dictionary includes an inflection index, so looking a word up exactly as it appears in a book works.",
+    "installAfter": "Restart KOReader and the dictionary appears in the dictionary list.",
     "installLink": "Full instructions for every device",
     "coverageTitle": "Coverage",
     "coverageBody": "How many of the most common words in the source language this dictionary can actually resolve, counting words reached through the inflection index.",
     "insideTitle": "What is in an entry",
     "insideNote": "An entry counted as “definition only” is one where the source wordnet knows the concept but has no word for it in the target language. These are shipped because a definition still helps a reader, and counted separately because calling them translations would be dishonest.",
-    "sourcesTitle": "Sources and licence"
+    "insideNoteMono": "This dictionary defines a language in itself, so nothing in it is translated. An entry counted as “definition only” has a definition but no synonym listed, which is the normal case for most words.",
+    "sourcesTitle": "Sources and licence",
+    "installAfterForms": "Restart KOReader. This dictionary includes an inflection index, so looking a word up exactly as it appears in a book works."
   },
   "coverage": {
     "band": "Frequency band",
@@ -59,14 +62,17 @@
   },
   "inside": {
     "withTranslation": "Entries with a real translation",
+    "withSynonym": "Entries with a synonym",
     "glossOnly": "Entries with only a definition, no translation",
+    "definitionOnly": "Entries with a definition and no synonym",
     "withExample": "Entries with a usage example",
     "withForms": "Entries with inflected forms",
     "withPronunciation": "Entries with pronunciation",
     "senses": "Senses",
     "definitionLength": "Mean definition length",
     "characters": "{n} characters",
-    "translationsPerEntry": "Mean translations per entry"
+    "translationsPerEntry": "Mean translations per entry",
+    "synonymsPerEntry": "Mean synonyms per entry"
   },
   "downloads": {
     "title": "Downloads",
@@ -117,7 +123,7 @@
     "inflectionTitle": "Why the inflection index matters",
     "inflectionBody": "Books do not contain headwords. They contain <em>wielded</em>, <em>geese</em>, <em>running</em>. A dictionary that only indexes <em>wield</em>, <em>goose</em> and <em>run</em> will report “not found” for a word it actually knows. Every dictionary here ships a separate inflection index mapping hundreds of thousands of inflected forms back to their entry, and the coverage figures on each dictionary’s page count those forms.",
     "honestTitle": "Where these dictionaries fall short",
-    "honestBody": "Roughly four entries in ten have a definition but no translation: the wordnet knows the concept and your language has no single word for it. Those are shipped anyway, because a definition still helps, and they are counted separately in every metric rather than folded into the entry total. Pairs that do not involve English ship without an inflection index: the inflection rules are English-only.",
+    "honestBody": "Roughly four entries in ten have a definition but no translation: the wordnet knows the concept and your language has no single word for it. Those are shipped anyway, because a definition still helps, and they are counted separately in every metric rather than folded into the entry total. Only the pairs enriched with Wiktionary carry an inflection index — the form tables are the only bulk source of inflected forms, so a pair built from the wordnet pivot alone ships without one.",
     "installTitle": "Installing a dictionary",
     "installIntro": "KOReader reads StarDict dictionaries. Unzip the download and copy the folder — not its contents — into the dictionary directory for your device:",
     "installDevice": "Device",

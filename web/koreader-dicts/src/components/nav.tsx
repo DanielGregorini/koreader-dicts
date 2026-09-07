@@ -2,6 +2,7 @@
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Link } from "@/components/link";
+import { LocaleSwitcher } from "@/components/locale-switcher";
 import type { Locale } from "@/i18n/routing";
 
 const TABS = [
@@ -49,6 +50,8 @@ export function Nav({ locale }: { locale: Locale }) {
             })}
           </ul>
         </nav>
+
+        <LocaleSwitcher current={locale} path={rest} />
       </div>
     </header>
   );

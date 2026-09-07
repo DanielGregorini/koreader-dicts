@@ -60,7 +60,7 @@ function HomeContent({ locale }: { locale: Locale }) {
         <p className="mt-10 text-sm text-neutral-500 dark:text-neutral-400">
           {t("catalogGenerated", {
             date: catalog.generated_at.slice(0, 10),
-            count: formatNumber(built.length),
+            count: formatNumber(built.length, locale),
           })}
         </p>
       ) : null}

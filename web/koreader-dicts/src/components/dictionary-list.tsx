@@ -6,6 +6,7 @@ import { Link } from "@/components/link";
 import {
   downloadUrl,
   formatNumber,
+  isMonolingual,
   languageName,
   sizeMb,
   type DictionaryRecord,
@@ -24,6 +25,7 @@ export function DictionaryList({
 }) {
   const t = useTranslations("list");
   const [language, setLanguage] = useState<string>(ALL);
+  const name = (code: string) => languageName(code, locale);
 
   const languages = useMemo(() => {
     const codes = new Set<string>();
@@ -31,8 +33,9 @@ export function DictionaryList({
       codes.add(record.source_lang);
       codes.add(record.target_lang);
     }
-    return [...codes].sort((a, b) => languageName(a).localeCompare(languageName(b)));
-  }, [records]);
+    return [...codes].sort((a, b) => name(a).localeCompare(name(b), locale));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [records, locale]);
 
   const visible = useMemo(() => {
     // Matches either side of the pair.
@@ -61,7 +64,7 @@ export function DictionaryList({
           <option value={ALL}>{t("allLanguages")}</option>
           {languages.map((code) => (
             <option key={code} value={code}>
-              {languageName(code)}
+              {name(code)}
             </option>
           ))}
         </select>
@@ -82,7 +85,9 @@ export function DictionaryList({
                 href={`/${record.pair}`}
                 className="font-semibold text-accent hover:underline dark:text-accent-dark"
               >
-                {languageName(record.source_lang)} &rarr; {languageName(record.target_lang)}
+                {isMonolingual(record)
+                  ? name(record.source_lang)
+                  : `${name(record.source_lang)} \u2192 ${name(record.target_lang)}`}
               </Link>
               <code className="block text-xs text-neutral-500 dark:text-neutral-400">
                 {record.pair}
@@ -92,8 +97,8 @@ export function DictionaryList({
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-neutral-500 dark:text-neutral-400">
               {record.metrics ? (
                 <>
-                  <span>{t("entries", { count: formatNumber(record.metrics.entries) })}</span>
-                  <span>{t("forms", { count: formatNumber(record.metrics.inflected_forms) })}</span>
+                  <span>{t("entries", { count: formatNumber(record.metrics.entries, locale) })}</span>
+                  <span>{t("forms", { count: formatNumber(record.metrics.inflected_forms, locale) })}</span>
                   {sizeMb(record) ? <span>{sizeMb(record)} MB</span> : null}
                   <span className="rounded-full bg-accent-soft px-2 py-0.5 text-xs tracking-wide text-accent uppercase dark:bg-accent-soft-dark dark:text-accent-dark">
                     {record.metrics.bundle_license}
