@@ -1,0 +1,40 @@
+# Monolingual English, and the one monolingual pair with a wordnet behind it.
+#
+# Pivoting WordNet against itself is what a wordnet is for: the synset is the
+# set of synonyms, and the gloss is the definition already written for it. The
+# pivot drops a word from its own synset, so the bold line is the synonyms and
+# nothing is translated. The English Wiktionary is layered on for the slang,
+# idiom and recent vocabulary WordNet does not carry.
+
+id = "en-en"
+source_lang = "en"
+target_lang = "en"
+tier = 2
+name = "English monolingual"
+bookname = "en-en"
+basename = "en-en"
+description = """\
+English defined in English: Princeton WordNet's synonym sets and \
+definitions, enriched with the English Wiktionary. Includes an inflection \
+index."""
+
+[pivot]
+source_side = "pwn30"
+target_side = "pwn30"
+gloss_providers = ["pwn30"]
+gloss_langs = ["en"]
+keep_gloss_only = true
+max_translations = 6
+
+[[enrich]]
+source = "wikt-en-def"
+add_new_headwords = true
+
+[inflections]
+wordnet_exceptions = "pwn30"
+rules = true
+from_sources = ["wikt-en-def"]
+
+[benchmark]
+frequency_list = "freq/en_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)"

@@ -1,0 +1,29 @@
+# Monolingual: Italian defined in Italian. Nothing here is translated.
+#
+# The Italian Wiktionary's own pages about Italian words. The gloss is a
+# definition, and the entry's bold line is its synonyms rather than
+# equivalents in another language. Its form tables give the pair a real
+# inflection index, which a pivot-built pair cannot have.
+
+id = "it-it"
+source_lang = "it"
+target_lang = "it"
+tier = 2
+name = "Italian monolingual"
+bookname = "it-it"
+basename = "it-it"
+description = """\
+Italian defined in Italian, taken from the Italian \
+Wiktionary. Definitions and synonyms only: nothing is translated. Includes an \
+inflection index."""
+
+[[enrich]]
+source = "wikt-it-def"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-it-def"]
+
+[benchmark]
+frequency_list = "freq/it_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 Italian top 50k (hermitdave/FrequencyWords)"

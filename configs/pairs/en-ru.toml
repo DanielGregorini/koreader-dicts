@@ -1,0 +1,27 @@
+# No open Russian wordnet exists, so this is the same Wiktionary-only shape
+# as en-de. Russian is the widest-covered target in the English edition's
+# translation tables.
+
+id = "en-ru"
+source_lang = "en"
+target_lang = "ru"
+tier = 2
+name = "English to Russian"
+bookname = "en-ru"
+basename = "en-ru"
+description = """\
+English to Russian, built from the English Wiktionary's translation \
+tables. Includes an inflection index."""
+
+[[enrich]]
+source = "wikt-en-ru"
+add_new_headwords = true
+
+[inflections]
+wordnet_exceptions = "pwn30"
+rules = true
+from_sources = ["wikt-en-ru"]
+
+[benchmark]
+frequency_list = "freq/en_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)"

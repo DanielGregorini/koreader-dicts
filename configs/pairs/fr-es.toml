@@ -1,0 +1,25 @@
+# Tier 3, CeCILL-C bundle. See es-fr for why the Spanish lexicon may be
+# combined with WOLF and Wiktionary may not.
+
+id = "fr-es"
+source_lang = "fr"
+target_lang = "es"
+tier = 3
+name = "French to Spanish"
+bookname = "fr-es"
+basename = "fr-es"
+description = """\
+French to Spanish via the WordNet interlingual pivot. Distributed under \
+CeCILL-C."""
+
+[pivot]
+source_side = "omw-fr"
+target_side = "omw-es"
+gloss_providers = ["pwn30"]
+gloss_langs = ["es", "en"]
+keep_gloss_only = false
+max_translations = 5
+
+[benchmark]
+frequency_list = "freq/fr_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 French top 50k (hermitdave/FrequencyWords)"

@@ -1,5 +1,5 @@
-# Declared so the pair is listed on the site as planned. The wordnet is already
-# declared in sources.toml; building it is `kdicts fetch omw-it && kdicts build en-it`.
+# MultiWordNet is one of the larger OMW lexicons and carries no definitions,
+# so the glosses come from the English side.
 
 id = "en-it"
 source_lang = "en"
@@ -8,7 +8,10 @@ tier = 1
 name = "English to Italian"
 bookname = "en-it"
 basename = "en-it"
-description = "English to Italian, built by pivoting Princeton WordNet 3.0 through the Italian wordnet in the Open Multilingual Wordnet."
+description = """\
+English to Italian, built by pivoting Princeton WordNet 3.0 through \
+MultiWordNet and enriching with the English Wiktionary. Includes an inflection \
+index."""
 
 [pivot]
 source_side = "pwn30"
@@ -18,9 +21,16 @@ gloss_langs = ["it", "en"]
 keep_gloss_only = true
 max_translations = 5
 
+# The English edition's translation tables: wider than the wordnet,
+# shallower per entry, and the only bulk source of inflected forms.
+[[enrich]]
+source = "wikt-en-it"
+add_new_headwords = true
+
 [inflections]
 wordnet_exceptions = "pwn30"
 rules = true
+from_sources = ["wikt-en-it"]
 
 [benchmark]
 frequency_list = "freq/en_50k.txt"

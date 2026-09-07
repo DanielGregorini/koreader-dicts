@@ -1,0 +1,24 @@
+# Tier 3, CeCILL-C bundle.
+
+id = "fr-it"
+source_lang = "fr"
+target_lang = "it"
+tier = 3
+name = "French to Italian"
+bookname = "fr-it"
+basename = "fr-it"
+description = """\
+French to Italian via the WordNet interlingual pivot. Distributed under \
+CeCILL-C."""
+
+[pivot]
+source_side = "omw-fr"
+target_side = "omw-it"
+gloss_providers = ["pwn30"]
+gloss_langs = ["it", "en"]
+keep_gloss_only = false
+max_translations = 5
+
+[benchmark]
+frequency_list = "freq/fr_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 French top 50k (hermitdave/FrequencyWords)"

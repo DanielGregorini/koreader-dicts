@@ -1,0 +1,29 @@
+# Monolingual: Russian defined in Russian. Nothing here is translated.
+#
+# The Russian Wiktionary's own pages about Russian words. The gloss is a
+# definition, and the entry's bold line is its synonyms rather than
+# equivalents in another language. Its form tables give the pair a real
+# inflection index, which a pivot-built pair cannot have.
+
+id = "ru-ru"
+source_lang = "ru"
+target_lang = "ru"
+tier = 2
+name = "Russian monolingual"
+bookname = "ru-ru"
+basename = "ru-ru"
+description = """\
+Russian defined in Russian, taken from the Russian \
+Wiktionary. Definitions and synonyms only: nothing is translated. Includes an \
+inflection index."""
+
+[[enrich]]
+source = "wikt-ru-def"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-ru-def"]
+
+[benchmark]
+frequency_list = "freq/ru_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 Russian top 50k (hermitdave/FrequencyWords)"

@@ -1,0 +1,29 @@
+# Monolingual: Chinese defined in Chinese. Nothing here is translated.
+#
+# The Chinese Wiktionary's own pages about Chinese words. The gloss is a
+# definition, and the entry's bold line is its synonyms rather than
+# equivalents in another language. Its form tables give the pair a real
+# inflection index, which a pivot-built pair cannot have.
+
+id = "zh-zh"
+source_lang = "zh"
+target_lang = "zh"
+tier = 2
+name = "Chinese monolingual"
+bookname = "zh-zh"
+basename = "zh-zh"
+description = """\
+Chinese defined in Chinese, taken from the Chinese \
+Wiktionary. Definitions and synonyms only: nothing is translated. Includes an \
+inflection index."""
+
+[[enrich]]
+source = "wikt-zh-def"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-zh-def"]
+
+[benchmark]
+frequency_list = ""
+frequency_list_name = ""

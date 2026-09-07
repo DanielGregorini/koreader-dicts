@@ -1,0 +1,37 @@
+# Chinese Open Wordnet. Headwords stay English, so the inflection index and
+# the collation are unaffected by the script change on the definition side.
+
+id = "en-zh"
+source_lang = "en"
+target_lang = "zh"
+tier = 1
+name = "English to Chinese"
+bookname = "en-zh"
+basename = "en-zh"
+description = """\
+English to Chinese, built by pivoting Princeton WordNet 3.0 through the \
+Chinese Open Wordnet and enriching with the English Wiktionary. Includes an \
+inflection index."""
+
+[pivot]
+source_side = "pwn30"
+target_side = "omw-cmn"
+gloss_providers = ["omw-cmn", "pwn30"]
+gloss_langs = ["zh", "en"]
+keep_gloss_only = true
+max_translations = 5
+
+# The English edition's translation tables: wider than the wordnet,
+# shallower per entry, and the only bulk source of inflected forms.
+[[enrich]]
+source = "wikt-en-cmn"
+add_new_headwords = true
+
+[inflections]
+wordnet_exceptions = "pwn30"
+rules = true
+from_sources = ["wikt-en-cmn"]
+
+[benchmark]
+frequency_list = "freq/en_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)"

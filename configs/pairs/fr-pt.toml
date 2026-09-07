@@ -1,0 +1,30 @@
+# The one pair the pivot cannot build. WOLF is CeCILL-C and OpenWN-PT is CC
+# BY-SA: neither licence lets its material be redistributed under the other,
+# so the build would (correctly) refuse to emit a file. What is left is the
+# French section of the Portuguese Wiktionary -- French words defined in
+# Portuguese by Portuguese speakers. Around six thousand pages, so this is
+# much the smallest dictionary here. It is shipped because a small, honest
+# dictionary is better than a licence violation.
+
+id = "fr-pt"
+source_lang = "fr"
+target_lang = "pt"
+tier = 2
+name = "French to Portuguese"
+bookname = "fr-pt"
+basename = "fr-pt"
+description = """\
+French to Portuguese, taken from the French section of the Portuguese \
+Wiktionary. The WordNet pivot cannot be used here: WOLF and OpenWN-PT carry \
+incompatible licences."""
+
+[[enrich]]
+source = "wikt-pt-fr"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-pt-fr"]
+
+[benchmark]
+frequency_list = "freq/fr_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 French top 50k (hermitdave/FrequencyWords)"

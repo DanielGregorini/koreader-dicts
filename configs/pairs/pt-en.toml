@@ -20,4 +20,5 @@ keep_gloss_only = false
 max_translations = 5
 
 [benchmark]
-frequency_list_name = ""
+frequency_list = "freq/pt_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 Portuguese top 50k (hermitdave/FrequencyWords)"

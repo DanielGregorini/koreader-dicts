@@ -1,0 +1,37 @@
+# plWordNet is mapped onto Princeton synsets like every other OMW lexicon, so
+# this is the same build as en-pt with one identifier changed.
+
+id = "en-pl"
+source_lang = "en"
+target_lang = "pl"
+tier = 1
+name = "English to Polish"
+bookname = "en-pl"
+basename = "en-pl"
+description = """\
+English to Polish, built by pivoting Princeton WordNet 3.0 through \
+plWordNet and enriching with the English Wiktionary. Includes an inflection \
+index."""
+
+[pivot]
+source_side = "pwn30"
+target_side = "omw-pl"
+gloss_providers = ["omw-pl", "pwn30"]
+gloss_langs = ["pl", "en"]
+keep_gloss_only = true
+max_translations = 5
+
+# The English edition's translation tables: wider than the wordnet,
+# shallower per entry, and the only bulk source of inflected forms.
+[[enrich]]
+source = "wikt-en-pl"
+add_new_headwords = true
+
+[inflections]
+wordnet_exceptions = "pwn30"
+rules = true
+from_sources = ["wikt-en-pl"]
+
+[benchmark]
+frequency_list = "freq/en_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)"

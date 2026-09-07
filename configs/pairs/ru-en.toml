@@ -1,0 +1,25 @@
+# No open Russian wordnet exists, so there is no pivot: the Russian section
+# of the English Wiktionary is the whole dictionary. Its form tables are
+# unusually good, which matters more for Russian than for most languages.
+
+id = "ru-en"
+source_lang = "ru"
+target_lang = "en"
+tier = 2
+name = "Russian to English"
+bookname = "ru-en"
+basename = "ru-en"
+description = """\
+Russian to English, built from the Russian section of the English \
+Wiktionary. Includes an inflection index."""
+
+[[enrich]]
+source = "wikt-ru-en"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-ru-en"]
+
+[benchmark]
+frequency_list = "freq/ru_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 Russian top 50k (hermitdave/FrequencyWords)"

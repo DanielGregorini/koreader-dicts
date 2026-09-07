@@ -1,0 +1,31 @@
+# German has no wordnet in OMW 1.4, so there is nothing to pivot through and
+# this pair is Wiktionary only. German is one of the best-covered targets in
+# the English edition's translation tables, so the result is still wide; it
+# is the sense structure that is thinner than a pivoted pair's.
+#
+# WordNet is still named below: its exception files supply the irregular
+# English forms (went -> go) that no rule derives.
+
+id = "en-de"
+source_lang = "en"
+target_lang = "de"
+tier = 2
+name = "English to German"
+bookname = "en-de"
+basename = "en-de"
+description = """\
+English to German, built from the English Wiktionary's translation \
+tables. Includes an inflection index."""
+
+[[enrich]]
+source = "wikt-en-de"
+add_new_headwords = true
+
+[inflections]
+wordnet_exceptions = "pwn30"
+rules = true
+from_sources = ["wikt-en-de"]
+
+[benchmark]
+frequency_list = "freq/en_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)"

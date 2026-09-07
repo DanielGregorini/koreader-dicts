@@ -1,0 +1,29 @@
+# Monolingual: Spanish defined in Spanish. Nothing here is translated.
+#
+# The Spanish Wiktionary's own pages about Spanish words. The gloss is a
+# definition, and the entry's bold line is its synonyms rather than
+# equivalents in another language. Its form tables give the pair a real
+# inflection index, which a pivot-built pair cannot have.
+
+id = "es-es"
+source_lang = "es"
+target_lang = "es"
+tier = 2
+name = "Spanish monolingual"
+bookname = "es-es"
+basename = "es-es"
+description = """\
+Spanish defined in Spanish, taken from the Spanish \
+Wiktionary. Definitions and synonyms only: nothing is translated. Includes an \
+inflection index."""
+
+[[enrich]]
+source = "wikt-es-def"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-es-def"]
+
+[benchmark]
+frequency_list = "freq/es_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 Spanish top 50k (hermitdave/FrequencyWords)"

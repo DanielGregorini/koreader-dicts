@@ -1,0 +1,29 @@
+# Monolingual: Polish defined in Polish. Nothing here is translated.
+#
+# The Polish Wiktionary's own pages about Polish words. The gloss is a
+# definition, and the entry's bold line is its synonyms rather than
+# equivalents in another language. Its form tables give the pair a real
+# inflection index, which a pivot-built pair cannot have.
+
+id = "pl-pl"
+source_lang = "pl"
+target_lang = "pl"
+tier = 2
+name = "Polish monolingual"
+bookname = "pl-pl"
+basename = "pl-pl"
+description = """\
+Polish defined in Polish, taken from the Polish \
+Wiktionary. Definitions and synonyms only: nothing is translated. Includes an \
+inflection index."""
+
+[[enrich]]
+source = "wikt-pl-def"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-pl-def"]
+
+[benchmark]
+frequency_list = "freq/pl_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 Polish top 50k (hermitdave/FrequencyWords)"

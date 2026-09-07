@@ -1,0 +1,27 @@
+# Tier 3, and a CeCILL-C bundle because WOLF is on the target side. The
+# Spanish lexicon is CC BY 3.0, which has no share-alike clause and so may
+# travel into a CeCILL-C compilation. No Wiktionary here: that material is
+# CC BY-SA and would make the bundle unlicensable.
+
+id = "es-fr"
+source_lang = "es"
+target_lang = "fr"
+tier = 3
+name = "Spanish to French"
+bookname = "es-fr"
+basename = "es-fr"
+description = """\
+Spanish to French via the WordNet interlingual pivot. Distributed under \
+CeCILL-C, separately from the Creative Commons bundles."""
+
+[pivot]
+source_side = "omw-es"
+target_side = "omw-fr"
+gloss_providers = ["pwn30"]
+gloss_langs = ["fr", "es", "en"]
+keep_gloss_only = false
+max_translations = 5
+
+[benchmark]
+frequency_list = "freq/es_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 Spanish top 50k (hermitdave/FrequencyWords)"

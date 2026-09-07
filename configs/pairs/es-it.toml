@@ -1,0 +1,25 @@
+# Tier 3. Two CC BY 3.0 lexicons, so this ships under the most permissive
+# outbound licence of any pair here.
+
+id = "es-it"
+source_lang = "es"
+target_lang = "it"
+tier = 3
+name = "Spanish to Italian"
+bookname = "es-it"
+basename = "es-it"
+description = """\
+Spanish to Italian, generated through the WordNet interlingual pivot: \
+no direct Spanish-Italian resource is involved."""
+
+[pivot]
+source_side = "omw-es"
+target_side = "omw-it"
+gloss_providers = ["pwn30"]
+gloss_langs = ["it", "es", "en"]
+keep_gloss_only = false
+max_translations = 5
+
+[benchmark]
+frequency_list = "freq/es_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 Spanish top 50k (hermitdave/FrequencyWords)"

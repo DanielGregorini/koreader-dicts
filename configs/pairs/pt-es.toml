@@ -1,0 +1,25 @@
+# Tier 3: no Portuguese-Spanish resource is involved. Both wordnets are
+# mapped onto the same Princeton synsets, so the pair is a config file.
+
+id = "pt-es"
+source_lang = "pt"
+target_lang = "es"
+tier = 3
+name = "Portuguese to Spanish"
+bookname = "pt-es"
+basename = "pt-es"
+description = """\
+Portuguese to Spanish, generated through the WordNet interlingual pivot: \
+no direct Portuguese-Spanish resource is involved."""
+
+[pivot]
+source_side = "omw-pt"
+target_side = "omw-es"
+gloss_providers = ["pwn30"]
+gloss_langs = ["es", "pt", "en"]
+keep_gloss_only = false
+max_translations = 5
+
+[benchmark]
+frequency_list = "freq/pt_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 Portuguese top 50k (hermitdave/FrequencyWords)"

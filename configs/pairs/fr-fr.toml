@@ -1,0 +1,29 @@
+# Monolingual: French defined in French. Nothing here is translated.
+#
+# The French Wiktionary's own pages about French words. The gloss is a
+# definition, and the entry's bold line is its synonyms rather than
+# equivalents in another language. Its form tables give the pair a real
+# inflection index, which a pivot-built pair cannot have.
+
+id = "fr-fr"
+source_lang = "fr"
+target_lang = "fr"
+tier = 2
+name = "French monolingual"
+bookname = "fr-fr"
+basename = "fr-fr"
+description = """\
+French defined in French, taken from the French \
+Wiktionary. Definitions and synonyms only: nothing is translated. Includes an \
+inflection index."""
+
+[[enrich]]
+source = "wikt-fr-def"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-fr-def"]
+
+[benchmark]
+frequency_list = "freq/fr_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 French top 50k (hermitdave/FrequencyWords)"

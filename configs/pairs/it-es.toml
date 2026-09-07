@@ -1,0 +1,24 @@
+# Tier 3, the mirror of es-it.
+
+id = "it-es"
+source_lang = "it"
+target_lang = "es"
+tier = 3
+name = "Italian to Spanish"
+bookname = "it-es"
+basename = "it-es"
+description = """\
+Italian to Spanish, generated through the WordNet interlingual pivot: \
+no direct Italian-Spanish resource is involved."""
+
+[pivot]
+source_side = "omw-it"
+target_side = "omw-es"
+gloss_providers = ["pwn30"]
+gloss_langs = ["es", "it", "en"]
+keep_gloss_only = false
+max_translations = 5
+
+[benchmark]
+frequency_list = "freq/it_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 Italian top 50k (hermitdave/FrequencyWords)"

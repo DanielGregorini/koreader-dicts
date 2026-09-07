@@ -1,0 +1,29 @@
+# Monolingual: Portuguese defined in Portuguese. Nothing here is translated.
+#
+# The Portuguese Wiktionary's own pages about Portuguese words. The gloss is a
+# definition, and the entry's bold line is its synonyms rather than
+# equivalents in another language. Its form tables give the pair a real
+# inflection index, which a pivot-built pair cannot have.
+
+id = "pt-pt"
+source_lang = "pt"
+target_lang = "pt"
+tier = 2
+name = "Portuguese monolingual"
+bookname = "pt-pt"
+basename = "pt-pt"
+description = """\
+Portuguese defined in Portuguese, taken from the Portuguese \
+Wiktionary. Definitions and synonyms only: nothing is translated. Includes an \
+inflection index."""
+
+[[enrich]]
+source = "wikt-pt-def"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-pt-def"]
+
+[benchmark]
+frequency_list = "freq/pt_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 Portuguese top 50k (hermitdave/FrequencyWords)"
