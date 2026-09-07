@@ -119,8 +119,10 @@ _ALL: list[License] = [
         commercial_ok=True,
         share_alike=False,
         attribution_required=True,
-        # BY may be folded into BY-SA output; the reverse is not true.
-        outbound=frozenset({"CC-BY-SA-4.0"}),
+        # BY may be folded into BY-SA output; the reverse is not true. It may
+        # also go into a CeCILL-C bundle: attribution-only licences carry no
+        # share-alike clause to violate.
+        outbound=frozenset({"CC-BY-SA-4.0", "CECILL-C"}),
     ),
     _lic(
         id="CC-BY-3.0",
@@ -129,7 +131,7 @@ _ALL: list[License] = [
         commercial_ok=True,
         share_alike=False,
         attribution_required=True,
-        outbound=frozenset({"CC-BY-4.0", "CC-BY-SA-3.0", "CC-BY-SA-4.0"}),
+        outbound=frozenset({"CC-BY-4.0", "CC-BY-SA-3.0", "CC-BY-SA-4.0", "CECILL-C"}),
     ),
     _lic(
         id="CC-BY-SA-3.0",
@@ -198,7 +200,7 @@ _ALL: list[License] = [
         # Permissive: material may go into a more restrictively licensed
         # compilation as long as the notice travels with it, which is what the
         # ATTRIBUTION file is for. Wordnet Bahasa (id, zsm) is under this.
-        outbound=frozenset({"CC-BY-4.0", "CC-BY-SA-4.0", "CC-BY-SA-3.0", "GPL-3.0-or-later"}),
+        outbound=frozenset({"CC-BY-4.0", "CC-BY-SA-4.0", "CC-BY-SA-3.0", "GPL-3.0-or-later", "CECILL-C"}),
     ),
     _lic(
         id="Apache-2.0",
@@ -209,7 +211,7 @@ _ALL: list[License] = [
         attribution_required=True,
         # Apache 2.0 is one-way compatible with GPLv3 but not GPLv2, and its
         # notice and patent terms must survive into any compilation.
-        outbound=frozenset({"CC-BY-4.0", "CC-BY-SA-4.0", "GPL-3.0-or-later"}),
+        outbound=frozenset({"CC-BY-4.0", "CC-BY-SA-4.0", "GPL-3.0-or-later", "CECILL-C"}),
         notice=(
             "Contains material licensed under the Apache License, Version 2.0. "
             "The NOTICE and attribution requirements of that licence continue to "
@@ -225,7 +227,7 @@ _ALL: list[License] = [
         attribution_required=True,
         # A database licence with an attribution condition and no share-alike,
         # so derived databases may be released under other terms. ItalWordNet.
-        outbound=frozenset({"CC-BY-4.0", "CC-BY-SA-4.0", "GPL-3.0-or-later"}),
+        outbound=frozenset({"CC-BY-4.0", "CC-BY-SA-4.0", "GPL-3.0-or-later", "CECILL-C"}),
     ),
     _lic(
         id="CC-BY-NC-SA-4.0",
