@@ -64,7 +64,7 @@ already produced, its translations are added to the existing entry rather than
 replacing it, and the entry records that it now contains Wiktionary material —
 which matters at step 5.
 
-Two shapes of Wiktionary data are read, because they are useful for different
+Three shapes of Wiktionary data are read, because they are useful for different
 reasons:
 
 - **Translation tables** from the source language's own edition. Wide coverage,
@@ -72,6 +72,16 @@ reasons:
 - **Foreign-word entries** from the target language's edition — English words
   described in Portuguese, by Portuguese speakers. Far fewer headwords, much
   better prose.
+- **Own-language entries**, which is what a monolingual dictionary is made of:
+  the pages an edition writes about its own language. Nothing is translated, so
+  the gloss stays a definition and the entry's synonym lists are read as
+  synonyms.
+
+For a monolingual pair there is usually no step 2 at all — the wordnets carry
+almost no definitions outside English, so there is nothing to pivot for and
+this step is the whole dictionary. English is the exception: pivoting WordNet
+against itself gives the synonym set and the definition that was already
+written for it.
 
 ## 4. Attach inflected forms
 

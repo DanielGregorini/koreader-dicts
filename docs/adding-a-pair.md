@@ -48,9 +48,26 @@ Also just config — `configs/pairs/es-pt.toml` is the worked example. Neither
 side needs to know the other exists; they meet at the synset ids.
 
 Note what you lose: inflected forms. The rule-based inflector is English-only,
-and non-English Wiktionary form tables are not wired in yet, so `es-pt` ships
-with an empty `.syn`. That is visible in the metrics, and it is the honest state
-of the pair rather than something to paper over.
+so a pivot-only pair like `es-pt` ships with an empty `.syn`. That is visible in
+the metrics, and it is the honest state of the pair rather than something to
+paper over.
+
+It is fixable per pair, and `it-en` shows how: kaikki publishes one file per
+language section of the English Wiktionary, and its form tables give a foreign
+headword an inflection index that no English rule could produce. Declare that
+file as a `foreign_entries` source and list it under `[inflections]
+from_sources`.
+
+### A monolingual pair
+
+`source_lang` and `target_lang` are the same code. Declare the edition with
+`mode = "definitions"` and enrich from it: the reader stops guessing that a
+short gloss is an equivalent, and reads the page's synonym lists instead.
+
+`en-en` is the one that also gets a `[pivot]`, because pivoting WordNet against
+itself is meaningful — the synset *is* the synonym set. The pivot drops a word
+from its own synset so nothing is listed as its own synonym. Elsewhere the
+wordnets carry no definitions, so there is nothing to pivot for.
 
 ## A new source
 
@@ -84,9 +101,14 @@ Do not let one default to something permissive.
 
 Where a free wordnet exists, the merge gives roughly an order of magnitude more
 coverage than Wiktionary alone, and cross-language pairs come free. Where one
-does not — Russian, Turkish, Korean, Hindi, Vietnamese, Ukrainian, Hungarian —
-there is no advantage and the result would be a worse clone of the incumbent.
-Those pairs are last, and Wiktionary-only.
+does not, there is no pivot to run and the pair is Wiktionary-only: it has no
+sense structure beyond what the translation tables carry, and it is worth
+building anyway only where those tables are wide.
 
-Note also that **German is absent from OMW 1.4 entirely**; `en-de` needs OdeNet
-added as its own source before it can be built.
+Two languages in this repository are in that position. **German and Russian are
+both absent from OMW 1.4** — German has OdeNet, which uses interlingual index
+ids rather than Princeton offsets and so cannot be pivoted without a mapping
+step, and Russian has no open wordnet at all. Both are also among the
+best-covered targets in the English edition's translation tables, which is why
+`en-de` and `en-ru` are built from Wiktionary alone. `ru-en` is the same
+decision in reverse, reading the Russian section of the English edition.

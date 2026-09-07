@@ -21,8 +21,10 @@ One file per dictionary, named after the pair id: `en-pt.toml` produces
 combine them:
 
 - `[pivot]` — the two wordnets to join through shared synset ids. This produces
-  most of the dictionary.
-- `[[enrich]]` — direct bilingual sources laid on top, usually Wiktionary.
+  most of the dictionary. A pair can leave it out and be built from `[[enrich]]`
+  alone, which is what the pairs with no wordnet behind them do.
+- `[[enrich]]` — sources laid on top, usually Wiktionary. Monolingual pairs are
+  made of nothing else.
 - `[inflections]` — where inflected forms come from.
 - `[benchmark]` — the frequency list to measure coverage against.
 
