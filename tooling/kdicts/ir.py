@@ -14,6 +14,7 @@ Three things shape it:
 
 from __future__ import annotations
 
+import re
 from collections.abc import Iterable, Iterator, Mapping
 from dataclasses import dataclass, field
 from enum import StrEnum
@@ -342,11 +343,19 @@ def canonical_synset(offset: str, pos_tag: str) -> SynsetId:
     return f"{offset}-{'a' if pos_tag == 's' else pos_tag}"
 
 
+#: Combining acute and grave after a Cyrillic letter. In Russian, Ukrainian and
+#: Bulgarian these mark stress; no running text carries them, so a headword or
+#: inflected form that keeps them can never be looked up. Restricted to Cyrillic
+#: on purpose: after a Latin letter the same code points are part of the letter.
+_CYRILLIC_STRESS = re.compile(r"(?<=[\u0400-\u052f])[\u0300\u0301]")
+
+
 def normalise_headword(word: str) -> str:
     """Canonical form of a headword: collapse whitespace, strip edges.
 
     Deliberately does *not* case-fold or strip diacritics.  StarDict lookup is
     already ASCII-case-insensitive via the collation, and folding here would
-    merge distinct headwords ("Polish"/"polish", "resume"/"résumé").
+    merge distinct headwords ("Polish"/"polish", "resume"/"résumé").  Cyrillic
+    stress marks are the one exception, and they are not diacritics.
     """
-    return " ".join(word.split())
+    return " ".join(_CYRILLIC_STRESS.sub("", word).split())
