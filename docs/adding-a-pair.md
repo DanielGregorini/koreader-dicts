@@ -31,12 +31,18 @@ frequency_list = "freq/en_50k.txt"
 ```
 
 ```bash
-kdicts fetch omw-it
+kdicts fetch --pair en-it
+kdicts sources --verify
 kdicts build en-it
 ```
 
-The CI matrix picks up new pairs automatically; nothing in the workflow needs
-editing.
+`--verify` opens every file on disk and checks it is the edition the config
+says. Six Wiktionary editions once arrived as six copies of the Spanish one,
+and every adapter read them without complaint.
+
+The monthly workflow picks up new pairs automatically; nothing in it needs
+editing. It skips any pair that reads the 500 MB English Wiktionary dump, so
+those are built by hand.
 
 ### Reverse direction
 

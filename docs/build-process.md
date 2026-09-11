@@ -81,7 +81,9 @@ For a monolingual pair there is usually no step 2 at all — the wordnets carry
 almost no definitions outside English, so there is nothing to pivot for and
 this step is the whole dictionary. English is the exception: pivoting WordNet
 against itself gives the synonym set and the definition that was already
-written for it.
+written for it. Arabic is the other way round: it has a wordnet and no
+Wiktionary edition, so `ar-ar` is a pivot with no definitions at all — a
+thesaurus, each entry a synonym set and nothing more.
 
 ## 4. Attach inflected forms
 
@@ -95,8 +97,29 @@ Forms come from three places, most reliable first:
 2. Wiktionary's form tables.
 3. Rule-based morphology, as a backstop for everything the first two missed.
 
+Headwords and forms are normalised to what a reader can actually tap. That
+means collapsing whitespace, and stripping the marks running text never
+carries: Cyrillic stress (*соба́ки*) and Arabic vocalization (*كَلْب*), which
+the wordnets and Wiktionary write and books do not. Translations and synonyms
+keep those marks, because on the display side they help — a learner reading
+English to Arabic wants the vowels — and nothing is ever looked up by a
+translation. Stripping does create homographs: *كِلَاب* (dogs) and *كُلَّاب*
+(hook) both become *كلاب*, and a lookup returns both entries, which is how
+printed Arabic works too.
+
 A form whose headword is not in the dictionary is discarded here, so the number
-reported in the metrics is the number that will really reach the file.
+reported in the metrics is the number that will really reach the file. Two
+kinds of form are dropped on purpose: forms of more than one word, which a
+reader tapping a single word can never reach, and possessive-suffixed forms.
+Finnish is why: its tables list six possessive paradigms on top of the thirty
+case forms, 21 of the 26 million forms they yield, and measured against the top
+50k Finnish words they reach 3,494 more at five times the index. An index a
+Kindle cannot hold reaches nothing.
+
+The build also refuses an index that no reader can reach: if forms were
+attached and not one of the words in the frequency list resolves through the
+inflection index, the build fails. Russian once shipped 731k forms, every one
+carrying a stress mark that no book contains, and every check passed.
 
 ## 5. Decide the licence
 
@@ -117,6 +140,25 @@ nothing to this particular pair does not constrain the outcome.
 
 Each entry becomes the HTML body KOReader will display: the part of speech,
 the translations, the definition, and the example sentence where one exists.
+
+The order of the senses is the part of this step that matters. On a six-inch
+screen the reader sees the first two lines and nothing else, so that is the
+whole lookup. Senses with a translation come first. Among those, a sense that
+two sources agree on — a wordnet sense whose equivalents also appear under one
+of the entry's Wiktionary senses — comes before one only the wordnet lists.
+Then corpus frequency decides: WordNet's own tag counts on the English side,
+and the same counts summed per synset for every other language, since a
+concept's frequency transfers to any word mapped onto it. The lexicon's own
+listing order is the last resort.
+
+Agreement is the rule that keeps *patata* from opening on the vulgar sense.
+The Spanish lexicon maps the word onto that synset, and the synset is common
+in English as an ordinary anatomical word, but the Spanish Wiktionary does not
+know the sense at all. It is also what keeps *ذهبت* (she went) from opening on
+*be*: the Arabic WordNet maps the word onto the *be* synsets too, and nothing
+in English is tagged more often. For English verbs the comparison ignores the
+infinitive marker — Wiktionary writes "to go", WordNet "go" — or no verb sense
+would ever agree.
 
 ## 7. Write the StarDict files
 

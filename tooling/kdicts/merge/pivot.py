@@ -16,11 +16,20 @@ the primary mechanism.
 from __future__ import annotations
 
 from collections import defaultdict
-from collections.abc import Iterable, Sequence
+from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass, field
 from typing import Protocol
 
-from ..ir import Dictionary, Entry, Pos, Provenance, Sense, SynsetId, normalise_headword
+from ..ir import (
+    Dictionary,
+    Entry,
+    Pos,
+    Provenance,
+    Sense,
+    SynsetId,
+    normalise_headword,
+    normalise_translation,
+)
 
 __all__ = ["PivotConfig", "PivotStats", "build_pivot", "synset_to_lemmas"]
 
@@ -118,7 +127,7 @@ def synset_to_lemmas(source: object) -> dict[SynsetId, list[str]]:
     if callable(members):
         grouped: dict[SynsetId, list[str]] = defaultdict(list)
         for synset, lemma in members():
-            lemma = normalise_headword(lemma)
+            lemma = normalise_translation(lemma)
             if lemma and lemma not in grouped[synset]:
                 grouped[synset].append(lemma)
         collapsed = collapsed_multiword_forms(
@@ -131,7 +140,7 @@ def synset_to_lemmas(source: object) -> dict[SynsetId, list[str]]:
 
     ranked: dict[SynsetId, list[tuple[int, str]]] = defaultdict(list)
     for record in source.lemmas():  # type: ignore[attr-defined]
-        lemma = normalise_headword(record.lemma)
+        lemma = normalise_translation(record.lemma)
         if lemma:
             ranked[record.synset].append((record.rank, lemma))
     collapsed = collapsed_multiword_forms(
@@ -182,6 +191,7 @@ def build_pivot(
     *,
     gloss_providers: Sequence[tuple[str, object]] = (),
     config: PivotConfig | None = None,
+    synset_frequencies: Mapping[SynsetId, int] | None = None,
 ) -> tuple[Dictionary, PivotStats]:
     """Generate ``source_side.lang -> target_side.lang`` through shared synsets.
 
@@ -216,10 +226,21 @@ def build_pivot(
     # side.  The frequency travels with the sense so the renderer can order
     # parts of speech by real usage instead of a fixed noun-first convention.
     by_lemma: dict[str, list[tuple[int, SynsetId, int]]] = defaultdict(list)
+    # Only WordNet carries per-sense tag counts. Every other source side gets
+    # the synset's own count instead, which is the same evidence one step
+    # removed: it says the concept is common, not that this word for it is.
+    # When the source side *is* WordNet, a zero is evidence too -- this word
+    # was never used in this sense -- and must not be replaced by the total of
+    # the synset's other members, or "goose" as a fool inherits the tags of
+    # "jackass" and outranks the bird.
+    if callable(getattr(source_side, "sense_counts", None)):
+        synset_frequencies = {}
+    synset_frequencies = synset_frequencies or {}
     for record in source_side.lemmas():  # type: ignore[attr-defined]
         lemma = normalise_headword(record.lemma)
         if lemma:
-            by_lemma[lemma].append((record.rank, record.synset, record.frequency))
+            frequency = record.frequency or synset_frequencies.get(record.synset, 0)
+            by_lemma[lemma].append((record.rank, record.synset, frequency))
     stats.source_lemmas = len(by_lemma)
     stats.shared_synsets = len(
         {synset for pairs in by_lemma.values() for _, synset, _ in pairs} & set(target_lemmas)
@@ -237,7 +258,9 @@ def build_pivot(
 
             candidates = target_lemmas.get(synset, ())
             if monolingual:
-                candidates = [word for word in candidates if word != lemma]
+                # Compared on the lookup form: the target side keeps its
+                # vowels, so "كَلْب" must still be recognised as "كلب" itself.
+                candidates = [word for word in candidates if normalise_headword(word) != lemma]
             translations = tuple(candidates[: config.max_translations])
             gloss, gloss_lang, examples, pos, gloss_source = glosses.get(
                 synset, ("", "", (), Pos.from_wordnet_tag(synset[-1]), "")

@@ -37,7 +37,7 @@ from collections.abc import Iterable, Iterator
 from pathlib import Path
 from typing import Any
 
-from ..ir import Entry, Pos, Sense, normalise_headword
+from ..ir import Entry, Pos, Provenance, Sense, normalise_headword
 from .base import (
     SourceError,
     SourceSpec,
@@ -65,6 +65,12 @@ INFLECTION_TAG_DENYLIST: frozenset[str] = frozenset({
     "romanization", "transliteration", "romanisation", "table-tags",
     "inflection-template", "class", "auxiliary", "error-unrecognized-form",
     "no-gloss", "hyphenation", "rhymes",
+    # Possessive-suffixed forms. Finnish lists six possessive paradigms per
+    # noun on top of the thirty case forms, which is 21 of the 26 million forms
+    # its tables yield. Measured on the top 50k Finnish words, the case forms
+    # reach 15,107 that are not headwords and the possessives add 3,494 more --
+    # at five times the index. An index a Kindle cannot hold reaches nothing.
+    "possessive", "singular-possessive", "plural-possessive",
 })
 
 #: Synonyms shown on one entry. Six is what fits on an e-reader popup above the
@@ -96,6 +102,20 @@ _POINTER_GLOSS = re.compile(
 #: wiktextract passes through SAMPA and other ad-hoc notations (``/bI"haInd/``)
 #: which render as noise next to real transcriptions.
 _NOT_IPA = re.compile(r'["A-Z]')
+
+
+def _gloss(sense: dict[str, Any]) -> str:
+    """The most specific gloss a sense carries.
+
+    wiktextract flattens nested senses and lists the ancestors first, so the
+    male-dog subsense of *dog* arrives as ``["A mammal of the family Canidae:",
+    "A male dog, wolf, or fox, ..."]``. Taking the first element shows every
+    subsense under its parent's heading, and, worse, makes sibling subsenses
+    indistinguishable to the merge, which keys unanchored senses on their
+    gloss. The last element is the sense's own text.
+    """
+    glosses = sense.get("glosses") or sense.get("raw_glosses") or ()
+    return str(glosses[-1]).strip() if glosses else ""
 
 
 def _pos(raw: str) -> Pos:
@@ -166,14 +186,33 @@ class KaikkiSource:
     def monolingual(self) -> bool:
         return self.mode == "definitions"
 
+    def _is_target(self, row: Any) -> bool:
+        # The English edition tags rows with "code"; the other editions with
+        # "lang_code". Same field, different name.
+        return isinstance(row, dict) and bool(row.get("word")) and (
+            row.get("code") == self._target_lang or row.get("lang_code") == self._target_lang
+        )
+
     def _translations_for(self, rows: Iterable[Any] | None) -> tuple[str, ...]:
         return dedupe_preserving_order(
-            str(row.get("word", "")).strip()
-            for row in (rows or ())
-            if isinstance(row, dict)
-            and row.get("code") == self._target_lang
-            and row.get("word")
+            str(row.get("word", "")).strip() for row in (rows or ()) if self._is_target(row)
         )
+
+    def _page_translations(self, page: dict[str, Any]) -> dict[int, list[str]]:
+        """Page-level rows grouped by the 1-based sense they point at.
+
+        The non-English editions keep every translation at page level and say
+        which sense it belongs to with ``sense_index``: "2", or "2-3", or the
+        Polish edition's "1.1". Rows with no usable index land under 0.
+        """
+        grouped: dict[int, list[str]] = defaultdict(list)
+        for row in page.get("translations", ()) or ():
+            if not self._is_target(row):
+                continue
+            word = str(row.get("word", "")).strip()
+            for index in _sense_indices(row.get("sense_index")):
+                grouped[index].append(word)
+        return grouped
 
     def _entries_from_translations(self) -> Iterator[Entry]:
         """Harvest translation tables from the source language's own edition.
@@ -202,20 +241,22 @@ class KaikkiSource:
                 translations = self._translations_for(raw.get("translations"))
                 if not translations:
                     continue
-                glosses = raw.get("glosses") or raw.get("raw_glosses") or ()
                 senses.append(
                     Sense(
                         pos=pos,
                         synset=None,
                         translations=translations,
-                        gloss=str(glosses[0]).strip() if glosses else "",
+                        gloss=_gloss(raw),
                         gloss_lang=self._source_lang,
                         labels=tuple(str(t) for t in raw.get("tags", ()) if t)[:3],
                         provenance=provenance,
-                        # Below any wordnet sense: this is enrichment, and it
-                        # should not displace a curated sense at the top of a
-                        # lookup popup.
-                        rank=50 + rank,
+                        # On the same scale as WordNet's sense number: both are
+                        # a curated ordering of this word's senses. Wordnet
+                        # senses the tables agree with still come first (see
+                        # Entry.senses_by_pos); this decides the ties, which is
+                        # where the wordnet has no word for the main sense and
+                        # Wiktionary's first sense is the reader's answer.
+                        rank=rank,
                     )
                 )
 
@@ -223,26 +264,9 @@ class KaikkiSource:
                 # No sense carried translations, so fall back to the page-level
                 # table. When senses do carry them, the page-level table is the
                 # same material flattened, and adding it would duplicate.
-                page_translations = self._translations_for(page.get("translations"))
-                if not page_translations:
+                senses = self._senses_from_page_translations(page, pos, provenance)
+                if not senses:
                     continue
-                gloss = ""
-                for raw in page.get("senses", ()):
-                    glosses = raw.get("glosses") or raw.get("raw_glosses") or ()
-                    if glosses:
-                        gloss = str(glosses[0])
-                        break
-                senses.append(
-                    Sense(
-                        pos=pos,
-                        synset=None,
-                        translations=page_translations,
-                        gloss=gloss,
-                        gloss_lang=self._source_lang,
-                        provenance=provenance,
-                        rank=50,
-                    )
-                )
 
             yield Entry(
                 headword=headword,
@@ -251,6 +275,50 @@ class KaikkiSource:
                 forms=self._forms(page, headword),
                 pronunciations=self._pronunciations(page),
             )
+
+    def _senses_from_page_translations(
+        self,
+        page: dict[str, Any],
+        pos: Pos,
+        provenance: tuple[Provenance, ...],
+    ) -> list[Sense]:
+        grouped = self._page_translations(page)
+        if not grouped:
+            return []
+        raw_senses = list(page.get("senses", ())[: self.max_senses])
+        # Indexes that point past the last sense, and rows with no index at
+        # all, go on the first sense rather than being thrown away.
+        stray = [word for index, words in grouped.items() if index < 1 or index > len(raw_senses) for word in words]
+        senses: list[Sense] = []
+        for rank, raw in enumerate(raw_senses, start=1):
+            words = list(grouped.get(rank, ())) + (stray if rank == 1 else [])
+            translations = dedupe_preserving_order(words)
+            if not translations:
+                continue
+            senses.append(
+                Sense(
+                    pos=pos,
+                    synset=None,
+                    translations=translations,
+                    gloss=_gloss(raw),
+                    gloss_lang=self._source_lang,
+                    labels=tuple(str(t) for t in raw.get("tags", ()) if t)[:3],
+                    provenance=provenance,
+                    rank=rank,
+                )
+            )
+        if not senses and not raw_senses:
+            senses.append(
+                Sense(
+                    pos=pos,
+                    synset=None,
+                    translations=dedupe_preserving_order(stray),
+                    gloss_lang=self._source_lang,
+                    provenance=provenance,
+                    rank=1,
+                )
+            )
+        return senses
 
     def _entries_from_foreign_pages(self) -> Iterator[Entry]:
         """Pages describing source-language words, glossed in the target language.
@@ -270,14 +338,11 @@ class KaikkiSource:
             page_synonyms = self._page_synonyms(page) if self.monolingual else {}
             senses: list[Sense] = []
             for rank, raw in enumerate(page.get("senses", ())[: self.max_senses], start=1):
-                glosses = raw.get("glosses") or raw.get("raw_glosses") or ()
-                if not glosses:
-                    continue
                 # A "plural of dog" sense is an inflection pointer, not a
                 # meaning; it belongs in the .syn file, handled by inflections().
                 if raw.get("form_of") or raw.get("alt_of"):
                     continue
-                text = str(glosses[0]).strip()
+                text = _gloss(raw)
                 if not text or _POINTER_GLOSS.match(text):
                     continue
                 senses.append(
@@ -316,6 +381,24 @@ class KaikkiSource:
                 forms=self._forms(page, headword),
                 pronunciations=self._pronunciations(page),
             )
+
+    def count_pages(self, lang: str, *, stop_at: int = 1000) -> tuple[int, int]:
+        """``(pages in lang, pages read)``, stopping once *stop_at* are found.
+
+        Cheap proof that the file behind a source is the edition it claims to
+        be. Editions are sorted by title, so the language's own pages can sit
+        millions of lines in -- Chinese titles sort after Latin ones -- which
+        is why this reads to the end when it has to rather than sampling the
+        top of the file.
+        """
+        found = read = 0
+        for page in self._pages():
+            read += 1
+            if page.get("lang_code") == lang:
+                found += 1
+                if found >= stop_at:
+                    break
+        return found, read
 
     # -- synonyms (monolingual only) -----------------------------------------
 
@@ -371,6 +454,11 @@ class KaikkiSource:
                 continue
             if len(form.encode("utf-8")) > 255:
                 continue
+            # A reader taps one word. "en juokse", the negative of a Finnish
+            # verb, is two, so it can never be looked up; a phrase headword's
+            # forms are the exception, since its lookups are phrases already.
+            if " " in form and " " not in headword:
+                continue
             out.add(form)
         return out
 
@@ -406,6 +494,23 @@ class KaikkiSource:
                     lemma = normalise_headword(str(pointer.get("word", "")))
                     if lemma and lemma != headword:
                         yield headword, lemma
+
+
+_INDEX_RANGE = re.compile(r"^\s*(\d+)(?:\.\d+)?\s*(?:-\s*(\d+)(?:\.\d+)?)?\s*$")
+
+
+def _sense_indices(value: Any) -> list[int]:
+    """``"2"`` -> [2], ``"2-3"`` -> [2, 3], ``"1.1"`` -> [1], anything else -> [0]."""
+    if value is None:
+        return [0]
+    match = _INDEX_RANGE.match(str(value))
+    if not match:
+        return [0]
+    first = int(match.group(1))
+    last = int(match.group(2)) if match.group(2) else first
+    if first < 1 or last < first or last - first > 20:
+        return [0]
+    return list(range(first, last + 1))
 
 
 def _looks_like_a_bare_equivalent(text: str) -> bool:

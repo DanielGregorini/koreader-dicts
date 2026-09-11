@@ -28,6 +28,7 @@ __all__ = [
     "SynsetId",
     "canonical_synset",
     "normalise_headword",
+    "normalise_translation",
 ]
 
 #: ``"%08d-%s" % (offset, pos)`` using PWN 3.0 offsets, e.g. ``02084071-n``,
@@ -182,7 +183,7 @@ class Entry:
     def has_translation(self) -> bool:
         return any(s.translations for s in self.senses)
 
-    def senses_by_pos(self) -> list[tuple[Pos, list[Sense]]]:
+    def senses_by_pos(self, target_lang: str = "") -> list[tuple[Pos, list[Sense]]]:
         """Senses grouped and ordered for rendering, most useful first.
 
         Grouping by part of speech and then always showing nouns first is the
@@ -200,19 +201,42 @@ class Entry:
         gloss-only ones regardless of frequency.  A bilingual reader who taps a
         word wants the word, and an English definition sitting above the
         Portuguese equivalent wastes the two lines they will actually read.
+
+        Then come the senses two sources agree on.  A wordnet sense whose
+        equivalents also turn up under one of the entry's Wiktionary senses
+        has been vouched for independently; one only the wordnet lists has
+        not.  This is what keeps *patata* from opening on the vulgar sense:
+        the Spanish lexicon maps the word onto that synset, and the synset is
+        common in English as an anatomical term, but the Spanish Wiktionary
+        does not know the sense at all.  Frequency decides among the rest.
+
+        Both of those rules are for choosing among a lexicon's mappings, and
+        both are switched off when *target_lang* is the entry's own language.
+        In a monolingual dictionary the definition is the entry and a synonym
+        list is a bonus most main senses do not have: WordNet's bird synset
+        holds only *goose*, so once the word is dropped from its own synset
+        that sense has no synonym, and the fool's six must not put it first.
         """
         buckets: dict[Pos, list[Sense]] = {}
         for sense in self.senses:
             buckets.setdefault(sense.pos, []).append(sense)
 
         fallback = {pos: index for index, pos in enumerate(POS_ORDER)}
+        monolingual = bool(target_lang) and target_lang == self.lang
+        vouched = set() if monolingual else self._corroborated(target_lang)
 
-        def sense_key(sense: Sense) -> tuple[int, int, int, str]:
-            return (0 if sense.translations else 1, -sense.frequency, sense.rank, sense.gloss)
+        def sense_key(sense: Sense) -> tuple[int, int, int, int, str]:
+            return (
+                0 if monolingual or sense.translations else 1,
+                0 if id(sense) in vouched else 1,
+                -sense.frequency,
+                sense.rank,
+                sense.gloss,
+            )
 
         def group_key(item: tuple[Pos, list[Sense]]) -> tuple[int, int, str]:
             pos, group = item
-            translated = [s.frequency for s in group if s.translations]
+            translated = [] if monolingual else [s.frequency for s in group if s.translations]
             # Rank the group on its best *translated* sense where it has one,
             # so a part of speech the target language cannot express does not
             # win the top of the entry on frequency alone.
@@ -222,6 +246,42 @@ class Entry:
         ordered = [(pos, sorted(group, key=sense_key)) for pos, group in buckets.items()]
         ordered.sort(key=group_key)
         return ordered
+
+    def _corroborated(self, target_lang: str = "") -> set[int]:
+        """Ids of the senses whose equivalents appear in both kinds of source.
+
+        Wordnet senses carry a synset; Wiktionary senses do not.  An equivalent
+        shared across that line is the one signal that does not depend on any
+        single source's ordering.  Entries fed by one kind of source only get
+        an empty set, and their order is untouched.
+
+        English verbs need one allowance: Wiktionary writes "to go" where
+        WordNet writes "go".  Without it no verb sense in any X-to-English pair
+        ever agreed with anything, and *ذهبت* (she went) opened on *be*.
+        """
+        anchored = [s for s in self.senses if s.synset and s.translations]
+        free = [s for s in self.senses if not s.synset and s.translations]
+        if not anchored or not free:
+            return set()
+
+        def key(word: str) -> str:
+            word = normalise_headword(word).lower()
+            if target_lang == "en" and word.startswith("to "):
+                word = word[3:]
+            return word
+
+        free_words = {key(word) for sense in free for word in sense.translations}
+        out: set[int] = set()
+        for sense in anchored:
+            words = {key(word) for word in sense.translations}
+            if words & free_words:
+                out.add(id(sense))
+                out.update(
+                    id(other)
+                    for other in free
+                    if words & {key(word) for word in other.translations}
+                )
+        return out
 
     def absorb(self, other: Entry) -> None:
         """Fold *other* into this entry, collapsing duplicate senses.
@@ -349,13 +409,31 @@ def canonical_synset(offset: str, pos_tag: str) -> SynsetId:
 #: on purpose: after a Latin letter the same code points are part of the letter.
 _CYRILLIC_STRESS = re.compile(r"(?<=[\u0400-\u052f])[\u0300\u0301]")
 
+#: Arabic short vowels, shadda, sukun, the dagger alif, and tatweel. Wordnets
+#: and Wiktionary write Arabic fully vocalized; print does not, so a vocalized
+#: headword can never be reached from a page. Two thirds of the Arabic WordNet
+#: and 85% of Wiktionary's Arabic form tables carry these.
+_ARABIC_MARKS = re.compile(r"[\u064b-\u0652\u0670\u0640]")
+
 
 def normalise_headword(word: str) -> str:
-    """Canonical form of a headword: collapse whitespace, strip edges.
+    """Canonical form of a headword or inflected form: what a reader taps.
 
-    Deliberately does *not* case-fold or strip diacritics.  StarDict lookup is
-    already ASCII-case-insensitive via the collation, and folding here would
-    merge distinct headwords ("Polish"/"polish", "resume"/"résumé").  Cyrillic
-    stress marks are the one exception, and they are not diacritics.
+    Collapses whitespace and strips the marks running text never carries --
+    Cyrillic stress, Arabic vocalization.  Deliberately does *not* case-fold or
+    strip letter diacritics: StarDict lookup is already ASCII-case-insensitive
+    via the collation, and folding here would merge distinct headwords
+    ("Polish"/"polish", "resume"/"résumé").
     """
-    return " ".join(_CYRILLIC_STRESS.sub("", word).split())
+    word = _ARABIC_MARKS.sub("", _CYRILLIC_STRESS.sub("", word))
+    return " ".join(word.split())
+
+
+def normalise_translation(word: str) -> str:
+    """Canonical form of a translation or synonym: what a reader sees.
+
+    Whitespace only.  The marks :func:`normalise_headword` strips are kept
+    here, because on the display side they help -- a learner reading en-ar
+    wants the vowels -- and nothing is ever looked up by a translation.
+    """
+    return " ".join(word.split())

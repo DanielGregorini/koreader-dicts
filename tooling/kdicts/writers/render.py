@@ -124,7 +124,7 @@ def render_entry(entry: Entry, options: RenderOptions | None = None) -> str:
         ipa = escape(entry.pronunciations[0])
         blocks.append(f'<div style="color:{options.muted_color}">{ipa}</div>')
 
-    for pos, senses in entry.senses_by_pos():
+    for pos, senses in entry.senses_by_pos(options.target_lang):
         label = pos.label
         header = f"<i>{escape(label)}</i> " if label else ""
         skip = _redundant_senses(senses)

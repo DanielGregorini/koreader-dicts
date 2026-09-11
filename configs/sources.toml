@@ -391,6 +391,501 @@ license_id = "CC-BY-SA-4.0"
 credit = "Chinese Wiktionary via kaikki.org (wiktextract)"
 options = { mode = "definitions", source_lang = "zh", target_lang = "zh" }
 
+# --- Translation tables of the other editions --------------------------------
+#
+# The same edition files the monolingual pairs read, harvested for the
+# translation tables their own-language pages carry. These editions tag rows
+# with lang_code and point at a sense with sense_index, and the reader
+# follows the index, so a Portuguese *banco* gets *bench* under the seat and
+# *bank* under the institution.
+
+[[source]]
+id = "wikt-pt-to-es"
+kind = "kaikki"
+path = "kaikki/ptwiktionary.jsonl.gz"
+lang = "pt"
+url = "https://kaikki.org/ptwiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Portuguese Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "pt", target_lang = "es" }
+
+[[source]]
+id = "wikt-pt-to-it"
+kind = "kaikki"
+path = "kaikki/ptwiktionary.jsonl.gz"
+lang = "pt"
+url = "https://kaikki.org/ptwiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Portuguese Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "pt", target_lang = "it" }
+
+[[source]]
+id = "wikt-pt-to-en"
+kind = "kaikki"
+path = "kaikki/ptwiktionary.jsonl.gz"
+lang = "pt"
+url = "https://kaikki.org/ptwiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Portuguese Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "pt", target_lang = "en" }
+
+[[source]]
+id = "wikt-es-to-pt"
+kind = "kaikki"
+path = "kaikki/eswiktionary.jsonl.gz"
+lang = "es"
+url = "https://kaikki.org/eswiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Spanish Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "es", target_lang = "pt" }
+
+[[source]]
+id = "wikt-es-to-it"
+kind = "kaikki"
+path = "kaikki/eswiktionary.jsonl.gz"
+lang = "es"
+url = "https://kaikki.org/eswiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Spanish Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "es", target_lang = "it" }
+
+[[source]]
+id = "wikt-es-to-en"
+kind = "kaikki"
+path = "kaikki/eswiktionary.jsonl.gz"
+lang = "es"
+url = "https://kaikki.org/eswiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Spanish Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "es", target_lang = "en" }
+
+[[source]]
+id = "wikt-it-to-es"
+kind = "kaikki"
+path = "kaikki/itwiktionary.jsonl.gz"
+lang = "it"
+url = "https://kaikki.org/itwiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Italian Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "it", target_lang = "es" }
+
+[[source]]
+id = "wikt-it-to-en"
+kind = "kaikki"
+path = "kaikki/itwiktionary.jsonl.gz"
+lang = "it"
+url = "https://kaikki.org/itwiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Italian Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "it", target_lang = "en" }
+
+[[source]]
+id = "wikt-pl-to-en"
+kind = "kaikki"
+path = "kaikki/plwiktionary.jsonl.gz"
+lang = "pl"
+url = "https://kaikki.org/plwiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Polish Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "pl", target_lang = "en" }
+
+[[source]]
+id = "wikt-ru-to-en"
+kind = "kaikki"
+path = "kaikki/ruwiktionary.jsonl.gz"
+lang = "ru"
+url = "https://kaikki.org/ruwiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Russian Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "ru", target_lang = "en" }
+
+[[source]]
+id = "wikt-fr-to-pt"
+kind = "kaikki"
+path = "kaikki/frwiktionary.jsonl.gz"
+lang = "fr"
+url = "https://kaikki.org/frwiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "French Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "fr", target_lang = "pt" }
+
+# --- Japanese, Dutch, Greek, Finnish: wordnets ------------------------------
+
+[[source]]
+id = "omw-nl"
+kind = "omw-lmf"
+path = "omw/omw-nl/omw-nl.xml"
+lang = "nl"
+version = "1.4"
+url = "https://github.com/omwn/omw-data/releases/download/v1.4/omw-1.4.tar.xz"
+sha256 = "28be99fcb038171403cd057f62e7213d1ea4ea1cf00ab2fb99af190f39bb1d99"
+archive_member = "omw-1.4/omw-nl/omw-nl.xml"
+license_id = "CC-BY-SA-4.0"
+credit = "Open Dutch WordNet, via Open Multilingual Wordnet 1.4"
+
+[[source]]
+id = "omw-el"
+kind = "omw-lmf"
+path = "omw/omw-el/omw-el.xml"
+lang = "el"
+version = "1.4"
+url = "https://github.com/omwn/omw-data/releases/download/v1.4/omw-1.4.tar.xz"
+sha256 = "28be99fcb038171403cd057f62e7213d1ea4ea1cf00ab2fb99af190f39bb1d99"
+archive_member = "omw-1.4/omw-el/omw-el.xml"
+license_id = "Apache-2.0"
+credit = "Greek Wordnet, via Open Multilingual Wordnet 1.4"
+
+[[source]]
+id = "omw-fi"
+kind = "omw-lmf"
+path = "omw/omw-fi/omw-fi.xml"
+lang = "fi"
+version = "1.4"
+url = "https://github.com/omwn/omw-data/releases/download/v1.4/omw-1.4.tar.xz"
+sha256 = "28be99fcb038171403cd057f62e7213d1ea4ea1cf00ab2fb99af190f39bb1d99"
+archive_member = "omw-1.4/omw-fi/omw-fi.xml"
+license_id = "CC-BY-3.0"
+credit = "FinnWordNet, via Open Multilingual Wordnet 1.4"
+
+# --- English Wiktionary, sliced per language (X words defined in English) ---
+
+[[source]]
+id = "wikt-es-en"
+kind = "kaikki"
+path = "kaikki/enwiktionary-spanish.jsonl.gz"
+lang = "es"
+url = "https://kaikki.org/dictionary/Spanish/kaikki.org-dictionary-Spanish.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary (Spanish entries) via kaikki.org (wiktextract)"
+options = { mode = "foreign_entries", source_lang = "es", target_lang = "en" }
+
+[[source]]
+id = "wikt-de-en"
+kind = "kaikki"
+path = "kaikki/enwiktionary-german.jsonl.gz"
+lang = "de"
+url = "https://kaikki.org/dictionary/German/kaikki.org-dictionary-German.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary (German entries) via kaikki.org (wiktextract)"
+options = { mode = "foreign_entries", source_lang = "de", target_lang = "en" }
+
+[[source]]
+id = "wikt-ja-en"
+kind = "kaikki"
+path = "kaikki/enwiktionary-japanese.jsonl.gz"
+lang = "ja"
+url = "https://kaikki.org/dictionary/Japanese/kaikki.org-dictionary-Japanese.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary (Japanese entries) via kaikki.org (wiktextract)"
+options = { mode = "foreign_entries", source_lang = "ja", target_lang = "en" }
+
+[[source]]
+id = "wikt-nl-en"
+kind = "kaikki"
+path = "kaikki/enwiktionary-dutch.jsonl.gz"
+lang = "nl"
+url = "https://kaikki.org/dictionary/Dutch/kaikki.org-dictionary-Dutch.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary (Dutch entries) via kaikki.org (wiktextract)"
+options = { mode = "foreign_entries", source_lang = "nl", target_lang = "en" }
+
+[[source]]
+id = "wikt-ko-en"
+kind = "kaikki"
+path = "kaikki/enwiktionary-korean.jsonl.gz"
+lang = "ko"
+url = "https://kaikki.org/dictionary/Korean/kaikki.org-dictionary-Korean.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary (Korean entries) via kaikki.org (wiktextract)"
+options = { mode = "foreign_entries", source_lang = "ko", target_lang = "en" }
+
+[[source]]
+id = "wikt-cs-en"
+kind = "kaikki"
+path = "kaikki/enwiktionary-czech.jsonl.gz"
+lang = "cs"
+url = "https://kaikki.org/dictionary/Czech/kaikki.org-dictionary-Czech.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary (Czech entries) via kaikki.org (wiktextract)"
+options = { mode = "foreign_entries", source_lang = "cs", target_lang = "en" }
+
+[[source]]
+id = "wikt-el-en"
+kind = "kaikki"
+path = "kaikki/enwiktionary-greek.jsonl.gz"
+lang = "el"
+url = "https://kaikki.org/dictionary/Greek/kaikki.org-dictionary-Greek.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary (Greek entries) via kaikki.org (wiktextract)"
+options = { mode = "foreign_entries", source_lang = "el", target_lang = "en" }
+
+[[source]]
+id = "wikt-fi-en"
+kind = "kaikki"
+path = "kaikki/enwiktionary-finnish.jsonl.gz"
+lang = "fi"
+url = "https://kaikki.org/dictionary/Finnish/kaikki.org-dictionary-Finnish.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary (Finnish entries) via kaikki.org (wiktextract)"
+options = { mode = "foreign_entries", source_lang = "fi", target_lang = "en" }
+
+# --- English Wiktionary translation tables, more targets --------------------
+
+[[source]]
+id = "wikt-en-ja"
+kind = "kaikki"
+path = "kaikki/enwiktionary-english.jsonl.gz"
+lang = "en"
+url = "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "en", target_lang = "ja" }
+
+[[source]]
+id = "wikt-en-nl"
+kind = "kaikki"
+path = "kaikki/enwiktionary-english.jsonl.gz"
+lang = "en"
+url = "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "en", target_lang = "nl" }
+
+[[source]]
+id = "wikt-en-ko"
+kind = "kaikki"
+path = "kaikki/enwiktionary-english.jsonl.gz"
+lang = "en"
+url = "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "en", target_lang = "ko" }
+
+[[source]]
+id = "wikt-en-el"
+kind = "kaikki"
+path = "kaikki/enwiktionary-english.jsonl.gz"
+lang = "en"
+url = "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "en", target_lang = "el" }
+
+[[source]]
+id = "wikt-en-fi"
+kind = "kaikki"
+path = "kaikki/enwiktionary-english.jsonl.gz"
+lang = "en"
+url = "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "en", target_lang = "fi" }
+
+# --- Own editions: definitions and translation tables -------------------------
+# Finnish has no edition on kaikki, so fi-fi cannot be built and fi-en takes
+# only the English edition's Finnish section.
+
+[[source]]
+id = "wikt-de-def"
+kind = "kaikki"
+path = "kaikki/dewiktionary.jsonl.gz"
+lang = "de"
+url = "https://kaikki.org/dewiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "German Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "definitions", source_lang = "de", target_lang = "de" }
+
+[[source]]
+id = "wikt-ja-def"
+kind = "kaikki"
+path = "kaikki/jawiktionary.jsonl.gz"
+lang = "ja"
+url = "https://kaikki.org/jawiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Japanese Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "definitions", source_lang = "ja", target_lang = "ja" }
+
+[[source]]
+id = "wikt-nl-def"
+kind = "kaikki"
+path = "kaikki/nlwiktionary.jsonl.gz"
+lang = "nl"
+url = "https://kaikki.org/nlwiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Dutch Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "definitions", source_lang = "nl", target_lang = "nl" }
+
+[[source]]
+id = "wikt-ko-def"
+kind = "kaikki"
+path = "kaikki/kowiktionary.jsonl.gz"
+lang = "ko"
+url = "https://kaikki.org/kowiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Korean Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "definitions", source_lang = "ko", target_lang = "ko" }
+
+[[source]]
+id = "wikt-cs-def"
+kind = "kaikki"
+path = "kaikki/cswiktionary.jsonl.gz"
+lang = "cs"
+url = "https://kaikki.org/cswiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Czech Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "definitions", source_lang = "cs", target_lang = "cs" }
+
+[[source]]
+id = "wikt-el-def"
+kind = "kaikki"
+path = "kaikki/elwiktionary.jsonl.gz"
+lang = "el"
+url = "https://kaikki.org/elwiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Greek Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "definitions", source_lang = "el", target_lang = "el" }
+
+[[source]]
+id = "wikt-de-to-en"
+kind = "kaikki"
+path = "kaikki/dewiktionary.jsonl.gz"
+lang = "de"
+url = "https://kaikki.org/dewiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "German Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "de", target_lang = "en" }
+
+[[source]]
+id = "wikt-ja-to-en"
+kind = "kaikki"
+path = "kaikki/jawiktionary.jsonl.gz"
+lang = "ja"
+url = "https://kaikki.org/jawiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Japanese Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "ja", target_lang = "en" }
+
+[[source]]
+id = "wikt-nl-to-en"
+kind = "kaikki"
+path = "kaikki/nlwiktionary.jsonl.gz"
+lang = "nl"
+url = "https://kaikki.org/nlwiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Dutch Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "nl", target_lang = "en" }
+
+[[source]]
+id = "wikt-ko-to-en"
+kind = "kaikki"
+path = "kaikki/kowiktionary.jsonl.gz"
+lang = "ko"
+url = "https://kaikki.org/kowiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Korean Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "ko", target_lang = "en" }
+
+[[source]]
+id = "wikt-cs-to-en"
+kind = "kaikki"
+path = "kaikki/cswiktionary.jsonl.gz"
+lang = "cs"
+url = "https://kaikki.org/cswiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Czech Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "cs", target_lang = "en" }
+
+[[source]]
+id = "wikt-el-to-en"
+kind = "kaikki"
+path = "kaikki/elwiktionary.jsonl.gz"
+lang = "el"
+url = "https://kaikki.org/elwiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Greek Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "el", target_lang = "en" }
+
+# --- Frequency lists, more languages (no Japanese list is published) ---------
+
+[[source]]
+id = "freq-de"
+kind = "frequency"
+path = "freq/de_50k.txt"
+lang = "de"
+url = "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/de/de_50k.txt"
+license_id = "CC-BY-SA-4.0"
+credit = "hermitdave/FrequencyWords (OpenSubtitles 2018)"
+
+[[source]]
+id = "freq-nl"
+kind = "frequency"
+path = "freq/nl_50k.txt"
+lang = "nl"
+url = "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/nl/nl_50k.txt"
+license_id = "CC-BY-SA-4.0"
+credit = "hermitdave/FrequencyWords (OpenSubtitles 2018)"
+
+[[source]]
+id = "freq-ko"
+kind = "frequency"
+path = "freq/ko_50k.txt"
+lang = "ko"
+url = "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/ko/ko_50k.txt"
+license_id = "CC-BY-SA-4.0"
+credit = "hermitdave/FrequencyWords (OpenSubtitles 2018)"
+
+[[source]]
+id = "freq-el"
+kind = "frequency"
+path = "freq/el_50k.txt"
+lang = "el"
+url = "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/el/el_50k.txt"
+license_id = "CC-BY-SA-4.0"
+credit = "hermitdave/FrequencyWords (OpenSubtitles 2018)"
+
+[[source]]
+id = "freq-fi"
+kind = "frequency"
+path = "freq/fi_50k.txt"
+lang = "fi"
+url = "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/fi/fi_50k.txt"
+license_id = "CC-BY-SA-4.0"
+credit = "hermitdave/FrequencyWords (OpenSubtitles 2018)"
+
+[[source]]
+id = "freq-cs"
+kind = "frequency"
+path = "freq/cs_50k.txt"
+lang = "cs"
+url = "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/cs/cs_50k.txt"
+license_id = "CC-BY-SA-4.0"
+credit = "hermitdave/FrequencyWords (OpenSubtitles 2018)"
+
+# --- Arabic --------------------------------------------------------------------
+#
+# kaikki publishes no Arabic edition, so the English edition's Arabic section
+# is the only Wiktionary material, and no monolingual definitions exist: the
+# Arabic WordNet carries no <Definition> elements either.
+
+[[source]]
+id = "wikt-ar-en"
+kind = "kaikki"
+path = "kaikki/enwiktionary-arabic.jsonl.gz"
+lang = "ar"
+url = "https://kaikki.org/dictionary/Arabic/kaikki.org-dictionary-Arabic.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary (Arabic entries) via kaikki.org (wiktextract)"
+options = { mode = "foreign_entries", source_lang = "ar", target_lang = "en" }
+
+[[source]]
+id = "freq-ar"
+kind = "frequency"
+path = "freq/ar_50k.txt"
+lang = "ar"
+url = "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/ar/ar_50k.txt"
+license_id = "CC-BY-SA-4.0"
+credit = "hermitdave/FrequencyWords (OpenSubtitles 2018)"
+
 # --- Benchmark inputs (never shipped, never merged) -------------------------
 
 [[source]]

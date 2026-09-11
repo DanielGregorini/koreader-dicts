@@ -20,6 +20,16 @@ gloss_langs = ["it", "es", "en"]
 keep_gloss_only = false
 max_translations = 5
 
+# The edition's own translation tables and form tables, laid over the pivot.
+# Curated by speakers of the source language, and the only inflection index
+# a pair with no English on the left can have.
+[[enrich]]
+source = "wikt-es-to-it"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-es-def"]
+
 [benchmark]
 frequency_list = "freq/es_50k.txt"
 frequency_list_name = "OpenSubtitles 2018 Spanish top 50k (hermitdave/FrequencyWords)"

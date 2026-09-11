@@ -202,6 +202,19 @@ def test_kaikki_reads_sense_level_translations(tmp_path):
     assert bank.senses[0].gloss == "An edge of a river."
 
 
+def test_kaikki_uses_the_most_specific_gloss_of_a_nested_sense(tmp_path):
+    path = write_kaikki(tmp_path)
+    source = build_source(
+        SourceSpec(id="wikt-en", kind="kaikki", path=path.name, lang="en",
+                   options={"mode": "translations", "source_lang": "en", "target_lang": "pt"}),
+        tmp_path,
+    )
+    hound = {e.headword: e for e in source.entries()}["hound"]
+    assert [s.gloss for s in hound.senses] == ["A dog used for hunting.", "A despicable person."]
+    # Sibling subsenses must stay distinct when merged: the key is the gloss.
+    assert len({s.merge_key() for s in hound.senses}) == 2
+
+
 def test_kaikki_falls_back_to_page_level_translations(tmp_path):
     path = write_kaikki(tmp_path)
     source = build_source(
@@ -211,6 +224,46 @@ def test_kaikki_falls_back_to_page_level_translations(tmp_path):
     )
     go = {e.headword: e for e in source.entries()}["go"]
     assert go.senses[0].translations == ("ir",)
+
+
+def test_kaikki_reads_the_other_editions_translation_tables(tmp_path):
+    """The Portuguese edition tags rows with lang_code and points at senses
+    with sense_index; a reader that only knows the English edition's shape
+    finds nothing here."""
+    path = write_kaikki(tmp_path, edition="pt")
+    source = build_source(
+        SourceSpec(id="wikt-pt-to-en", kind="kaikki", path=path.name, lang="pt",
+                   options={"mode": "translations", "source_lang": "pt", "target_lang": "en"}),
+        tmp_path,
+    )
+    banco = {e.headword: e for e in source.entries()}["banco"]
+    # "counter" carries no index, so it lands on the first sense.
+    assert [s.translations for s in banco.senses] == [("bench", "counter"), ("bank",)]
+    assert banco.senses[1].gloss == "instituição financeira"
+
+
+def test_kaikki_sense_index_ranges_reach_every_sense_in_the_range(tmp_path):
+    path = write_kaikki(tmp_path, edition="pt")
+    source = build_source(
+        SourceSpec(id="wikt-pt-to-es", kind="kaikki", path=path.name, lang="pt",
+                   options={"mode": "translations", "source_lang": "pt", "target_lang": "es"}),
+        tmp_path,
+    )
+    banco = {e.headword: e for e in source.entries()}["banco"]
+    assert [s.translations for s in banco.senses] == [("banco",), ("banco",)]
+
+
+def test_kaikki_counts_pages_in_a_language(tmp_path):
+    path = write_kaikki(tmp_path, edition="pt")
+    source = build_source(
+        SourceSpec(id="wikt-pt", kind="kaikki", path=path.name, lang="pt",
+                   options={"mode": "foreign_entries", "source_lang": "en", "target_lang": "pt"}),
+        tmp_path,
+    )
+    assert source.count_pages("pt") == (2, 3)
+    assert source.count_pages("de") == (0, 3)
+    # Stops as soon as it has seen enough.
+    assert source.count_pages("pt", stop_at=1) == (1, 2)
 
 
 def test_kaikki_foreign_entries_mode(tmp_path):
@@ -239,6 +292,17 @@ def test_kaikki_inflections_from_both_signals(tmp_path):
     pairs = set(source.inflections())
     assert ("dogs", "dog") in pairs          # from the lemma page's form table
     assert ("went", "go") in pairs           # from the inflected page's form_of
+
+
+def test_kaikki_drops_possessive_and_multi_word_forms(tmp_path):
+    path = write_kaikki(tmp_path)
+    source = build_source(
+        SourceSpec(id="wikt-en", kind="kaikki", path=path.name, lang="en",
+                   options={"mode": "foreign_entries", "source_lang": "en", "target_lang": "en"}),
+        tmp_path,
+    )
+    forms = {form for form, lemma in source.inflections() if lemma == "koira"}
+    assert forms == {"koirat"}
 
 
 def test_kaikki_drops_romanisations_from_forms(tmp_path):

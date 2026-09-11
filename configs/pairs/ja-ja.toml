@@ -1,0 +1,28 @@
+# Monolingual: Japanese defined in Japanese. Nothing here is translated.
+#
+# The Japanese Wiktionary's own pages about Japanese words. The gloss is a
+# definition, the entry's bold line is its synonyms, and its form tables give
+# the pair a real inflection index.
+
+id = "ja-ja"
+source_lang = "ja"
+target_lang = "ja"
+tier = 2
+name = "Japanese monolingual"
+bookname = "ja-ja"
+basename = "ja-ja"
+description = """\
+Japanese defined in Japanese, taken from the Japanese \
+Wiktionary. Definitions and synonyms only: nothing is translated. Includes an \
+inflection index."""
+
+[[enrich]]
+source = "wikt-ja-def"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-ja-def"]
+
+[benchmark]
+frequency_list = ""
+frequency_list_name = ""

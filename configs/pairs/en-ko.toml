@@ -1,0 +1,25 @@
+# No open Korean wordnet, so this is the same Wiktionary-only shape as en-de.
+
+id = "en-ko"
+source_lang = "en"
+target_lang = "ko"
+tier = 2
+name = "English to Korean"
+bookname = "en-ko"
+basename = "en-ko"
+description = """\
+English to Korean, built from the English Wiktionary's translation \
+tables. Includes an inflection index."""
+
+[[enrich]]
+source = "wikt-en-ko"
+add_new_headwords = true
+
+[inflections]
+wordnet_exceptions = "pwn30"
+rules = true
+from_sources = ["wikt-en-ko"]
+
+[benchmark]
+frequency_list = "freq/en_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)"

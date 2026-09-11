@@ -87,6 +87,140 @@ def test_reverse_direction_is_the_same_call_swapped():
     assert set(dictionary.entries["cão"].senses[0].translations) == {"dog", "domestic dog"}
 
 
+def test_synset_frequencies_order_senses_when_the_source_side_has_none():
+    """OMW lexicons carry no tag counts, so without this every non-English
+    entry opened with whichever sense the lexicon happened to list first."""
+    VULGAR = "05220461-n"
+    spanish = FakeSource("omw-es", "es", "CC-BY-3.0", [("patata", VULGAR, 1), ("patata", DOG, 2)])
+    portuguese = FakeSource("omw-pt", "pt", "CC-BY-SA-4.0", [("xoxota", VULGAR, 1), ("cão", DOG, 1)])
+    dictionary, _ = build_pivot(spanish, portuguese, synset_frequencies={DOG: 40})
+    senses = dictionary.entries["patata"].senses_by_pos()[0][1]
+    assert [s.translations for s in senses] == [("cão",), ("xoxota",)]
+    assert [s.frequency for s in senses] == [40, 0]
+
+
+def test_a_sense_two_sources_agree_on_outranks_a_more_frequent_synset():
+    """The vulgar synset *patata* maps onto is tagged more often in English than
+    the potato one, because "vagina" is an ordinary anatomical word there. The
+    Spanish Wiktionary does not know the vulgar sense. Agreement wins."""
+    from kdicts.ir import Sense
+
+    VULGAR = "05521514-n"
+    spanish = FakeSource("omw-es", "es", "CC-BY-3.0", [("patata", VULGAR, 1), ("patata", DOG, 2)])
+    portuguese = FakeSource("omw-pt", "pt", "CC-BY-SA-4.0", [("xoxota", VULGAR, 1), ("cão", DOG, 1)])
+    dictionary, _ = build_pivot(spanish, portuguese, synset_frequencies={VULGAR: 5, DOG: 2})
+    entry = dictionary.entries["patata"]
+    assert [s.translations for s in entry.senses_by_pos()[0][1]] == [("xoxota",), ("cão",)]
+
+    wiktionary = Sense(pos=Pos.NOUN, translations=("cão",), gloss="tubérculo", rank=51)
+    entry.senses.append(wiktionary)
+    ordered = entry.senses_by_pos()[0][1]
+    assert [s.translations for s in ordered] == [("cão",), ("cão",), ("xoxota",)]
+    assert ordered[0].synset == DOG
+
+
+def test_wiktionarys_first_sense_leads_when_the_wordnet_lacks_the_main_one():
+    """Open Dutch WordNet has no word for the bird, only for the fool, so the
+    pivot gives *goose* one translated sense: the fool. Wiktionary's first
+    sense, *gans*, is the reader's answer and must not sit below it."""
+    from kdicts.ir import Sense
+
+    BIRD, FOOL = "01855672-n", "10157744-n"
+    english = FakeSource("pwn30", "en", "WordNet-3.0", [("goose", BIRD, 1), ("goose", FOOL, 2)])
+    dutch = FakeSource("omw-nl", "nl", "CC-BY-SA-4.0", [("oliebol", FOOL, 1)])
+    dictionary, _ = build_pivot(english, dutch, config=PivotConfig(keep_gloss_only=True))
+    entry = dictionary.entries["goose"]
+    entry.senses.append(Sense(pos=Pos.NOUN, translations=("gans",), gloss="waterfowl", rank=1))
+    ordered = entry.senses_by_pos()[0][1]
+    assert [s.translations for s in ordered][:2] == [("gans",), ("oliebol",)]
+
+
+def test_wordnets_own_zero_count_is_not_replaced_by_the_synset_total():
+    """WordNet says *goose* was never tagged as a fool. That zero is evidence,
+    and the synset total -- mostly *jackass* -- must not stand in for it."""
+    BIRD, FOOL = "01855672-n", "10157744-n"
+
+    class WordNetLike(FakeSource):
+        def sense_counts(self):
+            return {}
+
+    english = WordNetLike("pwn30", "en", "WordNet-3.0", [("goose", BIRD, 1), ("goose", FOOL, 2)])
+    dutch = FakeSource("omw-nl", "nl", "CC-BY-SA-4.0", [("gans", BIRD, 1), ("oliebol", FOOL, 1)])
+    dictionary, _ = build_pivot(english, dutch, synset_frequencies={FOOL: 40})
+    assert all(sense.frequency == 0 for sense in dictionary.entries["goose"].senses)
+
+
+def test_a_vocalized_lemma_is_not_listed_as_its_own_synonym():
+    """The Arabic WordNet writes its lemmas with vowels. The headword is made
+    bare so a reader can reach it; the synonyms keep their vowels; and the word
+    must still recognise itself across that difference."""
+    arabic = FakeSource("omw-arb", "ar", "CC-BY-SA-3.0", [("كَلْب", DOG, 1), ("جَرْو", DOG, 2)])
+    dictionary, _ = build_pivot(arabic, arabic, config=PivotConfig(keep_gloss_only=False))
+    entry = dictionary.entries["كلب"]
+    assert entry.senses[0].translations == ("جَرْو",)
+
+
+def test_english_verbs_agree_across_the_infinitive_marker():
+    """Wiktionary says "to go"; WordNet says "go". The Arabic WordNet also maps
+    *ذهب* onto *be*, the most-tagged synset in English, and only agreement can
+    put *go* above it."""
+    from kdicts.ir import Sense
+
+    BE, GO = "02604760-v", "01835496-v"
+    arabic = FakeSource("omw-arb", "ar", "CC-BY-SA-3.0", [("ذهب", BE, 1), ("ذهب", GO, 2)])
+    english = FakeSource("pwn30", "en", "WordNet-3.0", [("be", BE, 1), ("go", GO, 1), ("travel", GO, 2)])
+    dictionary, _ = build_pivot(arabic, english, synset_frequencies={BE: 9000, GO: 300})
+    entry = dictionary.entries["ذهب"]
+    entry.senses.append(Sense(pos=Pos.VERB, translations=("to go", "to travel"), gloss="to go", rank=1))
+    without = [s.translations for s in entry.senses_by_pos()[0][1]]
+    assert without[0] == ("be",)
+    ordered = [s.translations for s in entry.senses_by_pos("en")[0][1]]
+    assert ordered[0] == ("go", "travel")
+
+
+def test_a_monolingual_entry_leads_with_its_commonest_sense_even_without_synonyms():
+    """WordNet's bird synset has one member, so pivoting WordNet against itself
+    leaves that sense with a definition and no synonym. It is still the sense a
+    reader means, and the fool synset's synonyms must not put the fool first."""
+    BIRD, FOOL = "01855672-n", "10157744-n"
+
+    class WordNetLike(FakeSource):
+        def sense_counts(self):
+            return {}
+
+        def lemmas(self):
+            for lemma, synset, rank in self._lemmas:
+                tagged = 3 if (lemma, synset) == ("goose", BIRD) else 0
+                yield LemmaRecord(lemma=lemma, synset=synset, rank=rank, frequency=tagged)
+
+    english = WordNetLike(
+        "pwn30", "en", "WordNet-3.0",
+        [("goose", BIRD, 1), ("goose", FOOL, 2), ("jackass", FOOL, 1), ("bozo", FOOL, 2)],
+        synsets=[(BIRD, Pos.NOUN, "web-footed waterfowl", ()), (FOOL, Pos.NOUN, "a stupid fool", ())],
+    )
+    dictionary, _ = build_pivot(
+        english, english, gloss_providers=[("en", english)], config=PivotConfig(keep_gloss_only=True)
+    )
+    goose = dictionary.entries["goose"]
+    # Under the bilingual rules the synonym-bearing sense wins ...
+    assert next(s.gloss for s in goose.senses_by_pos()[0][1]) == "a stupid fool"
+    # ... and under the monolingual ones frequency does.
+    assert [s.gloss for s in goose.senses_by_pos("en")[0][1]] == ["web-footed waterfowl", "a stupid fool"]
+
+
+def test_a_wiktionary_only_monolingual_entry_keeps_the_editions_order():
+    from kdicts.ir import Entry, Sense
+
+    entry = Entry(
+        headword="batata", lang="pt",
+        senses=[
+            Sense(pos=Pos.NOUN, gloss="tubérculo da batateira", rank=1),
+            Sense(pos=Pos.NOUN, gloss="mentira", translations=("peta",), rank=3),
+        ],
+    )
+    assert [s.gloss for s in entry.senses_by_pos("pt")[0][1]] == ["tubérculo da batateira", "mentira"]
+
+
 def test_gloss_only_senses_are_kept_but_counted_separately():
     dictionary, stats = build_pivot(
         ENGLISH, PORTUGUESE, gloss_providers=[("en", ENGLISH)],

@@ -1,0 +1,28 @@
+# No open Korean wordnet. Wiktionary only, like ru-en.
+
+id = "ko-en"
+source_lang = "ko"
+target_lang = "en"
+tier = 2
+name = "Korean to English"
+bookname = "ko-en"
+basename = "ko-en"
+description = """\
+Korean to English, built from the Korean section of the English \
+Wiktionary and the Korean edition's own translation tables. Includes an \
+inflection index."""
+
+[[enrich]]
+source = "wikt-ko-en"
+add_new_headwords = true
+
+[[enrich]]
+source = "wikt-ko-to-en"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-ko-en", "wikt-ko-def"]
+
+[benchmark]
+frequency_list = "freq/ko_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 Korean top 50k (hermitdave/FrequencyWords)"

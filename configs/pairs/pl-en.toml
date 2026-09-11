@@ -25,7 +25,13 @@ source = "wikt-pl-en"
 add_new_headwords = true
 
 [inflections]
-from_sources = ["wikt-pl-en"]
+from_sources = ["wikt-pl-en", "wikt-pl-def"]
+
+# The Polish edition's own translation tables and form tables, on top of the
+# English edition's Polish section.
+[[enrich]]
+source = "wikt-pl-to-en"
+add_new_headwords = true
 
 [benchmark]
 frequency_list = "freq/pl_50k.txt"

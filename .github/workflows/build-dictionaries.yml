@@ -1,0 +1,84 @@
+name: dictionaries
+
+# Rebuilds the dictionaries that fit on a runner: on the first of every month,
+# so a change in the upstream data shows up within weeks rather than never,
+# and on demand. The pairs that read the 500 MB English Wiktionary dump are
+# left out and built by hand.
+#
+# Nothing here publishes. Each job uploads its archive and metrics as a
+# workflow artifact, so a rebuild against changed upstream data can be looked
+# at before it replaces what people download.
+
+on:
+  schedule:
+    - cron: "0 4 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  HEAVY_SOURCE: kaikki/enwiktionary-english.jsonl.gz
+
+jobs:
+  # Reads the pair configs, so a new pair joins the matrix without editing this
+  # file, and a pair that starts reading the heavy dump leaves it.
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      pairs: ${{ steps.list.outputs.pairs }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - id: list
+        run: |
+          pairs=$(PYTHONPATH=tooling python - <<'EOF'
+          import json, os
+          from kdicts.config import load_all_pairs, load_sources
+          sources = load_sources("configs/sources.toml")
+          heavy = os.environ["HEAVY_SOURCE"]
+          light = [
+              pair.id
+              for pair in load_all_pairs("configs/pairs").values()
+              if all(sources[s].path != heavy for s in pair.source_ids())
+          ]
+          print(json.dumps(light))
+          EOF
+          )
+          echo "pairs=$pairs" >> "$GITHUB_OUTPUT"
+          echo "$pairs"
+
+  build:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix:
+        pair: ${{ fromJson(needs.plan.outputs.pairs) }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - run: pip install -e .
+      # The downloads are the slow part. Keyed on the source config, so a
+      # changed URL or checksum invalidates the cache and nothing else does.
+      - uses: actions/cache@v6
+        with:
+          path: data/.cache
+          key: sources-${{ matrix.pair }}-${{ hashFiles('configs/sources.toml') }}
+      - run: kdicts fetch --pair "${{ matrix.pair }}"
+      # Refuses a file that is not the edition the config says it is.
+      - run: kdicts sources --verify
+      - run: kdicts build "${{ matrix.pair }}" --verify-sample 5000
+      - uses: actions/upload-artifact@v7
+        with:
+          name: ${{ matrix.pair }}
+          path: |
+            dictionaries/${{ matrix.pair }}/${{ matrix.pair }}.zip
+            dictionaries/${{ matrix.pair }}/metrics.json
+          if-no-files-found: error
+          retention-days: 30

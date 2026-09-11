@@ -1,0 +1,28 @@
+# Monolingual: Dutch defined in Dutch. Nothing here is translated.
+#
+# The Dutch Wiktionary's own pages about Dutch words. The gloss is a
+# definition, the entry's bold line is its synonyms, and its form tables give
+# the pair a real inflection index.
+
+id = "nl-nl"
+source_lang = "nl"
+target_lang = "nl"
+tier = 2
+name = "Dutch monolingual"
+bookname = "nl-nl"
+basename = "nl-nl"
+description = """\
+Dutch defined in Dutch, taken from the Dutch \
+Wiktionary. Definitions and synonyms only: nothing is translated. Includes an \
+inflection index."""
+
+[[enrich]]
+source = "wikt-nl-def"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-nl-def"]
+
+[benchmark]
+frequency_list = "freq/nl_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 Dutch top 50k (hermitdave/FrequencyWords)"

@@ -147,6 +147,7 @@ def build_pair(
                 max_translations=pair.pivot.max_translations,
                 max_senses_per_entry=pair.pivot.max_senses_per_entry,
             ),
+            synset_frequencies=_synset_frequencies(instances),
         )
         notes.append(
             f"pivot: {pivot_stats.entries} entries from {pivot_stats.source_lemmas} source lemmas "
@@ -256,6 +257,18 @@ def build_pair(
     )
     write_metrics(metrics, out_root / pair.id / "metrics.json")
 
+    # An inflection index that never matches a frequent word is not an index,
+    # it is dead weight in the archive. Russian shipped 731k forms once, every
+    # one carrying a stress mark no book contains, and nothing noticed.
+    if dictionary.form_count and metrics.coverage:
+        widest = metrics.coverage[-1]
+        if not widest["form_hits"]:
+            raise BuildError(
+                f"pair {pair.id!r}: {dictionary.form_count} inflected forms were attached "
+                f"but none of the top {widest['cutoff']} words resolves through one. "
+                "The forms are not what readers type; check the source's form tables."
+            )
+
     # --- verify --------------------------------------------------------------
     if verify_sample:
         failures = verify_output(report.directory, sample=verify_sample)
@@ -285,6 +298,19 @@ def build_pair(
         dropped_sources=dropped,
         notes=notes,
     )
+
+
+def _synset_frequencies(instances: dict[str, Any]) -> dict[str, int]:
+    """Corpus tag counts per synset, from whichever WordNet the pair loads.
+
+    Nearly every pair names ``pwn30`` as a gloss provider, so this is almost
+    always available even when neither side of the pivot is English.
+    """
+    for instance in instances.values():
+        method = getattr(instance, "synset_frequencies", None)
+        if callable(method):
+            return dict(method())
+    return {}
 
 
 def _cutoffs() -> tuple[int, ...]:

@@ -1,0 +1,28 @@
+# Monolingual: Czech defined in Czech. Nothing here is translated.
+#
+# The Czech Wiktionary's own pages about Czech words. The gloss is a
+# definition, the entry's bold line is its synonyms, and its form tables give
+# the pair a real inflection index.
+
+id = "cs-cs"
+source_lang = "cs"
+target_lang = "cs"
+tier = 2
+name = "Czech monolingual"
+bookname = "cs-cs"
+basename = "cs-cs"
+description = """\
+Czech defined in Czech, taken from the Czech \
+Wiktionary. Definitions and synonyms only: nothing is translated. Includes an \
+inflection index."""
+
+[[enrich]]
+source = "wikt-cs-def"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-cs-def"]
+
+[benchmark]
+frequency_list = "freq/cs_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 Czech top 50k (hermitdave/FrequencyWords)"

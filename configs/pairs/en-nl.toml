@@ -1,0 +1,34 @@
+# Open Dutch WordNet carries no definitions, so glosses come from the English side.
+
+id = "en-nl"
+source_lang = "en"
+target_lang = "nl"
+tier = 1
+name = "English to Dutch"
+bookname = "en-nl"
+basename = "en-nl"
+description = """\
+English to Dutch, built by pivoting Princeton WordNet 3.0 through \
+the Dutch wordnet and enriching with the English Wiktionary. Includes an \
+inflection index."""
+
+[pivot]
+source_side = "pwn30"
+target_side = "omw-nl"
+gloss_providers = ["pwn30"]
+gloss_langs = ["en"]
+keep_gloss_only = true
+max_translations = 5
+
+[[enrich]]
+source = "wikt-en-nl"
+add_new_headwords = true
+
+[inflections]
+wordnet_exceptions = "pwn30"
+rules = true
+from_sources = ["wikt-en-nl"]
+
+[benchmark]
+frequency_list = "freq/en_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)"

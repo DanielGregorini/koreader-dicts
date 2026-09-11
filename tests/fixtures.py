@@ -152,6 +152,28 @@ _KAIKKI_EN = [
         "forms": [{"form": "goes", "tags": ["present", "third-person", "singular"]}],
         "translations": [{"lang": "Portuguese", "code": "pt", "word": "ir"}],
     },
+    # Finnish-shaped form table: case forms, a possessive paradigm, and a
+    # two-word negative form.
+    {
+        "word": "koira", "pos": "noun", "lang_code": "en", "lang": "English",
+        "senses": [{"glosses": ["A dog, in Finnish."]}],
+        "forms": [
+            {"form": "koirat", "tags": ["nominative", "plural"]},
+            {"form": "koirani", "tags": ["nominative", "singular", "possessive", "first-person"]},
+            {"form": "koirasi", "tags": ["singular-possessive", "second-person"]},
+            {"form": "ei koira", "tags": ["negative"]},
+        ],
+    },
+    # A nested sense arrives with its parent's gloss first.
+    {
+        "word": "hound", "pos": "noun", "lang_code": "en", "lang": "English",
+        "senses": [
+            {"glosses": ["A dog:", "A dog used for hunting."],
+             "translations": [{"lang": "Portuguese", "code": "pt", "word": "cão de caça"}]},
+            {"glosses": ["A dog:", "A despicable person."],
+             "translations": [{"lang": "Portuguese", "code": "pt", "word": "canalha"}]},
+        ],
+    },
     {
         "word": "went", "pos": "verb", "lang_code": "en", "lang": "English",
         "senses": [{"glosses": ["simple past of go"], "form_of": [{"word": "go"}]}],
@@ -176,6 +198,18 @@ _KAIKKI_PT = [
     {
         "word": "cadeira", "pos": "noun", "lang_code": "pt", "lang": "Português",
         "senses": [{"glosses": ["assento com encosto"]}],
+    },
+    # The non-English editions keep translations at page level, tag rows with
+    # lang_code rather than code, and point at a sense with sense_index.
+    {
+        "word": "banco", "pos": "noun", "lang_code": "pt", "lang": "Português",
+        "senses": [{"glosses": ["assento comprido"]}, {"glosses": ["instituição financeira"]}],
+        "translations": [
+            {"lang_code": "en", "lang": "Inglês", "word": "bench", "sense_index": "1"},
+            {"lang_code": "en", "lang": "Inglês", "word": "bank", "sense_index": "2"},
+            {"lang_code": "es", "lang": "Espanhol", "word": "banco", "sense_index": "1-2"},
+            {"lang_code": "en", "lang": "Inglês", "word": "counter"},
+        ],
     },
 ]
 

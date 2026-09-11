@@ -27,7 +27,13 @@ source = "wikt-it-en"
 add_new_headwords = true
 
 [inflections]
-from_sources = ["wikt-it-en"]
+from_sources = ["wikt-it-en", "wikt-it-def"]
+
+# The Italian edition's own translation tables and form tables, on top of the
+# English edition's Italian section.
+[[enrich]]
+source = "wikt-it-to-en"
+add_new_headwords = true
 
 [benchmark]
 frequency_list = "freq/it_50k.txt"

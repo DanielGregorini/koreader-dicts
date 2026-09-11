@@ -1,0 +1,34 @@
+# FinnWordNet carries no definitions; glosses come from the English side.
+
+id = "en-fi"
+source_lang = "en"
+target_lang = "fi"
+tier = 1
+name = "English to Finnish"
+bookname = "en-fi"
+basename = "en-fi"
+description = """\
+English to Finnish, built by pivoting Princeton WordNet 3.0 through \
+the Finnish wordnet and enriching with the English Wiktionary. Includes an \
+inflection index."""
+
+[pivot]
+source_side = "pwn30"
+target_side = "omw-fi"
+gloss_providers = ["pwn30"]
+gloss_langs = ["en"]
+keep_gloss_only = true
+max_translations = 5
+
+[[enrich]]
+source = "wikt-en-fi"
+add_new_headwords = true
+
+[inflections]
+wordnet_exceptions = "pwn30"
+rules = true
+from_sources = ["wikt-en-fi"]
+
+[benchmark]
+frequency_list = "freq/en_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)"

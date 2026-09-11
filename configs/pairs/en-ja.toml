@@ -1,5 +1,5 @@
-# Declared so the pair is listed on the site as planned. The wordnet is already
-# declared in sources.toml; building it is `kdicts fetch omw-ja && kdicts build en-ja`.
+# Japanese Wordnet carries Japanese definitions, so they are preferred over the
+# English gloss where they exist.
 
 id = "en-ja"
 source_lang = "en"
@@ -18,9 +18,15 @@ gloss_langs = ["ja", "en"]
 keep_gloss_only = true
 max_translations = 5
 
+# The English edition's translation tables, and the forms that come with them.
+[[enrich]]
+source = "wikt-en-ja"
+add_new_headwords = true
+
 [inflections]
 wordnet_exceptions = "pwn30"
 rules = true
+from_sources = ["wikt-en-ja"]
 
 [benchmark]
 frequency_list = "freq/en_50k.txt"

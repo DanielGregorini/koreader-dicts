@@ -1,0 +1,28 @@
+# Monolingual: Korean defined in Korean. Nothing here is translated.
+#
+# The Korean Wiktionary's own pages about Korean words. The gloss is a
+# definition, the entry's bold line is its synonyms, and its form tables give
+# the pair a real inflection index.
+
+id = "ko-ko"
+source_lang = "ko"
+target_lang = "ko"
+tier = 2
+name = "Korean monolingual"
+bookname = "ko-ko"
+basename = "ko-ko"
+description = """\
+Korean defined in Korean, taken from the Korean \
+Wiktionary. Definitions and synonyms only: nothing is translated. Includes an \
+inflection index."""
+
+[[enrich]]
+source = "wikt-ko-def"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-ko-def"]
+
+[benchmark]
+frequency_list = "freq/ko_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 Korean top 50k (hermitdave/FrequencyWords)"

@@ -96,7 +96,7 @@ export const LANGUAGE_NAMES: Record<string, string> = {
   it: "Italian", ja: "Japanese", zh: "Chinese", id: "Indonesian", ar: "Arabic",
   ro: "Romanian", th: "Thai", nl: "Dutch", pl: "Polish", ms: "Malay",
   fi: "Finnish", sl: "Slovene", ca: "Catalan", eu: "Basque", hr: "Croatian",
-  sk: "Slovak", el: "Greek",
+  sk: "Slovak", el: "Greek", ko: "Korean", cs: "Czech",
 };
 
 const displayNames = new Map<string, Intl.DisplayNames | null>();

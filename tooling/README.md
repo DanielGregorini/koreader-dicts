@@ -8,7 +8,9 @@ pip install -e .
 
 ```
 kdicts sources                    what is declared, and what is on disk
+kdicts sources --verify           open each file and check it is the edition it claims
 kdicts fetch <id>...              download and unpack source data
+kdicts fetch --pair <pair>        everything one pair needs, frequency list included
 kdicts build <pair>...            generate dictionaries
 kdicts verify <directory>         binary-search a built dictionary
 kdicts lookup <directory> <word>  look a word up, the way a device would

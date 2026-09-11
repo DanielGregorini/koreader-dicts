@@ -20,7 +20,7 @@ from .config import ConfigError, load_all_pairs, load_sources
 from .fetch import FetchError, ensure_source
 from .package import write_catalog
 from .pipeline import BuildError, build_pair, sample_lookups, verify_output
-from .sources import SourceError
+from .sources import REGISTRY, SourceError, SourceSpec, build_source
 
 __all__ = ["main"]
 
@@ -43,10 +43,16 @@ def build_parser() -> argparse.ArgumentParser:
 
     sources = subparsers.add_parser("sources", help="list declared sources and their state")
     _add_common(sources)
+    sources.add_argument(
+        "--verify",
+        action="store_true",
+        help="open each file that is present and check it is the edition the config says",
+    )
 
     fetch = subparsers.add_parser("fetch", help="download source data")
     _add_common(fetch)
     fetch.add_argument("ids", nargs="*", help="source ids; default is all of them")
+    fetch.add_argument("--pair", action="append", default=[], help="every source a pair needs")
     fetch.add_argument("--force", action="store_true", help="re-download even if present")
 
     build = subparsers.add_parser("build", help="generate dictionaries")
@@ -85,18 +91,66 @@ def build_parser() -> argparse.ArgumentParser:
 
 def _cmd_sources(args: argparse.Namespace) -> int:
     specs = load_sources(args.configs / "sources.toml")
+    failures = 0
     for spec in specs.values():
         target = args.data / spec.path
         state = "present" if target.exists() else "MISSING"
         pinned = "pinned" if spec.sha256 else "unpinned"
         print(f"{spec.id:<18} {spec.kind:<10} {spec.license_id or '?':<18} {state:<8} {pinned}")
         print(f"{'':<18} {target}")
-    return 0
+        if args.verify and target.exists():
+            problem = _verify_source(spec, args.data)
+            if problem:
+                print(f"{'':<18} FAILED: {problem}", file=sys.stderr)
+                failures += 1
+            else:
+                print(f"{'':<18} verified")
+    return 1 if failures else 0
+
+
+def _verify_source(spec: SourceSpec, data_root: Path) -> str:
+    """Empty when the file behind *spec* is what the config claims, else why not.
+
+    Six Wiktionary editions once arrived as six copies of the Spanish one, and
+    every adapter opened them without complaint: the format was right, only
+    the language was wrong. Opening the adapter catches a bad licence header;
+    this catches a bad file.
+    """
+    if spec.kind not in REGISTRY:
+        # Benchmark inputs have no adapter; there is nothing to open.
+        return ""
+    try:
+        source = build_source(spec, data_root)
+    except SourceError as error:
+        return str(error)
+    if spec.kind == "kaikki":
+        lang = str(spec.options.get("source_lang") or spec.lang)
+        found, read = source.count_pages(lang)
+        if not found:
+            return f"no page in {read} has lang_code {lang!r}; wrong edition behind this path?"
+    return ""
 
 
 def _cmd_fetch(args: argparse.Namespace) -> int:
     specs = load_sources(args.configs / "sources.toml")
-    wanted = args.ids or list(specs)
+    wanted = list(args.ids)
+    if args.pair:
+        pairs = load_all_pairs(args.configs / "pairs")
+        for pair_id in args.pair:
+            pair = pairs.get(pair_id)
+            if pair is None:
+                print(f"unknown pair {pair_id!r}", file=sys.stderr)
+                return 1
+            wanted += [i for i in pair.source_ids() if i not in wanted]
+            # The benchmark names a file, not a source; find the source that
+            # provides it so the coverage table is measured on a fresh runner.
+            wanted += [
+                spec.id
+                for spec in specs.values()
+                if spec.path == pair.benchmark.frequency_list and spec.id not in wanted
+            ]
+    if not wanted:
+        wanted = list(specs)
     failures = 0
     for source_id in wanted:
         spec = specs.get(source_id)

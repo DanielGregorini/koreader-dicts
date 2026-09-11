@@ -36,7 +36,11 @@ def workspace(tmp_path):
     write_kaikki(data, edition="pt")
     write_kaikki(data, edition="en")
     (data / "freq").mkdir()
-    (data / "freq" / "en.txt").write_text("dog 100\ndevil 50\nchase 20\nnothere 1\n", encoding="utf-8")
+    # "dogs" is not a headword: it has to resolve through the inflection
+    # index, which is what makes the dead-index check pass on a real build.
+    (data / "freq" / "en.txt").write_text(
+        "dog 100\ndogs 60\ndevil 50\nchase 20\nnothere 1\n", encoding="utf-8"
+    )
 
     (configs / "sources.toml").write_text(
         """
@@ -159,6 +163,16 @@ def test_builds_a_usable_dictionary(workspace, tmp_path):
         assert reader.lookup("dogs")
 
 
+def test_an_inflection_index_that_never_resolves_fails_the_build(workspace, tmp_path):
+    # Every form attached to the fixture is Latin-script English; a frequency
+    # list of words none of them will ever match stands in for the Russian
+    # stress-mark case, where 731k forms shipped and not one was reachable.
+    data, _configs = workspace
+    (data / "freq" / "en.txt").write_text("dog 100\ndevil 50\nnothere 1\n", encoding="utf-8")
+    with pytest.raises(BuildError, match="inflected forms were attached but none"):
+        build(workspace, tmp_path)
+
+
 def test_output_passes_independent_verification(workspace, tmp_path):
     result = build(workspace, tmp_path)
     assert verify_output(result.directory, sample=10_000) == []
@@ -195,8 +209,9 @@ def test_metrics_are_written_and_honest(workspace, tmp_path):
     assert {s["id"] for s in metrics["sources"]} == {"pwn30", "omw-pt", "wikt-pt", "wikt-en"}
 
     coverage = {c["cutoff"]: c for c in metrics["coverage"]}
-    assert coverage[1000]["sampled"] == 4
-    assert coverage[1000]["hits"] == 3  # dog, devil, chase; "nothere" is absent
+    assert coverage[1000]["sampled"] == 5
+    assert coverage[1000]["hits"] == 4  # dog, dogs, devil, chase; "nothere" is absent
+    assert coverage[1000]["form_hits"] == 1  # dogs, through the inflection index
 
 
 # --- the pivot generalises ---------------------------------------------------

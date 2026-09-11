@@ -18,7 +18,12 @@ source = "wikt-ru-en"
 add_new_headwords = true
 
 [inflections]
-from_sources = ["wikt-ru-en"]
+from_sources = ["wikt-ru-en", "wikt-ru-def"]
+
+# The Russian edition's own translation tables and form tables as well.
+[[enrich]]
+source = "wikt-ru-to-en"
+add_new_headwords = true
 
 [benchmark]
 frequency_list = "freq/ru_50k.txt"

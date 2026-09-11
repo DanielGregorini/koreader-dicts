@@ -1,0 +1,28 @@
+# No Czech wordnet in OMW 1.4. Wiktionary only, like ru-en.
+
+id = "cs-en"
+source_lang = "cs"
+target_lang = "en"
+tier = 2
+name = "Czech to English"
+bookname = "cs-en"
+basename = "cs-en"
+description = """\
+Czech to English, built from the Czech section of the English \
+Wiktionary and the Czech edition's own translation tables. Includes an \
+inflection index."""
+
+[[enrich]]
+source = "wikt-cs-en"
+add_new_headwords = true
+
+[[enrich]]
+source = "wikt-cs-to-en"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-cs-en", "wikt-cs-def"]
+
+[benchmark]
+frequency_list = "freq/cs_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 Czech top 50k (hermitdave/FrequencyWords)"

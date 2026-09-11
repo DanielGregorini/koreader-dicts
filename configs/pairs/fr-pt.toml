@@ -23,7 +23,13 @@ source = "wikt-pt-fr"
 add_new_headwords = true
 
 [inflections]
-from_sources = ["wikt-pt-fr"]
+from_sources = ["wikt-pt-fr", "wikt-fr-def"]
+
+# The French edition's translation tables to Portuguese, which are far wider
+# than the Portuguese edition's French section, and its form tables.
+[[enrich]]
+source = "wikt-fr-to-pt"
+add_new_headwords = true
 
 [benchmark]
 frequency_list = "freq/fr_50k.txt"

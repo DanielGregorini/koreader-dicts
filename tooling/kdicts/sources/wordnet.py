@@ -74,6 +74,7 @@ class WordNetSource:
         self.spec = spec
         self.root = Path(root)
         self._sense_counts: dict[tuple[str, str], int] | None = None
+        self._synset_frequencies: dict[str, int] | None = None
         require_existing(self.root, spec)
         missing = [p for p in POS_FILES if not (self.root / f"data.{p}").exists()]
         if missing:
@@ -150,6 +151,23 @@ class WordNetSource:
                         counts[entry] = max(previous, int(tag_count))
             self._sense_counts = counts
         return self._sense_counts
+
+    def synset_frequencies(self) -> dict[str, int]:
+        """``synset -> corpus tag count``, summed over the synset's English lemmas.
+
+        A concept's tag count is evidence about the concept, not about the
+        English word, so it transfers to any language mapped onto the same
+        synset: the potato sense of *patata* was tagged in the corpus and the
+        vulgar one was not, and that is true in Spanish as well as in English.
+        This is what orders senses on the pairs whose source side is not
+        WordNet and therefore has no frequency evidence of its own.
+        """
+        if self._synset_frequencies is None:
+            totals: dict[str, int] = {}
+            for (_lemma, synset), count in self.sense_counts().items():
+                totals[synset] = totals.get(synset, 0) + count
+            self._synset_frequencies = totals
+        return self._synset_frequencies
 
     def lemmas(self) -> Iterator[LemmaRecord]:
         """Lemma -> synset mappings, ranked by WordNet's own sense order.

@@ -1,0 +1,29 @@
+# No German wordnet in OMW 1.4 (OdeNet uses interlingual ids), so this is the
+# same Wiktionary-only shape as ru-en.
+
+id = "de-en"
+source_lang = "de"
+target_lang = "en"
+tier = 2
+name = "German to English"
+bookname = "de-en"
+basename = "de-en"
+description = """\
+German to English, built from the German section of the English \
+Wiktionary and the German edition's own translation tables. Includes an \
+inflection index."""
+
+[[enrich]]
+source = "wikt-de-en"
+add_new_headwords = true
+
+[[enrich]]
+source = "wikt-de-to-en"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-de-en", "wikt-de-def"]
+
+[benchmark]
+frequency_list = "freq/de_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 German top 50k (hermitdave/FrequencyWords)"

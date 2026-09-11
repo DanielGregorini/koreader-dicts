@@ -1,0 +1,28 @@
+# Monolingual: Greek defined in Greek. Nothing here is translated.
+#
+# The Greek Wiktionary's own pages about Greek words. The gloss is a
+# definition, the entry's bold line is its synonyms, and its form tables give
+# the pair a real inflection index.
+
+id = "el-el"
+source_lang = "el"
+target_lang = "el"
+tier = 2
+name = "Greek monolingual"
+bookname = "el-el"
+basename = "el-el"
+description = """\
+Greek defined in Greek, taken from the Greek \
+Wiktionary. Definitions and synonyms only: nothing is translated. Includes an \
+inflection index."""
+
+[[enrich]]
+source = "wikt-el-def"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-el-def"]
+
+[benchmark]
+frequency_list = "freq/el_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 Greek top 50k (hermitdave/FrequencyWords)"

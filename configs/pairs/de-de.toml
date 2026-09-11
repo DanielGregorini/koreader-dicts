@@ -1,0 +1,28 @@
+# Monolingual: German defined in German. Nothing here is translated.
+#
+# The German Wiktionary's own pages about German words. The gloss is a
+# definition, the entry's bold line is its synonyms, and its form tables give
+# the pair a real inflection index.
+
+id = "de-de"
+source_lang = "de"
+target_lang = "de"
+tier = 2
+name = "German monolingual"
+bookname = "de-de"
+basename = "de-de"
+description = """\
+German defined in German, taken from the German \
+Wiktionary. Definitions and synonyms only: nothing is translated. Includes an \
+inflection index."""
+
+[[enrich]]
+source = "wikt-de-def"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-de-def"]
+
+[benchmark]
+frequency_list = "freq/de_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 German top 50k (hermitdave/FrequencyWords)"

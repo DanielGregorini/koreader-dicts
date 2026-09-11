@@ -117,3 +117,47 @@ def test_bad_config_exits_cleanly(project, capsys):
     (configs / "sources.toml").write_text("this is not toml = = =", encoding="utf-8")
     assert run(["sources"], project) == 2
     assert "error:" in capsys.readouterr().err
+
+
+def test_sources_verify_rejects_a_file_from_the_wrong_edition(project):
+    """Six editions once arrived as six copies of the Spanish one. Every reader
+    opened them happily: the shape was right and only the language was wrong."""
+    _tmp_path, data, configs = project
+    from fixtures import write_kaikki
+
+    write_kaikki(data, edition="pt")
+    with (configs / "sources.toml").open("a", encoding="utf-8") as handle:
+        handle.write(
+            """
+[[source]]
+id = "wikt-de-def"
+kind = "kaikki"
+path = "ptwiktionary.jsonl"
+lang = "de"
+license_id = "CC-BY-SA-4.0"
+options = { mode = "definitions", source_lang = "de", target_lang = "de" }
+"""
+        )
+    assert main(["sources", "--verify", "--configs", str(configs), "--data", str(data)]) == 1
+
+
+def test_sources_verify_accepts_the_right_edition(project, capsys):
+    _tmp_path, data, configs = project
+    from fixtures import write_kaikki
+
+    write_kaikki(data, edition="pt")
+    with (configs / "sources.toml").open("a", encoding="utf-8") as handle:
+        handle.write(
+            """
+[[source]]
+id = "wikt-pt-def"
+kind = "kaikki"
+path = "ptwiktionary.jsonl"
+lang = "pt"
+license_id = "CC-BY-SA-4.0"
+options = { mode = "definitions", source_lang = "pt", target_lang = "pt" }
+"""
+        )
+    assert main(["sources", "--verify", "--configs", str(configs), "--data", str(data)]) == 0
+    assert "verified" in capsys.readouterr().out
+

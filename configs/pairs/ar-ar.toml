@@ -1,0 +1,29 @@
+# Arabic synonym sets, and only that. No open source of Arabic definitions
+# exists -- kaikki publishes no Arabic edition and the Arabic WordNet carries no
+# <Definition> elements -- so this is a thesaurus rather than a dictionary: an
+# entry is the word's synonyms, with no gloss. Nothing in it is translated. The
+# pivot drops a word from its own synset, and a synset with one Arabic member
+# yields nothing, so only words that have a synonym appear.
+
+id = "ar-ar"
+source_lang = "ar"
+target_lang = "ar"
+tier = 2
+name = "Arabic monolingual"
+bookname = "ar-ar"
+basename = "ar-ar"
+description = """\
+Arabic synonyms from the Arabic WordNet. No open Arabic definitions exist, so \
+each entry is a synonym set and nothing more; nothing is translated."""
+
+[pivot]
+source_side = "omw-arb"
+target_side = "omw-arb"
+gloss_providers = []
+gloss_langs = []
+keep_gloss_only = false
+max_translations = 6
+
+[benchmark]
+frequency_list = "freq/ar_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 Arabic top 50k (hermitdave/FrequencyWords)"
