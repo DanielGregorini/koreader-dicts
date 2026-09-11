@@ -28,6 +28,9 @@ RTL_LANGS: frozenset[str] = frozenset({"ar", "he", "fa", "ur", "arb", "heb", "fa
 @dataclass(slots=True)
 class RenderOptions:
     target_lang: str = ""
+    #: The source side carries its own per-sense frequencies (it is WordNet),
+    #: so they outrank agreement between sources. See Entry.senses_by_pos.
+    trust_frequency: bool = False
     show_gloss: bool = True
     show_examples: bool = True
     show_pronunciation: bool = True
@@ -124,7 +127,7 @@ def render_entry(entry: Entry, options: RenderOptions | None = None) -> str:
         ipa = escape(entry.pronunciations[0])
         blocks.append(f'<div style="color:{options.muted_color}">{ipa}</div>')
 
-    for pos, senses in entry.senses_by_pos(options.target_lang):
+    for pos, senses in entry.senses_by_pos(options.target_lang, options.trust_frequency):
         label = pos.label
         header = f"<i>{escape(label)}</i> " if label else ""
         skip = _redundant_senses(senses)

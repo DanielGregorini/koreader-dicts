@@ -67,20 +67,49 @@ def enrich(
 def attach_inflections(
     dictionary: Dictionary,
     pairs: Iterable[tuple[str, str]],
+    *,
+    follow_aliases: bool = False,
 ) -> int:
     """Attach ``(form, lemma)`` pairs to their entries.
 
     Forms whose lemma is not a headword are dropped here rather than in the
     writer, so the count reported to the metrics is the number that will
     actually reach the ``.syn`` file.
+
+    With *follow_aliases*, a lemma that is itself a form of exactly one
+    headword counts as that headword. The Japanese Wiktionary keeps its lemma
+    pages in kana and makes the kanji spelling a pointer, so 走る is an alias
+    of はしる; the English edition's tables then say 走った is a form of 走る,
+    and without following the alias no conjugated form would ever reach the
+    entry.
+
+    It is off by default because aliases chain through homographs. Wiktionary
+    calls *went* a form of the Middle English *gan*, which is a form of
+    *gang*, *gin* and *go* (so a reader tapping *went* saw a liquor first),
+    and a form of the obsolete *ween* "to think", whose only owner is *wean*.
+    Nothing in the data tells those apart from 走る.
     """
+    owners: dict[str, set[str]] = {}
+    for headword, known_entry in dictionary.entries.items():
+        for known in known_entry.forms:
+            owners.setdefault(known, set()).add(headword)
+
+    def resolve(lemma: str) -> Entry | None:
+        if lemma in dictionary.entries:
+            return dictionary.entries[lemma]
+        claimants = owners.get(lemma) if follow_aliases else None
+        if claimants and len(claimants) == 1:
+            return dictionary.entries.get(next(iter(claimants)))
+        return None
+
     added = 0
     for form, lemma in pairs:
-        entry = dictionary.entries.get(lemma)
+        entry = resolve(lemma)
         # No headword to hang the form on, or the form is the headword itself.
-        if entry is None or not form or form == lemma:
+        if entry is None or not form or form == entry.headword:
             continue
         if form not in entry.forms:
             entry.forms.add(form)
+            owners.setdefault(form, set()).add(entry.headword)
             added += 1
     return added

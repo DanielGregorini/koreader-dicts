@@ -24,6 +24,11 @@ gloss_langs = []
 keep_gloss_only = false
 max_translations = 6
 
+# The English edition's Arabic section supplies the conjugation tables, so an
+# inflected form reaches its synonym set even though nothing here is glossed.
+[inflections]
+from_sources = ["wikt-ar-en"]
+
 [benchmark]
 frequency_list = "freq/ar_50k.txt"
 frequency_list_name = "OpenSubtitles 2018 Arabic top 50k (hermitdave/FrequencyWords)"

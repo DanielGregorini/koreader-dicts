@@ -20,8 +20,15 @@ inflection index."""
 source = "wikt-ja-def"
 add_new_headwords = true
 
+# Forms also come from the English edition's section for this language: its
+# conjugation and declension tables are language-internal, whatever the
+# gloss language, and are often fuller than the edition's own.
+# The Japanese edition keeps its lemma pages in kana and makes the kanji page a
+# pointer (走る -> はしる), while the English edition's tables name the kanji
+# lemma (走った -> 走る). Following that alias is what joins the two.
 [inflections]
-from_sources = ["wikt-ja-def"]
+from_sources = ["wikt-ja-def", "wikt-ja-en"]
+follow_aliases = true
 
 [benchmark]
 frequency_list = ""

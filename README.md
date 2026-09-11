@@ -19,7 +19,7 @@ Click a name to download. No account, no installer, nothing to sign up for.
 | **[en-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-en.zip)** | English | 815,066 | 1,494,986 | 98.9% | 92 MB | CC BY-SA 4.0 |
 | **[en-ar](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-ar.zip)** | English → Arabic | 155,624 | 323,610 | 93.0% | 12 MB | CC BY-SA 4.0 |
 | **[en-zh](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-zh.zip)** | English → Chinese | 170,953 | 349,920 | 94.0% | 15 MB | CC BY-SA 4.0 |
-| **[en-nl](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-nl.zip)** | English → Dutch | 162,346 | 339,608 | 93.2% | 13 MB | CC BY-SA 4.0 |
+| **[en-nl](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-nl.zip)** | English → Dutch | 162,346 | 339,608 | 93.2% | 14 MB | CC BY-SA 4.0 |
 | **[en-fi](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-fi.zip)** | English → Finnish | 179,652 | 378,874 | 93.6% | 18 MB | CC BY-SA 4.0 |
 | **[en-fr](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-fr.zip)** | English → French | 84,803 | 127,148 | 87.4% | 7 MB | CeCILL-C |
 | **[en-de](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-de.zip)** | English → German | 67,375 | 187,321 | 90.4% | 7 MB | CC BY-SA 4.0 |
@@ -31,43 +31,43 @@ Click a name to download. No account, no installer, nothing to sign up for.
 | **[en-pt](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-pt.zip)** | English → Portuguese | 172,842 | 362,335 | 94.3% | 15 MB | CC BY-SA 4.0 |
 | **[en-ru](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-ru.zip)** | English → Russian | 58,922 | 164,363 | 91.7% | 6 MB | CC BY-SA 4.0 |
 | **[en-es](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-es.zip)** | English → Spanish | 174,258 | 365,153 | 94.0% | 15 MB | CC BY-SA 4.0 |
-| **[pt-pt](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/pt-pt.zip)** | Portuguese | 81,068 | 394,470 | 78.9% | 6 MB | CC BY-SA 4.0 |
-| **[pt-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/pt-en.zip)** | Portuguese → English | 63,133 | 160,824 | 77.2% | 5 MB | CC BY-SA 4.0 |
+| **[pt-pt](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/pt-pt.zip)** | Portuguese | 81,068 | 457,723 | 84.5% | 7 MB | CC BY-SA 4.0 |
+| **[pt-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/pt-en.zip)** | Portuguese → English | 102,769 | 412,172 | 85.9% | 9 MB | CC BY-SA 4.0 |
 | **[pt-it](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/pt-it.zip)** | Portuguese → Italian | 34,816 | 125,638 | 73.4% | 3 MB | CC BY-SA 4.0 |
 | **[pt-es](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/pt-es.zip)** | Portuguese → Spanish | 36,505 | 128,109 | 73.5% | 3 MB | CC BY-SA 4.0 |
-| **[es-es](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/es-es.zip)** | Spanish | 133,146 | 560,701 | 86.0% | 11 MB | CC BY-SA 4.0 |
-| **[es-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/es-en.zip)** | Spanish → English | 129,570 | 1,104,382 | 91.4% | 12 MB | CC BY-SA 4.0 |
+| **[es-es](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/es-es.zip)** | Spanish | 133,146 | 913,087 | 90.2% | 12 MB | CC BY-SA 4.0 |
+| **[es-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/es-en.zip)** | Spanish → English | 129,570 | 1,104,382 | 91.4% | 13 MB | CC BY-SA 4.0 |
 | **[es-fr](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/es-fr.zip)** | Spanish → French | 24,805 | — | 35.1% | 2 MB | CeCILL-C |
 | **[es-it](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/es-it.zip)** | Spanish → Italian | 21,419 | 151,008 | 77.6% | 3 MB | CC BY-SA 4.0 |
 | **[es-pt](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/es-pt.zip)** | Spanish → Portuguese | 26,039 | 149,523 | 78.2% | 3 MB | CC BY-SA 4.0 |
-| **[fr-fr](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/fr-fr.zip)** | French | 514,854 | 1,905,553 | 95.2% | 73 MB | CC BY-SA 4.0 |
+| **[fr-fr](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/fr-fr.zip)** | French | 514,854 | 1,917,624 | 95.4% | 73 MB | CC BY-SA 4.0 |
 | **[fr-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/fr-en.zip)** | French → English | 55,323 | — | 49.2% | 5 MB | CeCILL-C |
 | **[fr-it](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/fr-it.zip)** | French → Italian | 27,629 | — | 44.2% | 2 MB | CeCILL-C |
 | **[fr-pt](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/fr-pt.zip)** | French → Portuguese | 28,505 | 136,156 | 77.7% | 3 MB | CC BY-SA 4.0 |
 | **[fr-es](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/fr-es.zip)** | French → Spanish | 26,278 | — | 42.4% | 2 MB | CeCILL-C |
-| **[it-it](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/it-it.zip)** | Italian | 68,755 | 281,390 | 81.6% | 6 MB | CC BY-SA 4.0 |
+| **[it-it](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/it-it.zip)** | Italian | 68,755 | 543,455 | 82.9% | 7 MB | CC BY-SA 4.0 |
 | **[it-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/it-en.zip)** | Italian → English | 167,851 | 926,953 | 86.7% | 12 MB | CC BY-SA 4.0 |
 | **[it-fr](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/it-fr.zip)** | Italian → French | 33,181 | — | 41.0% | 3 MB | CeCILL-C |
 | **[it-es](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/it-es.zip)** | Italian → Spanish | 24,199 | 142,253 | 73.2% | 2 MB | CC BY-SA 4.0 |
-| **[de-de](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/de-de.zip)** | German | 181,914 | 790,646 | 92.8% | 33 MB | CC BY-SA 4.0 |
+| **[de-de](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/de-de.zip)** | German | 181,914 | 846,356 | 93.0% | 34 MB | CC BY-SA 4.0 |
 | **[de-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/de-en.zip)** | German → English | 125,898 | 664,700 | 92.5% | 13 MB | CC BY-SA 4.0 |
-| **[nl-nl](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/nl-nl.zip)** | Dutch | 195,662 | 518,894 | 91.6% | 29 MB | CC BY-SA 4.0 |
+| **[nl-nl](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/nl-nl.zip)** | Dutch | 195,662 | 535,894 | 91.8% | 29 MB | CC BY-SA 4.0 |
 | **[nl-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/nl-en.zip)** | Dutch → English | 98,897 | 262,954 | 87.9% | 9 MB | CC BY-SA 4.0 |
-| **[pl-pl](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/pl-pl.zip)** | Polish | 115,143 | 895,938 | 85.5% | 13 MB | CC BY-SA 4.0 |
+| **[pl-pl](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/pl-pl.zip)** | Polish | 115,143 | 986,820 | 90.8% | 13 MB | CC BY-SA 4.0 |
 | **[pl-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/pl-en.zip)** | Polish → English | 124,144 | 918,723 | 91.3% | 13 MB | CC BY-SA 4.0 |
-| **[cs-cs](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/cs-cs.zip)** | Czech | 46,726 | 325,848 | 82.4% | 5 MB | CC BY-SA 4.0 |
+| **[cs-cs](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/cs-cs.zip)** | Czech | 46,726 | 367,023 | 84.4% | 6 MB | CC BY-SA 4.0 |
 | **[cs-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/cs-en.zip)** | Czech → English | 54,439 | 501,190 | 86.9% | 5 MB | CC BY-SA 4.0 |
-| **[ru-ru](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/ru-ru.zip)** | Russian | 450,168 | 2,608,548 | 95.0% | 47 MB | CC BY-SA 4.0 |
+| **[ru-ru](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/ru-ru.zip)** | Russian | 450,168 | 2,793,616 | 95.4% | 48 MB | CC BY-SA 4.0 |
 | **[ru-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/ru-en.zip)** | Russian → English | 82,549 | 844,108 | 92.3% | 11 MB | CC BY-SA 4.0 |
-| **[el-el](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/el-el.zip)** | Greek | 452,197 | 1,059,230 | 86.1% | 19 MB | CC BY-SA 4.0 |
+| **[el-el](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/el-el.zip)** | Greek | 452,197 | 1,115,322 | 89.7% | 19 MB | CC BY-SA 4.0 |
 | **[el-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/el-en.zip)** | Greek → English | 62,934 | 405,403 | 85.1% | 7 MB | CC BY-SA 4.0 |
 | **[fi-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/fi-en.zip)** | Finnish → English | 254,435 | 4,338,416 | 90.0% | 27 MB | CC BY-SA 4.0 |
-| **[ja-ja](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/ja-ja.zip)** | Japanese | 111,345 | 346,926 | — | 8 MB | CC BY-SA 4.0 |
+| **[ja-ja](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/ja-ja.zip)** | Japanese | 111,345 | 510,652 | — | 9 MB | CC BY-SA 4.0 |
 | **[ja-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/ja-en.zip)** | Japanese → English | 155,255 | 395,693 | — | 15 MB | CC BY-SA 4.0 |
-| **[ko-ko](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/ko-ko.zip)** | Korean | 68,067 | 31,042 | 19.3% | 3 MB | CC BY-SA 4.0 |
+| **[ko-ko](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/ko-ko.zip)** | Korean | 68,067 | 177,576 | 40.2% | 4 MB | CC BY-SA 4.0 |
 | **[ko-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/ko-en.zip)** | Korean → English | 37,337 | 341,382 | 44.5% | 3 MB | CC BY-SA 4.0 |
-| **[zh-zh](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/zh-zh.zip)** | Chinese | 71,140 | 50,022 | — | 6 MB | CC BY-SA 4.0 |
-| **[ar-ar](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/ar-ar.zip)** | Arabic | 12,766 | — | 16.5% | 1 MB | CC BY-SA 3.0 |
+| **[zh-zh](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/zh-zh.zip)** | Chinese | 71,140 | 50,022 | — | 5 MB | CC BY-SA 4.0 |
+| **[ar-ar](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/ar-ar.zip)** | Arabic | 12,766 | 123,977 | 51.5% | 1 MB | CC BY-SA 3.0 |
 | **[ar-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/ar-en.zip)** | Arabic → English | 28,892 | 292,898 | 64.3% | 4 MB | CC BY-SA 4.0 |
 
 Coverage is the share of the 10,000 most frequent words in the source language

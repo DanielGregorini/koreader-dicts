@@ -108,8 +108,12 @@ translation. Stripping does create homographs: *كِلَاب* (dogs) and *كُل
 printed Arabic works too.
 
 A form whose headword is not in the dictionary is discarded here, so the number
-reported in the metrics is the number that will really reach the file. Two
-kinds of form are dropped on purpose: forms of more than one word, which a
+reported in the metrics is the number that will really reach the file. A pair
+can opt to follow aliases instead — a lemma that is itself a form of exactly
+one headword counts as that headword — which Japanese needs, because its
+edition keeps lemma pages in kana and makes the kanji spelling a pointer. It
+stays off elsewhere: aliases chain through homographs, and *went* ended up on
+*gin*. Two kinds of form are dropped on purpose: forms of more than one word, which a
 reader tapping a single word can never reach, and possessive-suffixed forms.
 Finnish is why: its tables list six possessive paradigms on top of the thirty
 case forms, 21 of the 26 million forms they yield, and measured against the top
@@ -150,6 +154,14 @@ Then corpus frequency decides: WordNet's own tag counts on the English side,
 and the same counts summed per synset for every other language, since a
 concept's frequency transfers to any word mapped onto it. The lexicon's own
 listing order is the last resort.
+
+The order of those two rules depends on whose frequency it is. A borrowed
+synset total says the concept is common, not that this word for it is, so
+there agreement comes first. When the source side is WordNet, every sense
+carries its own count, and that count comes first; agreement only breaks
+the ties — which are many, since most senses were never tagged. Otherwise
+*apply* opens on "apply to a surface", because Wiktionary happens to agree
+with it, over "put into service", tagged thirty times.
 
 Agreement is the rule that keeps *patata* from opening on the vulgar sense.
 The Spanish lexicon maps the word onto that synset, and the synset is common

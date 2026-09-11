@@ -22,12 +22,18 @@ max_translations = 5
 # The edition's own translation tables and form tables, laid over the pivot.
 # Curated by speakers of the source language, and the only inflection index
 # a pair with no English on the left can have.
+# The English edition's Portuguese section: English prose for Portuguese
+# headwords, and the fullest conjugation tables available.
+[[enrich]]
+source = "wikt-pt-en"
+add_new_headwords = true
+
 [[enrich]]
 source = "wikt-pt-to-en"
 add_new_headwords = true
 
 [inflections]
-from_sources = ["wikt-pt-def"]
+from_sources = ["wikt-pt-en", "wikt-pt-def"]
 
 [benchmark]
 frequency_list = "freq/pt_50k.txt"

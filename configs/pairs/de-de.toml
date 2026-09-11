@@ -20,8 +20,11 @@ inflection index."""
 source = "wikt-de-def"
 add_new_headwords = true
 
+# Forms also come from the English edition's section for this language: its
+# conjugation and declension tables are language-internal, whatever the
+# gloss language, and are often fuller than the edition's own.
 [inflections]
-from_sources = ["wikt-de-def"]
+from_sources = ["wikt-de-def", "wikt-de-en"]
 
 [benchmark]
 frequency_list = "freq/de_50k.txt"

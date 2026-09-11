@@ -65,6 +65,11 @@ class InflectionSpec:
     rules: bool = False
     #: Source ids offering an ``inflections()`` stream (kaikki dumps).
     from_sources: list[str] = field(default_factory=list)
+    #: Let a form whose lemma is itself a form of one headword attach to that
+    #: headword. Needed where an edition keeps lemma pages under another
+    #: spelling (Japanese: kana pages, kanji pointers); unsafe as a default,
+    #: because elsewhere aliases chain through homographs.
+    follow_aliases: bool = False
 
 
 @dataclass(slots=True)
@@ -190,6 +195,7 @@ def load_pair(path: Path | str) -> PairConfig:
         wordnet_exceptions=raw_inflections.get("wordnet_exceptions", ""),
         rules=bool(raw_inflections.get("rules", False)),
         from_sources=list(raw_inflections.get("from_sources", [])),
+        follow_aliases=bool(raw_inflections.get("follow_aliases", False)),
     )
 
     raw_benchmark = data.get("benchmark", {})

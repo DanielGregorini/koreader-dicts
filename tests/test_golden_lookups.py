@@ -50,6 +50,10 @@ GOLDEN = [
     ("de-de", "Hunde", "Haustier"),
     ("ar-en", "كلب", "dog"),
     ("ar-en", "ذهبت", "go"),
+    ("pt-en", "correram", "run"),
+    ("ja-ja", "走った", "かける"),
+    ("ja-ja", "食べた", "飲み込む"),
+    ("es-es", "corrieron", "Desplazarse rápidamente"),
     ("ar-ar", "بيت", "مَنْزِل"),
 ]
 

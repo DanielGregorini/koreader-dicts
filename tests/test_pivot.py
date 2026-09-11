@@ -221,6 +221,34 @@ def test_a_wiktionary_only_monolingual_entry_keeps_the_editions_order():
     assert [s.gloss for s in entry.senses_by_pos("pt")[0][1]] == ["tubérculo da batateira", "mentira"]
 
 
+def test_wordnets_own_counts_outrank_agreement_when_it_is_the_source():
+    """*apply*: "put into service" is tagged 30 times, "apply to a surface"
+    twice, and Wiktionary's Portuguese happens to agree with the second. With
+    borrowed frequencies agreement decides; with WordNet's own it only breaks
+    ties."""
+    from kdicts.ir import Sense
+
+    USE, COAT = "01158872-v", "01362736-v"
+
+    class WordNetLike(FakeSource):
+        def sense_counts(self):
+            return {}
+
+        def lemmas(self):
+            for lemma, synset, rank in self._lemmas:
+                yield LemmaRecord(lemma=lemma, synset=synset, rank=rank, frequency={USE: 30, COAT: 2}[synset])
+
+    english = WordNetLike("pwn30", "en", "WordNet-3.0", [("apply", USE, 1), ("apply", COAT, 2)])
+    portuguese = FakeSource("omw-pt", "pt", "CC-BY-SA-4.0", [("empregar", USE, 1), ("aplicar", COAT, 1)])
+    dictionary, _ = build_pivot(english, portuguese)
+    entry = dictionary.entries["apply"]
+    entry.senses.append(Sense(pos=Pos.VERB, translations=("aplicar",), gloss="to apply to a surface", rank=1))
+    by_agreement = [s.translations for s in entry.senses_by_pos("pt")[0][1]]
+    assert by_agreement[0] == ("aplicar",)
+    by_frequency = [s.translations for s in entry.senses_by_pos("pt", trust_frequency=True)[0][1]]
+    assert by_frequency[0] == ("empregar",)
+
+
 def test_gloss_only_senses_are_kept_but_counted_separately():
     dictionary, stats = build_pivot(
         ENGLISH, PORTUGUESE, gloss_providers=[("en", ENGLISH)],
@@ -310,6 +338,51 @@ def test_enrichment_can_be_limited_to_existing_headwords():
     )
     assert stats.entries_added == 0
     assert "gizmo" not in dictionary.entries
+
+
+def test_a_second_page_for_the_same_word_continues_the_sense_numbering():
+    from kdicts.ir import Entry, Sense
+
+    first = Entry(headword="correr", lang="es", senses=[
+        Sense(pos=Pos.VERB, gloss="Desplazarse rápidamente sobre el suelo", rank=1),
+        Sense(pos=Pos.VERB, gloss="Apresurarse en hacer algo", rank=2),
+    ])
+    second = Entry(headword="correr", lang="es", senses=[
+        Sense(pos=Pos.VERB, gloss="Desplazar algo a otro sitio", rank=1),
+    ])
+    first.absorb(second)
+    ordered = [s.gloss for s in first.senses_by_pos("es")[0][1]]
+    assert ordered[0] == "Desplazarse rápidamente sobre el suelo"
+    assert ordered[-1] == "Desplazar algo a otro sitio"
+
+
+def test_attach_inflections_follows_an_alias_to_its_headword():
+    """The Japanese edition's lemma is はしる and 走る only points at it; the
+    English edition's tables call 走った a form of 走る."""
+    from kdicts.ir import Dictionary, Entry, Sense
+
+    dictionary = Dictionary(source_lang="ja", target_lang="ja")
+    dictionary.add(Entry(headword="はしる", lang="ja", senses=[Sense(pos=Pos.VERB, gloss="run")]))
+    assert attach_inflections(dictionary, [("走る", "はしる")]) == 1
+    # Off by default: the lemma is not a headword, so the form is dropped.
+    assert attach_inflections(dictionary, [("走った", "走る")]) == 0
+    assert attach_inflections(dictionary, [("走った", "走る"), ("走らない", "走る")], follow_aliases=True) == 2
+    assert dictionary.entries["はしる"].forms == {"走る", "走った", "走らない"}
+    # A lemma nobody knows is still dropped.
+    assert attach_inflections(dictionary, [("食べた", "食べる")], follow_aliases=True) == 0
+
+
+def test_attach_inflections_never_follows_an_ambiguous_alias():
+    """*gan* is a form of gang, gin and go; *went* is a form of gan. Which of
+    the three *went* would land on is arbitrary, so it lands on none."""
+    from kdicts.ir import Dictionary, Entry, Sense
+
+    dictionary = Dictionary(source_lang="en", target_lang="pt")
+    for word in ("gang", "gin", "go"):
+        dictionary.add(Entry(headword=word, lang="en", senses=[Sense(pos=Pos.VERB, gloss=word)]))
+    attach_inflections(dictionary, [("gan", "gang"), ("gan", "gin"), ("gan", "go")])
+    assert attach_inflections(dictionary, [("went", "gan")], follow_aliases=True) == 0
+    assert not any("went" in e.forms for e in dictionary.entries.values())
 
 
 def test_attach_inflections_drops_forms_with_no_headword():

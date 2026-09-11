@@ -185,7 +185,12 @@ def build_pair(
         credits[source_id] = spec.credit or spec.url or spec.id
 
     # --- render and write ----------------------------------------------------
-    options = RenderOptions(target_lang=pair.target_lang)
+    # WordNet as the source side means every sense carries its own corpus
+    # count, which is better evidence than agreement between sources.
+    trust_frequency = pair.pivot is not None and callable(
+        getattr(instances[pair.pivot.source_side], "sense_counts", None)
+    )
+    options = RenderOptions(target_lang=pair.target_lang, trust_frequency=trust_frequency)
     rendered: list[tuple[str, str]] = []
     synonyms: list[tuple[str, str]] = []
     for entry in dictionary:
@@ -331,14 +336,16 @@ def _attach_all_inflections(
     if spec.wordnet_exceptions:
         source = instances.get(spec.wordnet_exceptions)
         if source is not None:
-            added = attach_inflections(dictionary, wordnet_exceptions(source.root))
+            added = attach_inflections(
+                dictionary, wordnet_exceptions(source.root), follow_aliases=spec.follow_aliases
+            )
             notes.append(f"inflections: +{added} from WordNet exception files")
 
     for source_id in spec.from_sources:
         source = instances.get(source_id)
         streamer = getattr(source, "inflections", None)
         if callable(streamer):
-            added = attach_inflections(dictionary, streamer())
+            added = attach_inflections(dictionary, streamer(), follow_aliases=spec.follow_aliases)
             notes.append(f"inflections: +{added} from {source_id}")
 
     if spec.rules:

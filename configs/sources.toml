@@ -886,6 +886,33 @@ url = "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/conten
 license_id = "CC-BY-SA-4.0"
 credit = "hermitdave/FrequencyWords (OpenSubtitles 2018)"
 
+# --- English edition, Portuguese and French sections ---------------------------
+#
+# Portuguese was the one language whose section of the English edition was never
+# declared, which is why pt-en trailed KOReader's built-in dictionary. French
+# cannot enrich fr-en (WOLF is CeCILL-C), but its form tables can still serve
+# fr-fr, which is Wiktionary-only.
+
+[[source]]
+id = "wikt-pt-en"
+kind = "kaikki"
+path = "kaikki/enwiktionary-portuguese.jsonl.gz"
+lang = "pt"
+url = "https://kaikki.org/dictionary/Portuguese/kaikki.org-dictionary-Portuguese.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary (Portuguese entries) via kaikki.org (wiktextract)"
+options = { mode = "foreign_entries", source_lang = "pt", target_lang = "en" }
+
+[[source]]
+id = "wikt-fr-en"
+kind = "kaikki"
+path = "kaikki/enwiktionary-french.jsonl.gz"
+lang = "fr"
+url = "https://kaikki.org/dictionary/French/kaikki.org-dictionary-French.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary (French entries) via kaikki.org (wiktextract)"
+options = { mode = "foreign_entries", source_lang = "fr", target_lang = "en" }
+
 # --- Benchmark inputs (never shipped, never merged) -------------------------
 
 [[source]]

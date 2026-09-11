@@ -183,7 +183,9 @@ class Entry:
     def has_translation(self) -> bool:
         return any(s.translations for s in self.senses)
 
-    def senses_by_pos(self, target_lang: str = "") -> list[tuple[Pos, list[Sense]]]:
+    def senses_by_pos(
+        self, target_lang: str = "", trust_frequency: bool = False
+    ) -> list[tuple[Pos, list[Sense]]]:
         """Senses grouped and ordered for rendering, most useful first.
 
         Grouping by part of speech and then always showing nouns first is the
@@ -210,8 +212,18 @@ class Entry:
         common in English as an anatomical term, but the Spanish Wiktionary
         does not know the sense at all.  Frequency decides among the rest.
 
-        Both of those rules are for choosing among a lexicon's mappings, and
-        both are switched off when *target_lang* is the entry's own language.
+        Agreement outranks frequency only where the frequency is borrowed:
+        a non-English source side gets the synset's total, which says the
+        concept is common, not that this word for it is. Where the source
+        side carries its own per-sense counts -- English, from WordNet's
+        tagged corpora -- *trust_frequency* puts them first and agreement
+        breaks the ties, which are many, since most senses were never tagged.
+        Otherwise *apply* opens on "apply to a surface" because Wiktionary
+        happens to agree with it, over "put into service", tagged 30 times.
+
+        Both agreement and translated-first are for choosing among a
+        lexicon's mappings, and both are switched off when *target_lang* is
+        the entry's own language.
         In a monolingual dictionary the definition is the entry and a synonym
         list is a bonus most main senses do not have: WordNet's bird synset
         holds only *goose*, so once the word is dropped from its own synset
@@ -226,13 +238,9 @@ class Entry:
         vouched = set() if monolingual else self._corroborated(target_lang)
 
         def sense_key(sense: Sense) -> tuple[int, int, int, int, str]:
-            return (
-                0 if monolingual or sense.translations else 1,
-                0 if id(sense) in vouched else 1,
-                -sense.frequency,
-                sense.rank,
-                sense.gloss,
-            )
+            agreed = 0 if id(sense) in vouched else 1
+            evidence = (-sense.frequency, agreed) if trust_frequency else (agreed, -sense.frequency)
+            return (0 if monolingual or sense.translations else 1, *evidence, sense.rank, sense.gloss)
 
         def group_key(item: tuple[Pos, list[Sense]]) -> tuple[int, int, str]:
             pos, group = item
@@ -292,6 +300,20 @@ class Entry:
         """
         if other.headword != self.headword:
             raise ValueError(f"cannot absorb {other.headword!r} into {self.headword!r}")
+        # A second page for the same word -- another etymology, a second
+        # part-of-speech section split by the extractor -- starts its own
+        # sense numbering at 1. Continue ours instead, or the two first
+        # senses tie on rank and the alphabetical last resort decides:
+        # correr opened on "Desplazar algo a otro sitio" over "Desplazarse
+        # rápidamente" because D-e-s-p-l-a-z-a-r sorts before Desplazarse.
+        highest: dict[Pos, int] = {}
+        for sense in self.senses:
+            if sense.synset is None:
+                highest[sense.pos] = max(highest.get(sense.pos, 0), sense.rank)
+        for sense in other.senses:
+            if sense.synset is None and sense.pos in highest:
+                sense.rank += highest[sense.pos]
+
         index = {s.merge_key(): s for s in self.senses}
         for sense in other.senses:
             key = sense.merge_key()

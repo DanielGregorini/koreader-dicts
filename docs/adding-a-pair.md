@@ -75,6 +75,19 @@ itself is meaningful — the synset *is* the synonym set. The pivot drops a word
 from its own synset so nothing is listed as its own synonym. Elsewhere the
 wordnets carry no definitions, so there is nothing to pivot for.
 
+List the English edition's section for the language under `[inflections]
+from_sources` too. Form tables are language-internal whatever the gloss
+language, and the English edition's are often fuller than the edition's own:
+the Japanese edition has no conjugation tables at all.
+
+Japanese needs one more thing, `follow_aliases = true`. Its edition keeps the
+lemma page under the kana spelling and makes the kanji page a pointer, so the
+headword is はしる and 走る is only a form of it — while the English edition's
+tables call 走った a form of 走る. Following the alias is what joins them. It is
+off everywhere else on purpose: in English, Wiktionary calls *went* a form of
+the obsolete *gan*, and *gan* is a form of *gang*, *gin* and *go*, so following
+aliases put a liquor at the top of *went*.
+
 ## A new source
 
 One adapter module, one line in `tooling/kdicts/sources/__init__.py`. The core
