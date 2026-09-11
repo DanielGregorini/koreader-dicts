@@ -161,3 +161,20 @@ options = { mode = "definitions", source_lang = "pt", target_lang = "pt" }
     assert main(["sources", "--verify", "--configs", str(configs), "--data", str(data)]) == 0
     assert "verified" in capsys.readouterr().out
 
+
+def test_koreader_list_is_generated_from_the_catalog(project, tmp_path, capsys):
+    """The file handed to KOReader must come from the catalog, not be typed."""
+    _tmp, data, configs = project
+    out = tmp_path / "out"
+    assert main(["build", "en-pt", "--configs", str(configs), "--data", str(data), "--out", str(out),
+                 "--verify-sample", "0", "--no-zip"]) == 0
+    assert main(["catalog", "--configs", str(configs), "--data", str(data), "--out", str(out)]) == 0
+    capsys.readouterr()
+    assert main(["koreader", "--configs", str(configs), "--data", str(data),
+                 "--catalog-path", str(out / "catalog.json"), "--min-coverage", "0"]) == 0
+    lua = capsys.readouterr().out
+    assert lua.startswith("-- koreader-dicts")
+    assert 'lang_in = "eng"' in lua and 'lang_out = "por"' in lua
+    assert 'url = "https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-pt-test.zip"' in lua
+    assert lua.rstrip().endswith("}")
+

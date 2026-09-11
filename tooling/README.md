@@ -15,6 +15,7 @@ kdicts build <pair>...            generate dictionaries
 kdicts verify <directory>         binary-search a built dictionary
 kdicts lookup <directory> <word>  look a word up, the way a device would
 kdicts catalog                    write the JSON the website reads
+kdicts koreader                   write the entries for KOReader's built-in download list
 ```
 
 ## Layout
@@ -29,6 +30,7 @@ kdicts/
   licensing.py   Which source licences may be combined, and into what
   collation.py   StarDict's index sort order
   package.py     LICENSE, ATTRIBUTION, README.txt and the .zip
+  koreader_list.py  The Lua list KOReader's dictionary downloader reads
   sources/       One adapter per input format (WordNet, OMW, Wiktionary)
   merge/         The pivot, enrichment, and inflected forms
   writers/       StarDict output: index, dictzip, entry rendering

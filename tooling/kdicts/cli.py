@@ -6,6 +6,7 @@
     kdicts verify <directory>      binary-search a built dictionary
     kdicts lookup <directory> word look a word up, as a device would
     kdicts catalog                 write the JSON the website renders
+    kdicts koreader                write the entries for KOReader's download list
 """
 
 from __future__ import annotations
@@ -18,6 +19,7 @@ from pathlib import Path
 
 from .config import ConfigError, load_all_pairs, load_sources
 from .fetch import FetchError, ensure_source
+from .koreader_list import render_koreader_list
 from .package import write_catalog
 from .pipeline import BuildError, build_pair, sample_lookups, verify_output
 from .sources import REGISTRY, SourceError, SourceSpec, build_source
@@ -82,6 +84,21 @@ def build_parser() -> argparse.ArgumentParser:
     _add_common(catalog)
     catalog.add_argument("--out", type=Path, default=_DEFAULT_OUTPUT)
     catalog.add_argument("--catalog-path", type=Path, default=None)
+
+    koreader = subparsers.add_parser(
+        "koreader", help="write the Lua entries for KOReader's built-in dictionary list"
+    )
+    _add_common(koreader)
+    koreader.add_argument("--catalog-path", type=Path, default=_DEFAULT_OUTPUT / "catalog.json")
+    koreader.add_argument("--out", type=Path, default=None, help="write here instead of stdout")
+    koreader.add_argument(
+        "--min-coverage", type=float, default=60.0, help="leave out pairs measured below this"
+    )
+    koreader.add_argument("--exclude", nargs="*", default=[], help="pair ids to leave out")
+    koreader.add_argument(
+        "--releases-base",
+        default="https://github.com/DanielGregorini/koreader-dicts/releases/latest/download",
+    )
 
     return parser
 
@@ -269,6 +286,23 @@ def _cmd_catalog(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_koreader(args: argparse.Namespace) -> int:
+    pairs = load_all_pairs(args.configs / "pairs")
+    lua, listed = render_koreader_list(
+        args.catalog_path,
+        pairs,
+        releases_base=args.releases_base,
+        min_coverage=args.min_coverage,
+        exclude=args.exclude,
+    )
+    if args.out:
+        args.out.write_text(lua, encoding="utf-8")
+        print(f"{args.out}: {len(listed)} dictionaries")
+    else:
+        print(lua, end="")
+    return 0
+
+
 _COMMANDS = {
     "sources": _cmd_sources,
     "fetch": _cmd_fetch,
@@ -276,6 +310,7 @@ _COMMANDS = {
     "verify": _cmd_verify,
     "lookup": _cmd_lookup,
     "catalog": _cmd_catalog,
+    "koreader": _cmd_koreader,
 }
 
 
