@@ -977,3 +977,267 @@ lang = "ru"
 url = "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/ru/ru_50k.txt"
 license_id = "CC-BY-SA-4.0"
 credit = "hermitdave/FrequencyWords (OpenSubtitles 2018)"
+
+# --- Indonesian, Hindi, Hungarian, Ukrainian, Persian, Turkish, Latin ----------
+#
+# Only Indonesian has a wordnet in OMW 1.4, so only its pairs pivot. The other
+# six are Wiktionary-only, the same shape as de-en and cs-en. kaikki publishes
+# an edition of its own for Indonesian and Turkish and for none of the rest,
+# which is what decides whether a monolingual is possible at all.
+
+# The English edition's section for each language: the language's own
+# headwords, defined in English. This is the spine of every X-en pair here.
+
+[[source]]
+id = "wikt-id-en"
+kind = "kaikki"
+path = "kaikki/enwiktionary-indonesian.jsonl.gz"
+lang = "id"
+url = "https://kaikki.org/dictionary/Indonesian/kaikki.org-dictionary-Indonesian.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary (Indonesian entries) via kaikki.org (wiktextract)"
+options = { mode = "foreign_entries", source_lang = "id", target_lang = "en" }
+
+[[source]]
+id = "wikt-hi-en"
+kind = "kaikki"
+path = "kaikki/enwiktionary-hindi.jsonl.gz"
+lang = "hi"
+url = "https://kaikki.org/dictionary/Hindi/kaikki.org-dictionary-Hindi.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary (Hindi entries) via kaikki.org (wiktextract)"
+options = { mode = "foreign_entries", source_lang = "hi", target_lang = "en" }
+
+[[source]]
+id = "wikt-hu-en"
+kind = "kaikki"
+path = "kaikki/enwiktionary-hungarian.jsonl.gz"
+lang = "hu"
+url = "https://kaikki.org/dictionary/Hungarian/kaikki.org-dictionary-Hungarian.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary (Hungarian entries) via kaikki.org (wiktextract)"
+options = { mode = "foreign_entries", source_lang = "hu", target_lang = "en" }
+
+[[source]]
+id = "wikt-uk-en"
+kind = "kaikki"
+path = "kaikki/enwiktionary-ukrainian.jsonl.gz"
+lang = "uk"
+url = "https://kaikki.org/dictionary/Ukrainian/kaikki.org-dictionary-Ukrainian.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary (Ukrainian entries) via kaikki.org (wiktextract)"
+options = { mode = "foreign_entries", source_lang = "uk", target_lang = "en" }
+
+[[source]]
+id = "wikt-fa-en"
+kind = "kaikki"
+path = "kaikki/enwiktionary-persian.jsonl.gz"
+lang = "fa"
+url = "https://kaikki.org/dictionary/Persian/kaikki.org-dictionary-Persian.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary (Persian entries) via kaikki.org (wiktextract)"
+options = { mode = "foreign_entries", source_lang = "fa", target_lang = "en" }
+
+[[source]]
+id = "wikt-tr-en"
+kind = "kaikki"
+path = "kaikki/enwiktionary-turkish.jsonl.gz"
+lang = "tr"
+url = "https://kaikki.org/dictionary/Turkish/kaikki.org-dictionary-Turkish.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary (Turkish entries) via kaikki.org (wiktextract)"
+options = { mode = "foreign_entries", source_lang = "tr", target_lang = "en" }
+
+[[source]]
+id = "wikt-la-en"
+kind = "kaikki"
+path = "kaikki/enwiktionary-latin.jsonl.gz"
+lang = "la"
+url = "https://kaikki.org/dictionary/Latin/kaikki.org-dictionary-Latin.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary (Latin entries) via kaikki.org (wiktextract)"
+options = { mode = "foreign_entries", source_lang = "la", target_lang = "en" }
+
+# The English edition's translation tables, read for each new target. The file
+# is the one every en-X pair already reads; only the target code differs.
+
+[[source]]
+id = "wikt-en-id"
+kind = "kaikki"
+path = "kaikki/enwiktionary-english.jsonl.gz"
+lang = "en"
+url = "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "en", target_lang = "id" }
+
+[[source]]
+id = "wikt-en-hi"
+kind = "kaikki"
+path = "kaikki/enwiktionary-english.jsonl.gz"
+lang = "en"
+url = "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "en", target_lang = "hi" }
+
+[[source]]
+id = "wikt-en-hu"
+kind = "kaikki"
+path = "kaikki/enwiktionary-english.jsonl.gz"
+lang = "en"
+url = "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "en", target_lang = "hu" }
+
+[[source]]
+id = "wikt-en-uk"
+kind = "kaikki"
+path = "kaikki/enwiktionary-english.jsonl.gz"
+lang = "en"
+url = "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "en", target_lang = "uk" }
+
+[[source]]
+id = "wikt-en-fa"
+kind = "kaikki"
+path = "kaikki/enwiktionary-english.jsonl.gz"
+lang = "en"
+url = "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "en", target_lang = "fa" }
+
+[[source]]
+id = "wikt-en-tr"
+kind = "kaikki"
+path = "kaikki/enwiktionary-english.jsonl.gz"
+lang = "en"
+url = "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "en", target_lang = "tr" }
+
+[[source]]
+id = "wikt-en-la"
+kind = "kaikki"
+path = "kaikki/enwiktionary-english.jsonl.gz"
+lang = "en"
+url = "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "en", target_lang = "la" }
+
+[[source]]
+id = "wikt-en-cs"
+kind = "kaikki"
+path = "kaikki/enwiktionary-english.jsonl.gz"
+lang = "en"
+url = "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "English Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "en", target_lang = "cs" }
+
+# The Indonesian and Turkish editions. These two are the only ones of the seven
+# kaikki publishes, so id-id and tr-tr are the only monolinguals possible here.
+
+[[source]]
+id = "wikt-id-def"
+kind = "kaikki"
+path = "kaikki/idwiktionary.jsonl.gz"
+lang = "id"
+url = "https://kaikki.org/idwiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Indonesian Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "definitions", source_lang = "id", target_lang = "id" }
+
+[[source]]
+id = "wikt-id-to-en"
+kind = "kaikki"
+path = "kaikki/idwiktionary.jsonl.gz"
+lang = "id"
+url = "https://kaikki.org/idwiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Indonesian Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "id", target_lang = "en" }
+
+[[source]]
+id = "wikt-tr-def"
+kind = "kaikki"
+path = "kaikki/trwiktionary.jsonl.gz"
+lang = "tr"
+url = "https://kaikki.org/trwiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Turkish Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "definitions", source_lang = "tr", target_lang = "tr" }
+
+[[source]]
+id = "wikt-tr-to-en"
+kind = "kaikki"
+path = "kaikki/trwiktionary.jsonl.gz"
+lang = "tr"
+url = "https://kaikki.org/trwiktionary/raw-wiktextract-data.jsonl.gz"
+license_id = "CC-BY-SA-4.0"
+credit = "Turkish Wiktionary via kaikki.org (wiktextract)"
+options = { mode = "translations", source_lang = "tr", target_lang = "en" }
+
+# Frequency lists. hermitdave publishes no Latin list -- OpenSubtitles has no
+# Latin subtitles -- so la-en and en-la ship without a coverage figure rather
+# than with one measured against a corpus that does not represent the language.
+
+[[source]]
+id = "freq-id"
+kind = "frequency"
+path = "freq/id_50k.txt"
+lang = "id"
+url = "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/id/id_50k.txt"
+license_id = "CC-BY-SA-4.0"
+credit = "hermitdave/FrequencyWords (OpenSubtitles 2018)"
+
+[[source]]
+id = "freq-hi"
+kind = "frequency"
+path = "freq/hi_full.txt"
+lang = "hi"
+url = "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/hi/hi_full.txt"
+license_id = "CC-BY-SA-4.0"
+credit = "hermitdave/FrequencyWords (OpenSubtitles 2018)"
+
+[[source]]
+id = "freq-hu"
+kind = "frequency"
+path = "freq/hu_50k.txt"
+lang = "hu"
+url = "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/hu/hu_50k.txt"
+license_id = "CC-BY-SA-4.0"
+credit = "hermitdave/FrequencyWords (OpenSubtitles 2018)"
+
+[[source]]
+id = "freq-uk"
+kind = "frequency"
+path = "freq/uk_50k.txt"
+lang = "uk"
+url = "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/uk/uk_50k.txt"
+license_id = "CC-BY-SA-4.0"
+credit = "hermitdave/FrequencyWords (OpenSubtitles 2018)"
+
+[[source]]
+id = "freq-fa"
+kind = "frequency"
+path = "freq/fa_50k.txt"
+lang = "fa"
+url = "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/fa/fa_50k.txt"
+license_id = "CC-BY-SA-4.0"
+credit = "hermitdave/FrequencyWords (OpenSubtitles 2018)"
+
+[[source]]
+id = "freq-tr"
+kind = "frequency"
+path = "freq/tr_50k.txt"
+lang = "tr"
+url = "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/tr/tr_50k.txt"
+license_id = "CC-BY-SA-4.0"
+credit = "hermitdave/FrequencyWords (OpenSubtitles 2018)"
