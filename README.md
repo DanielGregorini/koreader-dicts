@@ -19,18 +19,26 @@ Click a name to download. No account, no installer, nothing to sign up for.
 | **[en-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-en.zip)** | English | 815,066 | 1,494,986 | 98.9% | 92 MB | CC BY-SA 4.0 |
 | **[en-ar](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-ar.zip)** | English → Arabic | 155,624 | 323,610 | 93.0% | 12 MB | CC BY-SA 4.0 |
 | **[en-zh](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-zh.zip)** | English → Chinese | 170,953 | 349,920 | 94.0% | 15 MB | CC BY-SA 4.0 |
+| **[en-cs](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-cs.zip)** | English → Czech | 32,292 | 103,178 | 84.4% | 3 MB | CC BY-SA 4.0 |
 | **[en-nl](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-nl.zip)** | English → Dutch | 162,346 | 339,608 | 93.2% | 14 MB | CC BY-SA 4.0 |
 | **[en-fi](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-fi.zip)** | English → Finnish | 179,652 | 378,874 | 93.6% | 18 MB | CC BY-SA 4.0 |
 | **[en-fr](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-fr.zip)** | English → French | 84,803 | 127,148 | 87.4% | 7 MB | CeCILL-C |
 | **[en-de](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-de.zip)** | English → German | 67,375 | 187,321 | 90.4% | 7 MB | CC BY-SA 4.0 |
 | **[en-el](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-el.zip)** | English → Greek | 158,536 | 329,527 | 93.4% | 14 MB | CC BY-SA 4.0 |
+| **[en-hi](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-hi.zip)** | English → Hindi | 18,027 | 57,415 | 72.1% | 2 MB | CC BY-SA 4.0 |
+| **[en-hu](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-hu.zip)** | English → Hungarian | 35,606 | 110,320 | 83.9% | 4 MB | CC BY-SA 4.0 |
+| **[en-id](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-id.zip)** | English → Indonesian | 151,979 | 316,863 | 92.0% | 12 MB | CC BY-SA 4.0 |
 | **[en-it](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-it.zip)** | English → Italian | 169,373 | 353,125 | 93.7% | 14 MB | CC BY-SA 4.0 |
 | **[en-ja](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-ja.zip)** | English → Japanese | 163,102 | 337,152 | 93.7% | 15 MB | CC BY-SA 4.0 |
 | **[en-ko](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-ko.zip)** | English → Korean | 25,985 | 76,501 | 79.1% | 3 MB | CC BY-SA 4.0 |
+| **[en-la](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-la.zip)** | English → Latin | 18,703 | 63,687 | 73.3% | 2 MB | CC BY-SA 4.0 |
+| **[en-fa](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-fa.zip)** | English → Persian | 13,648 | 46,352 | 53.9% | 1 MB | CC BY-SA 4.0 |
 | **[en-pl](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-pl.zip)** | English → Polish | 177,956 | 372,845 | 93.9% | 15 MB | CC BY-SA 4.0 |
 | **[en-pt](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-pt.zip)** | English → Portuguese | 172,842 | 362,335 | 94.3% | 15 MB | CC BY-SA 4.0 |
 | **[en-ru](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-ru.zip)** | English → Russian | 58,922 | 164,363 | 91.7% | 6 MB | CC BY-SA 4.0 |
 | **[en-es](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-es.zip)** | English → Spanish | 174,258 | 365,153 | 94.0% | 15 MB | CC BY-SA 4.0 |
+| **[en-tr](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-tr.zip)** | English → Turkish | 26,739 | 84,963 | 78.2% | 3 MB | CC BY-SA 4.0 |
+| **[en-uk](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/en-uk.zip)** | English → Ukrainian | 25,619 | 80,240 | 80.9% | 3 MB | CC BY-SA 4.0 |
 | **[pt-pt](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/pt-pt.zip)** | Portuguese | 81,068 | 457,723 | 84.5% | 7 MB | CC BY-SA 4.0 |
 | **[pt-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/pt-en.zip)** | Portuguese → English | 102,769 | 412,172 | 85.9% | 9 MB | CC BY-SA 4.0 |
 | **[pt-it](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/pt-it.zip)** | Portuguese → Italian | 34,816 | 125,638 | 73.4% | 3 MB | CC BY-SA 4.0 |
@@ -69,11 +77,20 @@ Click a name to download. No account, no installer, nothing to sign up for.
 | **[zh-zh](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/zh-zh.zip)** | Chinese | 71,140 | 50,022 | — | 5 MB | CC BY-SA 4.0 |
 | **[ar-ar](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/ar-ar.zip)** | Arabic | 12,766 | 123,977 | 51.5% | 1 MB | CC BY-SA 3.0 |
 | **[ar-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/ar-en.zip)** | Arabic → English | 28,892 | 292,898 | 64.3% | 4 MB | CC BY-SA 4.0 |
+| **[id-id](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/id-id.zip)** | Indonesian | 63,978 | 60,739 | 61.8% | 3 MB | CC BY-SA 4.0 |
+| **[id-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/id-en.zip)** | Indonesian → English | 57,339 | 62,855 | 71.2% | 6 MB | CC BY-SA 4.0 |
+| **[tr-tr](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/tr-tr.zip)** | Turkish | 192,043 | 2,949,811 | 80.4% | 15 MB | CC BY-SA 4.0 |
+| **[tr-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/tr-en.zip)** | Turkish → English | 32,846 | 2,444,483 | 79.6% | 9 MB | CC BY-SA 4.0 |
+| **[hu-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/hu-en.zip)** | Hungarian → English | 32,433 | 795,216 | 66.9% | 4 MB | CC BY-SA 4.0 |
+| **[uk-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/uk-en.zip)** | Ukrainian → English | 28,945 | 334,309 | 58.9% | 3 MB | CC BY-SA 4.0 |
+| **[fa-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/fa-en.zip)** | Persian → English | 14,617 | 97,838 | 41.9% | 1 MB | CC BY-SA 4.0 |
+| **[hi-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/hi-en.zip)** | Hindi → English | 21,566 | 152,370 | 66.7% | 2 MB | CC BY-SA 4.0 |
+| **[la-en](https://github.com/DanielGregorini/koreader-dicts/releases/latest/download/la-en.zip)** | Latin → English | 42,144 | 830,939 | — | 5 MB | CC BY-SA 4.0 |
 
 Coverage is the share of the 10,000 most frequent words in the source language
 that a lookup resolves, inflected forms included — measured against a
-subtitle-corpus frequency list, not estimated. Japanese and Chinese have no
-published list. Full measurements for each dictionary are on the
+subtitle-corpus frequency list, not estimated. Japanese, Chinese and Latin
+have no published list. Full measurements for each dictionary are on the
 [site](https://danielgregorini.github.io/koreader-dicts/).
 
 ## Install
@@ -115,10 +132,13 @@ Wiktionary edition writes about its own language, so the definition is in the
 language you are reading and nothing is translated at any point. `en-en` also
 pivots WordNet against itself, because there the synset already *is* the
 synonym set. `ar-ar` is only that: no open Arabic definitions exist, so it is a
-thesaurus of synonym sets from the Arabic WordNet.
+thesaurus of synonym sets from the Arabic WordNet, and `id-id` is mostly one
+for the same reason. A monolingual needs an edition written in its own
+language, which is why only Indonesian and Turkish have one among the
+languages added most recently.
 
-German and Russian have no open wordnet, so `en-de`, `en-ru` and `ru-en` are
-built from Wiktionary alone. `fr-pt` is built from Wiktionary too, for a
+German, Russian, Czech, Hungarian, Ukrainian, Persian, Turkish, Hindi and
+Latin have no open wordnet, so their pairs are built from Wiktionary alone. `fr-pt` is built from Wiktionary too, for a
 different reason: the French and Portuguese wordnets carry licences that cannot
 legally be combined, and the build refuses to produce a file it cannot licence.
 

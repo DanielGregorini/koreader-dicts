@@ -857,6 +857,95 @@
       "tier": 1
     },
     {
+      "archive_bytes": 3102953,
+      "basename": "en-cs",
+      "built": true,
+      "description": "English to Czech, built from the English Wiktionary's translation tables. Includes an inflection index.",
+      "metrics": {
+        "bundle_license": "CC-BY-SA-4.0",
+        "coverage": [
+          {
+            "cutoff": 1000,
+            "form_hits": 169,
+            "headword_hits": 797,
+            "hits": 966,
+            "percent": 96.6,
+            "sampled": 1000
+          },
+          {
+            "cutoff": 5000,
+            "form_hits": 1311,
+            "headword_hits": 3245,
+            "hits": 4556,
+            "percent": 91.12,
+            "sampled": 5000
+          },
+          {
+            "cutoff": 10000,
+            "form_hits": 2847,
+            "headword_hits": 5594,
+            "hits": 8441,
+            "percent": 84.41,
+            "sampled": 10000
+          },
+          {
+            "cutoff": 50000,
+            "form_hits": 12462,
+            "headword_hits": 15097,
+            "hits": 27559,
+            "percent": 55.12,
+            "sampled": 50000
+          }
+        ],
+        "entries": 32292,
+        "entries_gloss_only": 0,
+        "entries_with_example": 0,
+        "entries_with_forms": 30763,
+        "entries_with_pronunciation": 22338,
+        "entries_with_translation": 32292,
+        "frequency_list": "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)",
+        "generated_at": "2026-09-21T08:24:56+00:00",
+        "inflected_forms": 103178,
+        "licenses": [
+          "CC-BY-SA-4.0"
+        ],
+        "mean_definition_chars": 78.4,
+        "mean_forms_per_entry": 3.29,
+        "mean_translations_per_entry": 1.8,
+        "median_definition_chars": 64.0,
+        "pair": "en-cs",
+        "percent_entries_with_example": 0.0,
+        "percent_entries_with_forms": 95.27,
+        "percent_entries_with_translation": 100.0,
+        "senses": 41950,
+        "senses_gloss_only": 0,
+        "senses_with_translation": 41950,
+        "source_lang": "en",
+        "sources": [
+          {
+            "credit": "Princeton University WordNet 3.0",
+            "id": "pwn30",
+            "kind": "wordnet",
+            "license": "WordNet-3.0",
+            "url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+          },
+          {
+            "credit": "English Wiktionary via kaikki.org (wiktextract)",
+            "id": "wikt-en-cs",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+          }
+        ],
+        "target_lang": "cs"
+      },
+      "name": "English to Czech",
+      "pair": "en-cs",
+      "source_lang": "en",
+      "target_lang": "cs",
+      "tier": 2
+    },
+    {
       "archive_bytes": 6550155,
       "basename": "en-de",
       "built": true,
@@ -1232,6 +1321,95 @@
       "tier": 1
     },
     {
+      "archive_bytes": 1346652,
+      "basename": "en-fa",
+      "built": true,
+      "description": "English to Persian, built from the English Wiktionary's translation tables. Includes an inflection index.",
+      "metrics": {
+        "bundle_license": "CC-BY-SA-4.0",
+        "coverage": [
+          {
+            "cutoff": 1000,
+            "form_hits": 195,
+            "headword_hits": 597,
+            "hits": 792,
+            "percent": 79.2,
+            "sampled": 1000
+          },
+          {
+            "cutoff": 5000,
+            "form_hits": 1162,
+            "headword_hits": 1954,
+            "hits": 3116,
+            "percent": 62.32,
+            "sampled": 5000
+          },
+          {
+            "cutoff": 10000,
+            "form_hits": 2243,
+            "headword_hits": 3145,
+            "hits": 5388,
+            "percent": 53.88,
+            "sampled": 10000
+          },
+          {
+            "cutoff": 50000,
+            "form_hits": 7697,
+            "headword_hits": 7283,
+            "hits": 14980,
+            "percent": 29.96,
+            "sampled": 50000
+          }
+        ],
+        "entries": 13648,
+        "entries_gloss_only": 0,
+        "entries_with_example": 0,
+        "entries_with_forms": 12604,
+        "entries_with_pronunciation": 10092,
+        "entries_with_translation": 13648,
+        "frequency_list": "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)",
+        "generated_at": "2026-09-21T08:24:46+00:00",
+        "inflected_forms": 46352,
+        "licenses": [
+          "CC-BY-SA-4.0"
+        ],
+        "mean_definition_chars": 84.7,
+        "mean_forms_per_entry": 3.49,
+        "mean_translations_per_entry": 1.61,
+        "median_definition_chars": 70.0,
+        "pair": "en-fa",
+        "percent_entries_with_example": 0.0,
+        "percent_entries_with_forms": 92.35,
+        "percent_entries_with_translation": 100.0,
+        "senses": 15874,
+        "senses_gloss_only": 0,
+        "senses_with_translation": 15874,
+        "source_lang": "en",
+        "sources": [
+          {
+            "credit": "Princeton University WordNet 3.0",
+            "id": "pwn30",
+            "kind": "wordnet",
+            "license": "WordNet-3.0",
+            "url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+          },
+          {
+            "credit": "English Wiktionary via kaikki.org (wiktextract)",
+            "id": "wikt-en-fa",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+          }
+        ],
+        "target_lang": "fa"
+      },
+      "name": "English to Persian",
+      "pair": "en-fa",
+      "source_lang": "en",
+      "target_lang": "fa",
+      "tier": 2
+    },
+    {
       "archive_bytes": 17894209,
       "basename": "en-fi",
       "built": true,
@@ -1420,10 +1598,275 @@
       "tier": 1
     },
     {
-      "archive_bytes": 0,
+      "archive_bytes": 1752207,
+      "basename": "en-hi",
+      "built": true,
+      "description": "English to Hindi, built from the English Wiktionary's translation tables. Includes an inflection index.",
+      "metrics": {
+        "bundle_license": "CC-BY-SA-4.0",
+        "coverage": [
+          {
+            "cutoff": 1000,
+            "form_hits": 183,
+            "headword_hits": 733,
+            "hits": 916,
+            "percent": 91.6,
+            "sampled": 1000
+          },
+          {
+            "cutoff": 5000,
+            "form_hits": 1250,
+            "headword_hits": 2826,
+            "hits": 4076,
+            "percent": 81.52,
+            "sampled": 5000
+          },
+          {
+            "cutoff": 10000,
+            "form_hits": 2625,
+            "headword_hits": 4586,
+            "hits": 7211,
+            "percent": 72.11,
+            "sampled": 10000
+          },
+          {
+            "cutoff": 50000,
+            "form_hits": 9312,
+            "headword_hits": 9744,
+            "hits": 19056,
+            "percent": 38.11,
+            "sampled": 50000
+          }
+        ],
+        "entries": 18027,
+        "entries_gloss_only": 0,
+        "entries_with_example": 0,
+        "entries_with_forms": 15786,
+        "entries_with_pronunciation": 12543,
+        "entries_with_translation": 18027,
+        "frequency_list": "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)",
+        "generated_at": "2026-09-21T08:23:08+00:00",
+        "inflected_forms": 57415,
+        "licenses": [
+          "CC-BY-SA-4.0"
+        ],
+        "mean_definition_chars": 79.8,
+        "mean_forms_per_entry": 3.3,
+        "mean_translations_per_entry": 1.92,
+        "median_definition_chars": 65.0,
+        "pair": "en-hi",
+        "percent_entries_with_example": 0.0,
+        "percent_entries_with_forms": 87.57,
+        "percent_entries_with_translation": 100.0,
+        "senses": 22063,
+        "senses_gloss_only": 0,
+        "senses_with_translation": 22063,
+        "source_lang": "en",
+        "sources": [
+          {
+            "credit": "Princeton University WordNet 3.0",
+            "id": "pwn30",
+            "kind": "wordnet",
+            "license": "WordNet-3.0",
+            "url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+          },
+          {
+            "credit": "English Wiktionary via kaikki.org (wiktextract)",
+            "id": "wikt-en-hi",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+          }
+        ],
+        "target_lang": "hi"
+      },
+      "name": "English to Hindi",
+      "pair": "en-hi",
+      "source_lang": "en",
+      "target_lang": "hi",
+      "tier": 2
+    },
+    {
+      "archive_bytes": 3594424,
+      "basename": "en-hu",
+      "built": true,
+      "description": "English to Hungarian, built from the English Wiktionary's translation tables. Includes an inflection index.",
+      "metrics": {
+        "bundle_license": "CC-BY-SA-4.0",
+        "coverage": [
+          {
+            "cutoff": 1000,
+            "form_hits": 163,
+            "headword_hits": 798,
+            "hits": 961,
+            "percent": 96.1,
+            "sampled": 1000
+          },
+          {
+            "cutoff": 5000,
+            "form_hits": 1253,
+            "headword_hits": 3273,
+            "hits": 4526,
+            "percent": 90.52,
+            "sampled": 5000
+          },
+          {
+            "cutoff": 10000,
+            "form_hits": 2783,
+            "headword_hits": 5604,
+            "hits": 8387,
+            "percent": 83.87,
+            "sampled": 10000
+          },
+          {
+            "cutoff": 50000,
+            "form_hits": 12345,
+            "headword_hits": 14833,
+            "hits": 27178,
+            "percent": 54.36,
+            "sampled": 50000
+          }
+        ],
+        "entries": 35606,
+        "entries_gloss_only": 0,
+        "entries_with_example": 0,
+        "entries_with_forms": 33587,
+        "entries_with_pronunciation": 21662,
+        "entries_with_translation": 35606,
+        "frequency_list": "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)",
+        "generated_at": "2026-09-21T08:24:47+00:00",
+        "inflected_forms": 110320,
+        "licenses": [
+          "CC-BY-SA-4.0"
+        ],
+        "mean_definition_chars": 78.1,
+        "mean_forms_per_entry": 3.19,
+        "mean_translations_per_entry": 2.21,
+        "median_definition_chars": 64.0,
+        "pair": "en-hu",
+        "percent_entries_with_example": 0.0,
+        "percent_entries_with_forms": 94.33,
+        "percent_entries_with_translation": 100.0,
+        "senses": 48224,
+        "senses_gloss_only": 0,
+        "senses_with_translation": 48224,
+        "source_lang": "en",
+        "sources": [
+          {
+            "credit": "Princeton University WordNet 3.0",
+            "id": "pwn30",
+            "kind": "wordnet",
+            "license": "WordNet-3.0",
+            "url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+          },
+          {
+            "credit": "English Wiktionary via kaikki.org (wiktextract)",
+            "id": "wikt-en-hu",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+          }
+        ],
+        "target_lang": "hu"
+      },
+      "name": "English to Hungarian",
+      "pair": "en-hu",
+      "source_lang": "en",
+      "target_lang": "hu",
+      "tier": 2
+    },
+    {
+      "archive_bytes": 11847792,
       "basename": "en-id",
-      "built": false,
-      "description": "English to Indonesian, built by pivoting Princeton WordNet 3.0 through the Indonesian wordnet in the Open Multilingual Wordnet.",
+      "built": true,
+      "description": "English to Indonesian, built by pivoting Princeton WordNet 3.0 through Wordnet Bahasa and enriching with the English Wiktionary's translation tables. Includes an inflection index.",
+      "metrics": {
+        "bundle_license": "CC-BY-SA-4.0",
+        "coverage": [
+          {
+            "cutoff": 1000,
+            "form_hits": 98,
+            "headword_hits": 867,
+            "hits": 965,
+            "percent": 96.5,
+            "sampled": 1000
+          },
+          {
+            "cutoff": 5000,
+            "form_hits": 791,
+            "headword_hits": 3957,
+            "hits": 4748,
+            "percent": 94.96,
+            "sampled": 5000
+          },
+          {
+            "cutoff": 10000,
+            "form_hits": 1887,
+            "headword_hits": 7312,
+            "hits": 9199,
+            "percent": 91.99,
+            "sampled": 10000
+          },
+          {
+            "cutoff": 50000,
+            "form_hits": 10851,
+            "headword_hits": 26379,
+            "hits": 37230,
+            "percent": 74.46,
+            "sampled": 50000
+          }
+        ],
+        "entries": 151979,
+        "entries_gloss_only": 93584,
+        "entries_with_example": 34201,
+        "entries_with_forms": 151053,
+        "entries_with_pronunciation": 10833,
+        "entries_with_translation": 58395,
+        "frequency_list": "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)",
+        "generated_at": "2026-09-21T08:23:16+00:00",
+        "inflected_forms": 316863,
+        "licenses": [
+          "CC-BY-SA-4.0",
+          "MIT",
+          "WordNet-3.0"
+        ],
+        "mean_definition_chars": 62.7,
+        "mean_forms_per_entry": 2.13,
+        "mean_translations_per_entry": 1.51,
+        "median_definition_chars": 52.0,
+        "pair": "en-id",
+        "percent_entries_with_example": 22.5,
+        "percent_entries_with_forms": 99.39,
+        "percent_entries_with_translation": 38.42,
+        "senses": 225115,
+        "senses_gloss_only": 126489,
+        "senses_with_translation": 98626,
+        "source_lang": "en",
+        "sources": [
+          {
+            "credit": "Wordnet Bahasa (Indonesian), via Open Multilingual Wordnet 1.4",
+            "id": "omw-id",
+            "kind": "omw-lmf",
+            "license": "MIT",
+            "url": "https://github.com/omwn/omw-data/releases/download/v1.4/omw-1.4.tar.xz"
+          },
+          {
+            "credit": "Princeton University WordNet 3.0",
+            "id": "pwn30",
+            "kind": "wordnet",
+            "license": "WordNet-3.0",
+            "url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+          },
+          {
+            "credit": "English Wiktionary via kaikki.org (wiktextract)",
+            "id": "wikt-en-id",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+          }
+        ],
+        "target_lang": "id"
+      },
       "name": "English to Indonesian",
       "pair": "en-id",
       "source_lang": "en",
@@ -1712,6 +2155,95 @@
       "pair": "en-ko",
       "source_lang": "en",
       "target_lang": "ko",
+      "tier": 2
+    },
+    {
+      "archive_bytes": 1646511,
+      "basename": "en-la",
+      "built": true,
+      "description": "English to Latin, built from the English Wiktionary's translation tables. Includes an inflection index.",
+      "metrics": {
+        "bundle_license": "CC-BY-SA-4.0",
+        "coverage": [
+          {
+            "cutoff": 1000,
+            "form_hits": 172,
+            "headword_hits": 772,
+            "hits": 944,
+            "percent": 94.4,
+            "sampled": 1000
+          },
+          {
+            "cutoff": 5000,
+            "form_hits": 1248,
+            "headword_hits": 2912,
+            "hits": 4160,
+            "percent": 83.2,
+            "sampled": 5000
+          },
+          {
+            "cutoff": 10000,
+            "form_hits": 2667,
+            "headword_hits": 4665,
+            "hits": 7332,
+            "percent": 73.32,
+            "sampled": 10000
+          },
+          {
+            "cutoff": 50000,
+            "form_hits": 9959,
+            "headword_hits": 10375,
+            "hits": 20334,
+            "percent": 40.67,
+            "sampled": 50000
+          }
+        ],
+        "entries": 18703,
+        "entries_gloss_only": 0,
+        "entries_with_example": 0,
+        "entries_with_forms": 17063,
+        "entries_with_pronunciation": 14077,
+        "entries_with_translation": 18703,
+        "frequency_list": "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)",
+        "generated_at": "2026-09-21T08:24:50+00:00",
+        "inflected_forms": 63687,
+        "licenses": [
+          "CC-BY-SA-4.0"
+        ],
+        "mean_definition_chars": 74.1,
+        "mean_forms_per_entry": 3.5,
+        "mean_translations_per_entry": 1.7,
+        "median_definition_chars": 60.0,
+        "pair": "en-la",
+        "percent_entries_with_example": 0.0,
+        "percent_entries_with_forms": 91.23,
+        "percent_entries_with_translation": 100.0,
+        "senses": 22409,
+        "senses_gloss_only": 0,
+        "senses_with_translation": 22409,
+        "source_lang": "en",
+        "sources": [
+          {
+            "credit": "Princeton University WordNet 3.0",
+            "id": "pwn30",
+            "kind": "wordnet",
+            "license": "WordNet-3.0",
+            "url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+          },
+          {
+            "credit": "English Wiktionary via kaikki.org (wiktextract)",
+            "id": "wikt-en-la",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+          }
+        ],
+        "target_lang": "la"
+      },
+      "name": "English to Latin",
+      "pair": "en-la",
+      "source_lang": "en",
+      "target_lang": "la",
       "tier": 2
     },
     {
@@ -2099,6 +2631,184 @@
       "pair": "en-ru",
       "source_lang": "en",
       "target_lang": "ru",
+      "tier": 2
+    },
+    {
+      "archive_bytes": 2563704,
+      "basename": "en-tr",
+      "built": true,
+      "description": "English to Turkish, built from the English Wiktionary's translation tables. Includes an inflection index.",
+      "metrics": {
+        "bundle_license": "CC-BY-SA-4.0",
+        "coverage": [
+          {
+            "cutoff": 1000,
+            "form_hits": 184,
+            "headword_hits": 758,
+            "hits": 942,
+            "percent": 94.2,
+            "sampled": 1000
+          },
+          {
+            "cutoff": 5000,
+            "form_hits": 1310,
+            "headword_hits": 3007,
+            "hits": 4317,
+            "percent": 86.34,
+            "sampled": 5000
+          },
+          {
+            "cutoff": 10000,
+            "form_hits": 2783,
+            "headword_hits": 5040,
+            "hits": 7823,
+            "percent": 78.23,
+            "sampled": 10000
+          },
+          {
+            "cutoff": 50000,
+            "form_hits": 11286,
+            "headword_hits": 12384,
+            "hits": 23670,
+            "percent": 47.34,
+            "sampled": 50000
+          }
+        ],
+        "entries": 26739,
+        "entries_gloss_only": 0,
+        "entries_with_example": 0,
+        "entries_with_forms": 25245,
+        "entries_with_pronunciation": 17598,
+        "entries_with_translation": 26739,
+        "frequency_list": "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)",
+        "generated_at": "2026-09-21T08:23:13+00:00",
+        "inflected_forms": 84963,
+        "licenses": [
+          "CC-BY-SA-4.0"
+        ],
+        "mean_definition_chars": 81.9,
+        "mean_forms_per_entry": 3.28,
+        "mean_translations_per_entry": 1.79,
+        "median_definition_chars": 68.0,
+        "pair": "en-tr",
+        "percent_entries_with_example": 0.0,
+        "percent_entries_with_forms": 94.41,
+        "percent_entries_with_translation": 100.0,
+        "senses": 33013,
+        "senses_gloss_only": 0,
+        "senses_with_translation": 33013,
+        "source_lang": "en",
+        "sources": [
+          {
+            "credit": "Princeton University WordNet 3.0",
+            "id": "pwn30",
+            "kind": "wordnet",
+            "license": "WordNet-3.0",
+            "url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+          },
+          {
+            "credit": "English Wiktionary via kaikki.org (wiktextract)",
+            "id": "wikt-en-tr",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+          }
+        ],
+        "target_lang": "tr"
+      },
+      "name": "English to Turkish",
+      "pair": "en-tr",
+      "source_lang": "en",
+      "target_lang": "tr",
+      "tier": 2
+    },
+    {
+      "archive_bytes": 2571869,
+      "basename": "en-uk",
+      "built": true,
+      "description": "English to Ukrainian, built from the English Wiktionary's translation tables. Includes an inflection index.",
+      "metrics": {
+        "bundle_license": "CC-BY-SA-4.0",
+        "coverage": [
+          {
+            "cutoff": 1000,
+            "form_hits": 172,
+            "headword_hits": 786,
+            "hits": 958,
+            "percent": 95.8,
+            "sampled": 1000
+          },
+          {
+            "cutoff": 5000,
+            "form_hits": 1296,
+            "headword_hits": 3157,
+            "hits": 4453,
+            "percent": 89.06,
+            "sampled": 5000
+          },
+          {
+            "cutoff": 10000,
+            "form_hits": 2857,
+            "headword_hits": 5236,
+            "hits": 8093,
+            "percent": 80.93,
+            "sampled": 10000
+          },
+          {
+            "cutoff": 50000,
+            "form_hits": 11295,
+            "headword_hits": 12354,
+            "hits": 23649,
+            "percent": 47.3,
+            "sampled": 50000
+          }
+        ],
+        "entries": 25619,
+        "entries_gloss_only": 0,
+        "entries_with_example": 0,
+        "entries_with_forms": 23415,
+        "entries_with_pronunciation": 17711,
+        "entries_with_translation": 25619,
+        "frequency_list": "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)",
+        "generated_at": "2026-09-21T08:23:09+00:00",
+        "inflected_forms": 80240,
+        "licenses": [
+          "CC-BY-SA-4.0"
+        ],
+        "mean_definition_chars": 80.0,
+        "mean_forms_per_entry": 3.24,
+        "mean_translations_per_entry": 1.97,
+        "median_definition_chars": 66.0,
+        "pair": "en-uk",
+        "percent_entries_with_example": 0.0,
+        "percent_entries_with_forms": 91.4,
+        "percent_entries_with_translation": 100.0,
+        "senses": 32056,
+        "senses_gloss_only": 0,
+        "senses_with_translation": 32056,
+        "source_lang": "en",
+        "sources": [
+          {
+            "credit": "Princeton University WordNet 3.0",
+            "id": "pwn30",
+            "kind": "wordnet",
+            "license": "WordNet-3.0",
+            "url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+          },
+          {
+            "credit": "English Wiktionary via kaikki.org (wiktextract)",
+            "id": "wikt-en-uk",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz"
+          }
+        ],
+        "target_lang": "uk"
+      },
+      "name": "English to Ukrainian",
+      "pair": "en-uk",
+      "source_lang": "en",
+      "target_lang": "uk",
       "tier": 2
     },
     {
@@ -2722,6 +3432,88 @@
       "tier": 3
     },
     {
+      "archive_bytes": 1235617,
+      "basename": "fa-en",
+      "built": true,
+      "description": "Persian to English, built from the Persian section of the English Wiktionary. Includes an inflection index.",
+      "metrics": {
+        "bundle_license": "CC-BY-SA-4.0",
+        "coverage": [
+          {
+            "cutoff": 1000,
+            "form_hits": 138,
+            "headword_hits": 462,
+            "hits": 600,
+            "percent": 60.0,
+            "sampled": 1000
+          },
+          {
+            "cutoff": 5000,
+            "form_hits": 558,
+            "headword_hits": 1902,
+            "hits": 2460,
+            "percent": 49.2,
+            "sampled": 5000
+          },
+          {
+            "cutoff": 10000,
+            "form_hits": 1002,
+            "headword_hits": 3186,
+            "hits": 4188,
+            "percent": 41.88,
+            "sampled": 10000
+          },
+          {
+            "cutoff": 50000,
+            "form_hits": 3270,
+            "headword_hits": 6806,
+            "hits": 10076,
+            "percent": 20.15,
+            "sampled": 50000
+          }
+        ],
+        "entries": 14617,
+        "entries_gloss_only": 2776,
+        "entries_with_example": 3657,
+        "entries_with_forms": 9257,
+        "entries_with_pronunciation": 11918,
+        "entries_with_translation": 11841,
+        "frequency_list": "OpenSubtitles 2018 Persian top 50k (hermitdave/FrequencyWords)",
+        "generated_at": "2026-09-21T08:24:55+00:00",
+        "inflected_forms": 97838,
+        "licenses": [
+          "CC-BY-SA-4.0"
+        ],
+        "mean_definition_chars": 22.1,
+        "mean_forms_per_entry": 6.81,
+        "mean_translations_per_entry": 1.89,
+        "median_definition_chars": 14.0,
+        "pair": "fa-en",
+        "percent_entries_with_example": 25.02,
+        "percent_entries_with_forms": 63.33,
+        "percent_entries_with_translation": 81.01,
+        "senses": 24595,
+        "senses_gloss_only": 6064,
+        "senses_with_translation": 18531,
+        "source_lang": "fa",
+        "sources": [
+          {
+            "credit": "English Wiktionary (Persian entries) via kaikki.org (wiktextract)",
+            "id": "wikt-fa-en",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/dictionary/Persian/kaikki.org-dictionary-Persian.jsonl.gz"
+          }
+        ],
+        "target_lang": "en"
+      },
+      "name": "Persian to English",
+      "pair": "fa-en",
+      "source_lang": "fa",
+      "target_lang": "en",
+      "tier": 2
+    },
+    {
       "archive_bytes": 27195973,
       "basename": "fi-en",
       "built": true,
@@ -3288,6 +4080,379 @@
       "pair": "fr-pt",
       "source_lang": "fr",
       "target_lang": "pt",
+      "tier": 2
+    },
+    {
+      "archive_bytes": 1851768,
+      "basename": "hi-en",
+      "built": true,
+      "description": "Hindi to English, built from the Hindi section of the English Wiktionary. Includes an inflection index.",
+      "metrics": {
+        "bundle_license": "CC-BY-SA-4.0",
+        "coverage": [
+          {
+            "cutoff": 1000,
+            "form_hits": 309,
+            "headword_hits": 599,
+            "hits": 908,
+            "percent": 90.8,
+            "sampled": 1000
+          },
+          {
+            "cutoff": 5000,
+            "form_hits": 1255,
+            "headword_hits": 2573,
+            "hits": 3828,
+            "percent": 76.56,
+            "sampled": 5000
+          },
+          {
+            "cutoff": 10000,
+            "form_hits": 2443,
+            "headword_hits": 4227,
+            "hits": 6670,
+            "percent": 66.7,
+            "sampled": 10000
+          },
+          {
+            "cutoff": 50000,
+            "form_hits": 4494,
+            "headword_hits": 6350,
+            "hits": 10844,
+            "percent": 50.89,
+            "sampled": 21309
+          }
+        ],
+        "entries": 21566,
+        "entries_gloss_only": 4656,
+        "entries_with_example": 4430,
+        "entries_with_forms": 17468,
+        "entries_with_pronunciation": 19984,
+        "entries_with_translation": 16910,
+        "frequency_list": "OpenSubtitles 2018 Hindi (hermitdave/FrequencyWords)",
+        "generated_at": "2026-09-21T08:24:50+00:00",
+        "inflected_forms": 152370,
+        "licenses": [
+          "CC-BY-SA-4.0"
+        ],
+        "mean_definition_chars": 24.6,
+        "mean_forms_per_entry": 7.15,
+        "mean_translations_per_entry": 2.1,
+        "median_definition_chars": 18.0,
+        "pair": "hi-en",
+        "percent_entries_with_example": 20.54,
+        "percent_entries_with_forms": 81.0,
+        "percent_entries_with_translation": 78.41,
+        "senses": 36027,
+        "senses_gloss_only": 9779,
+        "senses_with_translation": 26248,
+        "source_lang": "hi",
+        "sources": [
+          {
+            "credit": "English Wiktionary (Hindi entries) via kaikki.org (wiktextract)",
+            "id": "wikt-hi-en",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/dictionary/Hindi/kaikki.org-dictionary-Hindi.jsonl.gz"
+          }
+        ],
+        "target_lang": "en"
+      },
+      "name": "Hindi to English",
+      "pair": "hi-en",
+      "source_lang": "hi",
+      "target_lang": "en",
+      "tier": 2
+    },
+    {
+      "archive_bytes": 4156182,
+      "basename": "hu-en",
+      "built": true,
+      "description": "Hungarian to English, built from the Hungarian section of the English Wiktionary. Includes an inflection index.",
+      "metrics": {
+        "bundle_license": "CC-BY-SA-4.0",
+        "coverage": [
+          {
+            "cutoff": 1000,
+            "form_hits": 352,
+            "headword_hits": 578,
+            "hits": 930,
+            "percent": 93.0,
+            "sampled": 1000
+          },
+          {
+            "cutoff": 5000,
+            "form_hits": 1818,
+            "headword_hits": 1985,
+            "hits": 3803,
+            "percent": 76.06,
+            "sampled": 5000
+          },
+          {
+            "cutoff": 10000,
+            "form_hits": 3374,
+            "headword_hits": 3314,
+            "hits": 6688,
+            "percent": 66.88,
+            "sampled": 10000
+          },
+          {
+            "cutoff": 50000,
+            "form_hits": 13461,
+            "headword_hits": 9619,
+            "hits": 23080,
+            "percent": 46.16,
+            "sampled": 50000
+          }
+        ],
+        "entries": 32433,
+        "entries_gloss_only": 16836,
+        "entries_with_example": 5665,
+        "entries_with_forms": 28310,
+        "entries_with_pronunciation": 32368,
+        "entries_with_translation": 15597,
+        "frequency_list": "OpenSubtitles 2018 Hungarian top 50k (hermitdave/FrequencyWords)",
+        "generated_at": "2026-09-21T08:23:08+00:00",
+        "inflected_forms": 795216,
+        "licenses": [
+          "CC-BY-SA-4.0"
+        ],
+        "mean_definition_chars": 43.9,
+        "mean_forms_per_entry": 24.56,
+        "mean_translations_per_entry": 0.94,
+        "median_definition_chars": 34.0,
+        "pair": "hu-en",
+        "percent_entries_with_example": 17.47,
+        "percent_entries_with_forms": 87.29,
+        "percent_entries_with_translation": 48.09,
+        "senses": 45279,
+        "senses_gloss_only": 26882,
+        "senses_with_translation": 18397,
+        "source_lang": "hu",
+        "sources": [
+          {
+            "credit": "English Wiktionary (Hungarian entries) via kaikki.org (wiktextract)",
+            "id": "wikt-hu-en",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/dictionary/Hungarian/kaikki.org-dictionary-Hungarian.jsonl.gz"
+          }
+        ],
+        "target_lang": "en"
+      },
+      "name": "Hungarian to English",
+      "pair": "hu-en",
+      "source_lang": "hu",
+      "target_lang": "en",
+      "tier": 2
+    },
+    {
+      "archive_bytes": 6293321,
+      "basename": "id-en",
+      "built": true,
+      "description": "Indonesian to English, generated by inverting the WordNet pivot through Wordnet Bahasa and enriched with the Indonesian section of the English Wiktionary and the Indonesian edition's own translation tables. Includes an inflection index.",
+      "metrics": {
+        "bundle_license": "CC-BY-SA-4.0",
+        "coverage": [
+          {
+            "cutoff": 1000,
+            "form_hits": 76,
+            "headword_hits": 833,
+            "hits": 909,
+            "percent": 90.9,
+            "sampled": 1000
+          },
+          {
+            "cutoff": 5000,
+            "form_hits": 577,
+            "headword_hits": 3418,
+            "hits": 3995,
+            "percent": 79.9,
+            "sampled": 5000
+          },
+          {
+            "cutoff": 10000,
+            "form_hits": 1233,
+            "headword_hits": 5887,
+            "hits": 7120,
+            "percent": 71.2,
+            "sampled": 10000
+          },
+          {
+            "cutoff": 50000,
+            "form_hits": 4573,
+            "headword_hits": 15435,
+            "hits": 20008,
+            "percent": 40.02,
+            "sampled": 50000
+          }
+        ],
+        "entries": 57339,
+        "entries_gloss_only": 9210,
+        "entries_with_example": 15363,
+        "entries_with_forms": 28333,
+        "entries_with_pronunciation": 23243,
+        "entries_with_translation": 48129,
+        "frequency_list": "OpenSubtitles 2018 Indonesian top 50k (hermitdave/FrequencyWords)",
+        "generated_at": "2026-09-21T08:24:40+00:00",
+        "inflected_forms": 62855,
+        "licenses": [
+          "CC-BY-SA-4.0",
+          "MIT",
+          "WordNet-3.0"
+        ],
+        "mean_definition_chars": 48.9,
+        "mean_forms_per_entry": 1.14,
+        "mean_translations_per_entry": 5.17,
+        "median_definition_chars": 39.0,
+        "pair": "id-en",
+        "percent_entries_with_example": 26.79,
+        "percent_entries_with_forms": 49.41,
+        "percent_entries_with_translation": 83.94,
+        "senses": 157821,
+        "senses_gloss_only": 24075,
+        "senses_with_translation": 133746,
+        "source_lang": "id",
+        "sources": [
+          {
+            "credit": "Wordnet Bahasa (Indonesian), via Open Multilingual Wordnet 1.4",
+            "id": "omw-id",
+            "kind": "omw-lmf",
+            "license": "MIT",
+            "url": "https://github.com/omwn/omw-data/releases/download/v1.4/omw-1.4.tar.xz"
+          },
+          {
+            "credit": "Princeton University WordNet 3.0",
+            "id": "pwn30",
+            "kind": "wordnet",
+            "license": "WordNet-3.0",
+            "url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+          },
+          {
+            "credit": "Indonesian Wiktionary via kaikki.org (wiktextract)",
+            "id": "wikt-id-def",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/idwiktionary/raw-wiktextract-data.jsonl.gz"
+          },
+          {
+            "credit": "English Wiktionary (Indonesian entries) via kaikki.org (wiktextract)",
+            "id": "wikt-id-en",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/dictionary/Indonesian/kaikki.org-dictionary-Indonesian.jsonl.gz"
+          },
+          {
+            "credit": "Indonesian Wiktionary via kaikki.org (wiktextract)",
+            "id": "wikt-id-to-en",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/idwiktionary/raw-wiktextract-data.jsonl.gz"
+          }
+        ],
+        "target_lang": "en"
+      },
+      "name": "Indonesian to English",
+      "pair": "id-en",
+      "source_lang": "id",
+      "target_lang": "en",
+      "tier": 4
+    },
+    {
+      "archive_bytes": 3024038,
+      "basename": "id-id",
+      "built": true,
+      "description": "Indonesian described in Indonesian, from Wordnet Bahasa and the Indonesian Wiktionary. Mostly synonym sets, with a definition where one of the two sources has one; nothing is translated. Includes an inflection index.",
+      "metrics": {
+        "bundle_license": "CC-BY-SA-4.0",
+        "coverage": [
+          {
+            "cutoff": 1000,
+            "form_hits": 62,
+            "headword_hits": 768,
+            "hits": 830,
+            "percent": 83.0,
+            "sampled": 1000
+          },
+          {
+            "cutoff": 5000,
+            "form_hits": 347,
+            "headword_hits": 3198,
+            "hits": 3545,
+            "percent": 70.9,
+            "sampled": 5000
+          },
+          {
+            "cutoff": 10000,
+            "form_hits": 749,
+            "headword_hits": 5431,
+            "hits": 6180,
+            "percent": 61.8,
+            "sampled": 10000
+          },
+          {
+            "cutoff": 50000,
+            "form_hits": 3026,
+            "headword_hits": 13732,
+            "hits": 16758,
+            "percent": 33.52,
+            "sampled": 50000
+          }
+        ],
+        "entries": 63978,
+        "entries_gloss_only": 33734,
+        "entries_with_example": 9015,
+        "entries_with_forms": 20979,
+        "entries_with_pronunciation": 8,
+        "entries_with_translation": 30244,
+        "frequency_list": "OpenSubtitles 2018 Indonesian top 50k (hermitdave/FrequencyWords)",
+        "generated_at": "2026-09-21T08:26:46+00:00",
+        "inflected_forms": 60739,
+        "licenses": [
+          "CC-BY-SA-4.0",
+          "MIT"
+        ],
+        "mean_definition_chars": 79.4,
+        "mean_forms_per_entry": 1.14,
+        "mean_translations_per_entry": 5.37,
+        "median_definition_chars": 38.0,
+        "pair": "id-id",
+        "percent_entries_with_example": 14.09,
+        "percent_entries_with_forms": 32.79,
+        "percent_entries_with_translation": 47.27,
+        "senses": 150974,
+        "senses_gloss_only": 60622,
+        "senses_with_translation": 90352,
+        "source_lang": "id",
+        "sources": [
+          {
+            "credit": "Wordnet Bahasa (Indonesian), via Open Multilingual Wordnet 1.4",
+            "id": "omw-id",
+            "kind": "omw-lmf",
+            "license": "MIT",
+            "url": "https://github.com/omwn/omw-data/releases/download/v1.4/omw-1.4.tar.xz"
+          },
+          {
+            "credit": "Indonesian Wiktionary via kaikki.org (wiktextract)",
+            "id": "wikt-id-def",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/idwiktionary/raw-wiktextract-data.jsonl.gz"
+          },
+          {
+            "credit": "English Wiktionary (Indonesian entries) via kaikki.org (wiktextract)",
+            "id": "wikt-id-en",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/dictionary/Indonesian/kaikki.org-dictionary-Indonesian.jsonl.gz"
+          }
+        ],
+        "target_lang": "id"
+      },
+      "name": "Indonesian monolingual",
+      "pair": "id-id",
+      "source_lang": "id",
+      "target_lang": "id",
       "tier": 2
     },
     {
@@ -4018,6 +5183,55 @@
       "pair": "ko-ko",
       "source_lang": "ko",
       "target_lang": "ko",
+      "tier": 2
+    },
+    {
+      "archive_bytes": 5185182,
+      "basename": "la-en",
+      "built": true,
+      "description": "Latin to English, built from the Latin section of the English Wiktionary. Includes an inflection index.",
+      "metrics": {
+        "bundle_license": "CC-BY-SA-4.0",
+        "coverage": [],
+        "entries": 42144,
+        "entries_gloss_only": 17189,
+        "entries_with_example": 6928,
+        "entries_with_forms": 41194,
+        "entries_with_pronunciation": 34142,
+        "entries_with_translation": 24955,
+        "frequency_list": "",
+        "generated_at": "2026-09-21T08:22:26+00:00",
+        "inflected_forms": 830939,
+        "licenses": [
+          "CC-BY-SA-4.0"
+        ],
+        "mean_definition_chars": 31.3,
+        "mean_forms_per_entry": 20.29,
+        "mean_translations_per_entry": 1.59,
+        "median_definition_chars": 25.0,
+        "pair": "la-en",
+        "percent_entries_with_example": 16.44,
+        "percent_entries_with_forms": 97.75,
+        "percent_entries_with_translation": 59.21,
+        "senses": 68002,
+        "senses_gloss_only": 30687,
+        "senses_with_translation": 37315,
+        "source_lang": "la",
+        "sources": [
+          {
+            "credit": "English Wiktionary (Latin entries) via kaikki.org (wiktextract)",
+            "id": "wikt-la-en",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/dictionary/Latin/kaikki.org-dictionary-Latin.jsonl.gz"
+          }
+        ],
+        "target_lang": "en"
+      },
+      "name": "Latin to English",
+      "pair": "la-en",
+      "source_lang": "la",
+      "target_lang": "en",
       "tier": 2
     },
     {
@@ -5030,6 +6244,273 @@
       "tier": 2
     },
     {
+      "archive_bytes": 8527318,
+      "basename": "tr-en",
+      "built": true,
+      "description": "Turkish to English, built from the Turkish section of the English Wiktionary and the Turkish edition's own translation tables. Includes an inflection index.",
+      "metrics": {
+        "bundle_license": "CC-BY-SA-4.0",
+        "coverage": [
+          {
+            "cutoff": 1000,
+            "form_hits": 360,
+            "headword_hits": 564,
+            "hits": 924,
+            "percent": 92.4,
+            "sampled": 1000
+          },
+          {
+            "cutoff": 5000,
+            "form_hits": 2293,
+            "headword_hits": 1896,
+            "hits": 4189,
+            "percent": 83.78,
+            "sampled": 5000
+          },
+          {
+            "cutoff": 10000,
+            "form_hits": 4885,
+            "headword_hits": 3079,
+            "hits": 7964,
+            "percent": 79.64,
+            "sampled": 10000
+          },
+          {
+            "cutoff": 50000,
+            "form_hits": 26001,
+            "headword_hits": 8006,
+            "hits": 34007,
+            "percent": 68.01,
+            "sampled": 50000
+          }
+        ],
+        "entries": 32846,
+        "entries_gloss_only": 7816,
+        "entries_with_example": 2728,
+        "entries_with_forms": 27018,
+        "entries_with_pronunciation": 16058,
+        "entries_with_translation": 25030,
+        "frequency_list": "OpenSubtitles 2018 Turkish top 50k (hermitdave/FrequencyWords)",
+        "generated_at": "2026-09-21T08:24:17+00:00",
+        "inflected_forms": 2444483,
+        "licenses": [
+          "CC-BY-SA-4.0"
+        ],
+        "mean_definition_chars": 37.6,
+        "mean_forms_per_entry": 74.79,
+        "mean_translations_per_entry": 1.62,
+        "median_definition_chars": 25.0,
+        "pair": "tr-en",
+        "percent_entries_with_example": 8.31,
+        "percent_entries_with_forms": 82.26,
+        "percent_entries_with_translation": 76.2,
+        "senses": 53832,
+        "senses_gloss_only": 16113,
+        "senses_with_translation": 37719,
+        "source_lang": "tr",
+        "sources": [
+          {
+            "credit": "Turkish Wiktionary via kaikki.org (wiktextract)",
+            "id": "wikt-tr-def",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/trwiktionary/raw-wiktextract-data.jsonl.gz"
+          },
+          {
+            "credit": "English Wiktionary (Turkish entries) via kaikki.org (wiktextract)",
+            "id": "wikt-tr-en",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/dictionary/Turkish/kaikki.org-dictionary-Turkish.jsonl.gz"
+          },
+          {
+            "credit": "Turkish Wiktionary via kaikki.org (wiktextract)",
+            "id": "wikt-tr-to-en",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/trwiktionary/raw-wiktextract-data.jsonl.gz"
+          }
+        ],
+        "target_lang": "en"
+      },
+      "name": "Turkish to English",
+      "pair": "tr-en",
+      "source_lang": "tr",
+      "target_lang": "en",
+      "tier": 2
+    },
+    {
+      "archive_bytes": 14888871,
+      "basename": "tr-tr",
+      "built": true,
+      "description": "Turkish defined in Turkish, taken from the Turkish Wiktionary. Definitions and synonyms only: nothing is translated. Includes an inflection index.",
+      "metrics": {
+        "bundle_license": "CC-BY-SA-4.0",
+        "coverage": [
+          {
+            "cutoff": 1000,
+            "form_hits": 268,
+            "headword_hits": 654,
+            "hits": 922,
+            "percent": 92.2,
+            "sampled": 1000
+          },
+          {
+            "cutoff": 5000,
+            "form_hits": 1773,
+            "headword_hits": 2442,
+            "hits": 4215,
+            "percent": 84.3,
+            "sampled": 5000
+          },
+          {
+            "cutoff": 10000,
+            "form_hits": 3877,
+            "headword_hits": 4162,
+            "hits": 8039,
+            "percent": 80.39,
+            "sampled": 10000
+          },
+          {
+            "cutoff": 50000,
+            "form_hits": 22175,
+            "headword_hits": 13286,
+            "hits": 35461,
+            "percent": 70.92,
+            "sampled": 50000
+          }
+        ],
+        "entries": 192043,
+        "entries_gloss_only": 188493,
+        "entries_with_example": 13978,
+        "entries_with_forms": 95093,
+        "entries_with_pronunciation": 6594,
+        "entries_with_translation": 3550,
+        "frequency_list": "OpenSubtitles 2018 Turkish top 50k (hermitdave/FrequencyWords)",
+        "generated_at": "2026-09-21T08:22:47+00:00",
+        "inflected_forms": 2949811,
+        "licenses": [
+          "CC-BY-SA-4.0"
+        ],
+        "mean_definition_chars": 52.7,
+        "mean_forms_per_entry": 15.48,
+        "mean_translations_per_entry": 0.03,
+        "median_definition_chars": 46.0,
+        "pair": "tr-tr",
+        "percent_entries_with_example": 7.28,
+        "percent_entries_with_forms": 49.52,
+        "percent_entries_with_translation": 1.85,
+        "senses": 242482,
+        "senses_gloss_only": 238875,
+        "senses_with_translation": 3607,
+        "source_lang": "tr",
+        "sources": [
+          {
+            "credit": "Turkish Wiktionary via kaikki.org (wiktextract)",
+            "id": "wikt-tr-def",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/trwiktionary/raw-wiktextract-data.jsonl.gz"
+          },
+          {
+            "credit": "English Wiktionary (Turkish entries) via kaikki.org (wiktextract)",
+            "id": "wikt-tr-en",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/dictionary/Turkish/kaikki.org-dictionary-Turkish.jsonl.gz"
+          }
+        ],
+        "target_lang": "tr"
+      },
+      "name": "Turkish monolingual",
+      "pair": "tr-tr",
+      "source_lang": "tr",
+      "target_lang": "tr",
+      "tier": 2
+    },
+    {
+      "archive_bytes": 2759111,
+      "basename": "uk-en",
+      "built": true,
+      "description": "Ukrainian to English, built from the Ukrainian section of the English Wiktionary. Includes an inflection index.",
+      "metrics": {
+        "bundle_license": "CC-BY-SA-4.0",
+        "coverage": [
+          {
+            "cutoff": 1000,
+            "form_hits": 331,
+            "headword_hits": 346,
+            "hits": 677,
+            "percent": 67.7,
+            "sampled": 1000
+          },
+          {
+            "cutoff": 5000,
+            "form_hits": 1795,
+            "headword_hits": 1271,
+            "hits": 3066,
+            "percent": 61.32,
+            "sampled": 5000
+          },
+          {
+            "cutoff": 10000,
+            "form_hits": 3669,
+            "headword_hits": 2218,
+            "hits": 5887,
+            "percent": 58.87,
+            "sampled": 10000
+          },
+          {
+            "cutoff": 50000,
+            "form_hits": 17738,
+            "headword_hits": 6909,
+            "hits": 24647,
+            "percent": 49.29,
+            "sampled": 50000
+          }
+        ],
+        "entries": 28945,
+        "entries_gloss_only": 10903,
+        "entries_with_example": 3441,
+        "entries_with_forms": 27264,
+        "entries_with_pronunciation": 28550,
+        "entries_with_translation": 18042,
+        "frequency_list": "OpenSubtitles 2018 Ukrainian top 50k (hermitdave/FrequencyWords)",
+        "generated_at": "2026-09-21T08:23:29+00:00",
+        "inflected_forms": 334309,
+        "licenses": [
+          "CC-BY-SA-4.0"
+        ],
+        "mean_definition_chars": 37.2,
+        "mean_forms_per_entry": 11.78,
+        "mean_translations_per_entry": 1.4,
+        "median_definition_chars": 28.0,
+        "pair": "uk-en",
+        "percent_entries_with_example": 11.89,
+        "percent_entries_with_forms": 94.19,
+        "percent_entries_with_translation": 62.33,
+        "senses": 46528,
+        "senses_gloss_only": 22615,
+        "senses_with_translation": 23913,
+        "source_lang": "uk",
+        "sources": [
+          {
+            "credit": "English Wiktionary (Ukrainian entries) via kaikki.org (wiktextract)",
+            "id": "wikt-uk-en",
+            "kind": "kaikki",
+            "license": "CC-BY-SA-4.0",
+            "url": "https://kaikki.org/dictionary/Ukrainian/kaikki.org-dictionary-Ukrainian.jsonl.gz"
+          }
+        ],
+        "target_lang": "en"
+      },
+      "name": "Ukrainian to English",
+      "pair": "uk-en",
+      "source_lang": "uk",
+      "target_lang": "en",
+      "tier": 2
+    },
+    {
       "archive_bytes": 5497534,
       "basename": "zh-zh",
       "built": true,
@@ -5079,6 +6560,6 @@
       "tier": 2
     }
   ],
-  "generated_at": "2026-09-11T18:25:04+00:00",
+  "generated_at": "2026-09-21T08:28:50+00:00",
   "schema": 1
 }
