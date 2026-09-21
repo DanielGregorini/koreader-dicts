@@ -173,5 +173,11 @@
     "forms": "словоформ: {count}",
     "download": "Скачать",
     "noMatches": "Для этого языка словарей нет."
+  },
+  "seo": {
+    "pairTitle": "Словарь {source}-{target} для KOReader",
+    "monoTitle": "Толковый словарь ({language}) для KOReader",
+    "pairDescription": "{entries} статей, покрытие {coverage} из 10 000 самых частотных слов ({source}). Бесплатный StarDict для Kindle, Kobo и Android.",
+    "pairDescriptionPlain": "{entries} статей и {forms} словоформ. Бесплатный StarDict для Kindle, Kobo и Android."
   }
 }

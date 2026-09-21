@@ -1,4 +1,7 @@
 import { useTranslations } from "next-intl";
+import { pageMetadata } from "@/lib/seo";
+import { getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { DictionaryList } from "@/components/dictionary-list";
 import { Rich, raw } from "@/components/rich";
@@ -6,6 +9,21 @@ import { builtDictionaries, loadCatalog } from "@/lib/catalog";
 import { RELEASES_URL } from "@/lib/repo";
 import { COMPRESSION, PACKAGE_FILES } from "@/lib/install";
 import { locales, type Locale } from "@/i18n/routing";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "downloads" });
+  return pageMetadata({
+    locale: locale as Locale,
+    path: "/downloads/",
+    title: `${t("title")} — koreader-dicts`,
+    description: t("lede"),
+  });
+}
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));

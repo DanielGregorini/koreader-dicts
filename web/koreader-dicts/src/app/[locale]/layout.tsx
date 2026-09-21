@@ -23,16 +23,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "site" });
+  // No `alternates` here on purpose. Layout metadata is inherited by every
+  // descendant page that does not override it, so a canonical declared at this
+  // level pointed all 490 dictionary pages at their locale home and asked
+  // Google not to index them. Each page builds its own with pageMetadata().
   return {
+    metadataBase: new URL(SITE_URL),
     title: t("title"),
     description: t("description"),
-    alternates: {
-      canonical: `${SITE_URL}/${locale}/`,
-      languages: Object.fromEntries([
-        ...locales.map((l) => [localeInfo[l].tag, `${SITE_URL}/${l}/`]),
-        ["x-default", `${SITE_URL}/en/`],
-      ]),
-    },
   };
 }
 

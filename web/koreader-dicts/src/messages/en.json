@@ -173,5 +173,11 @@
     "forms": "{count} inflected forms",
     "download": "Download",
     "noMatches": "No dictionaries for that language."
+  },
+  "seo": {
+    "pairTitle": "{source} to {target} dictionary for KOReader",
+    "monoTitle": "{language} monolingual dictionary for KOReader",
+    "pairDescription": "{entries} entries, covering {coverage} of the 10,000 most common words ({source}). Free StarDict download for Kindle, Kobo and Android.",
+    "pairDescriptionPlain": "{entries} entries and {forms} inflected forms. Free StarDict download for Kindle, Kobo and Android."
   }
 }

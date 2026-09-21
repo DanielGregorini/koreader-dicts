@@ -173,5 +173,11 @@
     "forms": "form odmienionych: {count}",
     "download": "Pobierz",
     "noMatches": "Brak słowników dla tego języka."
+  },
+  "seo": {
+    "pairTitle": "Słownik {source}-{target} dla KOReader",
+    "monoTitle": "Słownik jednojęzyczny ({language}) dla KOReader",
+    "pairDescription": "{entries} haseł, pokrywających {coverage} z 10 000 najczęstszych słów ({source}). Darmowy plik StarDict dla Kindle, Kobo i Androida.",
+    "pairDescriptionPlain": "{entries} haseł i {forms} form fleksyjnych. Darmowy plik StarDict dla Kindle, Kobo i Androida."
   }
 }

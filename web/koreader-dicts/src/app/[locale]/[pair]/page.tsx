@@ -1,6 +1,7 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import {
   CoverageTable,
   SourceTable,
@@ -18,6 +19,7 @@ import {
   type DictionaryRecord,
 } from "@/lib/catalog";
 import { DOCS } from "@/lib/install";
+import { pageMetadata } from "@/lib/seo";
 import { locales, type Locale } from "@/i18n/routing";
 
 export function generateStaticParams() {
@@ -25,6 +27,48 @@ export function generateStaticParams() {
   return locales.flatMap((locale) =>
     built.map((record) => ({ locale, pair: record.pair })),
   );
+}
+
+// The 490 pages that matter most for search: one per dictionary per locale.
+// Each needs a title and description of its own, or Google sees 70 copies of
+// the same page in each language and indexes none of them.
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; pair: string }>;
+}): Promise<Metadata> {
+  const { locale, pair } = await params;
+  const record = builtDictionaries(loadCatalog()).find((d) => d.pair === pair);
+  if (!record) return {};
+  const t = await getTranslations({ locale, namespace: "seo" });
+  const source = languageName(record.source_lang, locale);
+  const target = languageName(record.target_lang, locale);
+  const metrics = record.metrics!;
+  const entries = formatNumber(metrics.entries, locale);
+  const topTenK = metrics.coverage.find((point) => point.cutoff === 10000);
+
+  return pageMetadata({
+    locale: locale as Locale,
+    path: `/${pair}/`,
+    title: isMonolingual(record)
+      ? t("monoTitle", { language: source })
+      : t("pairTitle", { source, target }),
+    // Japanese, Chinese and Latin have no frequency list, so there is no
+    // coverage figure to put in front of a reader.
+    description: topTenK
+      ? t("pairDescription", {
+          entries,
+          coverage: `${topTenK.percent.toLocaleString(locale, {
+            minimumFractionDigits: 1,
+            maximumFractionDigits: 1,
+          })}%`,
+          source,
+        })
+      : t("pairDescriptionPlain", {
+          entries,
+          forms: formatNumber(metrics.inflected_forms, locale),
+        }),
+  });
 }
 
 export default async function PairPage({

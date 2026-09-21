@@ -173,5 +173,11 @@
     "forms": "{count} forme flesse",
     "download": "Scarica",
     "noMatches": "Nessun dizionario per quella lingua."
+  },
+  "seo": {
+    "pairTitle": "Dizionario {source}-{target} per KOReader",
+    "monoTitle": "Dizionario monolingue di {language} per KOReader",
+    "pairDescription": "{entries} voci, che coprono il {coverage} delle 10 000 parole più comuni ({source}). Download StarDict gratuito per Kindle, Kobo e Android.",
+    "pairDescriptionPlain": "{entries} voci e {forms} forme flesse. Download StarDict gratuito per Kindle, Kobo e Android."
   }
 }

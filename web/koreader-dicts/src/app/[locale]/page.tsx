@@ -1,10 +1,28 @@
 import { useTranslations } from "next-intl";
+import { pageMetadata } from "@/lib/seo";
+import { getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { DictionaryList } from "@/components/dictionary-list";
 import { Rich, raw } from "@/components/rich";
 import { loadCatalog } from "@/lib/catalog";
 import { formatNumber } from "@/lib/dictionaries";
 import { locales, type Locale } from "@/i18n/routing";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "site" });
+  return pageMetadata({
+    locale: locale as Locale,
+    path: "/",
+    title: t("title"),
+    description: t("description"),
+  });
+}
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));

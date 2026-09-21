@@ -1,8 +1,26 @@
 import { useTranslations } from "next-intl";
+import { pageMetadata } from "@/lib/seo";
+import { getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { Rich, raw } from "@/components/rich";
 import { DOCS, INSTALL_PATHS } from "@/lib/install";
 import { locales, type Locale } from "@/i18n/routing";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "how" });
+  return pageMetadata({
+    locale: locale as Locale,
+    path: "/how-it-works/",
+    title: `${t("title")} — koreader-dicts`,
+    description: t("lede"),
+  });
+}
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));

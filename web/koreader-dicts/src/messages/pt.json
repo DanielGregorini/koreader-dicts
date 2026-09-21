@@ -173,5 +173,11 @@
     "forms": "{count} formas flexionadas",
     "download": "Baixar",
     "noMatches": "Nenhum dicionário para essa língua."
+  },
+  "seo": {
+    "pairTitle": "Dicionário de {source} para {target} no KOReader",
+    "monoTitle": "Dicionário monolíngue de {language} para KOReader",
+    "pairDescription": "{entries} verbetes, cobrindo {coverage} das 10 mil palavras mais comuns ({source}). Download grátis em StarDict para Kindle, Kobo e Android.",
+    "pairDescriptionPlain": "{entries} verbetes e {forms} formas flexionadas. Download grátis em StarDict para Kindle, Kobo e Android."
   }
 }

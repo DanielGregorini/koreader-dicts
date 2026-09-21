@@ -173,5 +173,11 @@
     "forms": "{count} formes fléchies",
     "download": "Télécharger",
     "noMatches": "Aucun dictionnaire pour cette langue."
+  },
+  "seo": {
+    "pairTitle": "Dictionnaire {source}-{target} pour KOReader",
+    "monoTitle": "Dictionnaire monolingue de {language} pour KOReader",
+    "pairDescription": "{entries} entrées, couvrant {coverage} des 10 000 mots les plus fréquents ({source}). Téléchargement StarDict gratuit pour Kindle, Kobo et Android.",
+    "pairDescriptionPlain": "{entries} entrées et {forms} formes fléchies. Téléchargement StarDict gratuit pour Kindle, Kobo et Android."
   }
 }
