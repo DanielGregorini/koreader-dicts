@@ -22,12 +22,15 @@ ISO_639_3 = {
     "en": "eng", "pt": "por", "es": "spa", "it": "ita", "de": "deu", "fr": "fra",
     "ru": "rus", "pl": "pol", "cs": "ces", "nl": "nld", "el": "ell", "fi": "fin",
     "ja": "jpn", "ko": "kor", "zh": "zho", "ar": "ara", "id": "ind",
+    "hi": "hin", "hu": "hun", "uk": "ukr", "fa": "fas", "tr": "tur", "la": "lat",
 }
 LANGUAGE_NAMES = {
     "en": "English", "pt": "Portuguese", "es": "Spanish", "it": "Italian",
     "de": "German", "fr": "French", "ru": "Russian", "pl": "Polish", "cs": "Czech",
     "nl": "Dutch", "el": "Greek", "fi": "Finnish", "ja": "Japanese", "ko": "Korean",
-    "zh": "Chinese", "ar": "Arabic", "id": "Indonesian",
+    "zh": "Chinese", "ar": "Arabic", "id": "Indonesian", "hi": "Hindi",
+    "hu": "Hungarian", "uk": "Ukrainian", "fa": "Persian", "tr": "Turkish",
+    "la": "Latin",
 }
 # KOReader shows the licence as free text; these are the spellings its list uses.
 LICENCE_LABELS = {
@@ -82,6 +85,17 @@ def render_koreader_list(
         if coverage is not None and coverage < min_coverage:
             continue
         rows.append(record)
+    unknown = sorted(
+        {code for r in rows for code in (r["source_lang"], r["target_lang"])} - set(order)
+    )
+    if unknown:
+        # KOReader keys its list on ISO 639-3, so a language missing from the
+        # tables above cannot be listed at all. Say which one rather than fail
+        # inside sort() with "'hi' is not in list".
+        raise KeyError(
+            f"no ISO 639-3 code or name for {', '.join(unknown)}: "
+            "add them to ISO_639_3 and LANGUAGE_NAMES in koreader_list.py"
+        )
     rows.sort(
         key=lambda r: (
             order.index(r["source_lang"]),
