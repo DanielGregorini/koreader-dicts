@@ -1,0 +1,29 @@
+# Hindi has no wordnet in OMW 1.4, so there is nothing to pivot through
+# and this pair is the English edition's translation tables alone.
+#
+# WordNet is still named below: its exception files supply the irregular
+# English forms (went -> go) that no rule derives.
+
+id = "en-hi"
+source_lang = "en"
+target_lang = "hi"
+tier = 2
+name = "English to Hindi"
+bookname = "en-hi"
+basename = "en-hi"
+description = """\
+English to Hindi, built from the English Wiktionary's translation \
+tables. Includes an inflection index."""
+
+[[enrich]]
+source = "wikt-en-hi"
+add_new_headwords = true
+
+[inflections]
+wordnet_exceptions = "pwn30"
+rules = true
+from_sources = ["wikt-en-hi"]
+
+[benchmark]
+frequency_list = "freq/en_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)"

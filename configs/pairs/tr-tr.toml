@@ -1,0 +1,31 @@
+# Monolingual: Turkish defined in Turkish. Nothing here is translated.
+#
+# The Turkish Wiktionary's own pages about Turkish words. The gloss is a
+# definition, the entry's bold line is its synonyms, and its form tables give
+# the pair a real inflection index.
+
+id = "tr-tr"
+source_lang = "tr"
+target_lang = "tr"
+tier = 2
+name = "Turkish monolingual"
+bookname = "tr-tr"
+basename = "tr-tr"
+description = """\
+Turkish defined in Turkish, taken from the Turkish \
+Wiktionary. Definitions and synonyms only: nothing is translated. Includes an \
+inflection index."""
+
+[[enrich]]
+source = "wikt-tr-def"
+add_new_headwords = true
+
+# Forms also come from the English edition's section for this language: its
+# conjugation and declension tables are language-internal, whatever the
+# gloss language, and are often fuller than the edition's own.
+[inflections]
+from_sources = ["wikt-tr-def", "wikt-tr-en"]
+
+[benchmark]
+frequency_list = "freq/tr_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 Turkish top 50k (hermitdave/FrequencyWords)"

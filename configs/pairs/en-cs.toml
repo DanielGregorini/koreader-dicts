@@ -1,0 +1,30 @@
+# Czech has no wordnet in OMW 1.4, so there is nothing to pivot through
+# and this pair is the English edition's translation tables alone. It completes
+# the pair that cs-en and cs-cs already ship.
+#
+# WordNet is still named below: its exception files supply the irregular
+# English forms (went -> go) that no rule derives.
+
+id = "en-cs"
+source_lang = "en"
+target_lang = "cs"
+tier = 2
+name = "English to Czech"
+bookname = "en-cs"
+basename = "en-cs"
+description = """\
+English to Czech, built from the English Wiktionary's translation \
+tables. Includes an inflection index."""
+
+[[enrich]]
+source = "wikt-en-cs"
+add_new_headwords = true
+
+[inflections]
+wordnet_exceptions = "pwn30"
+rules = true
+from_sources = ["wikt-en-cs"]
+
+[benchmark]
+frequency_list = "freq/en_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)"

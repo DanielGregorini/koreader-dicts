@@ -1,0 +1,29 @@
+# Turkish has no wordnet in OMW 1.4, so there is nothing to pivot through
+# and this pair is the English edition's translation tables alone.
+#
+# WordNet is still named below: its exception files supply the irregular
+# English forms (went -> go) that no rule derives.
+
+id = "en-tr"
+source_lang = "en"
+target_lang = "tr"
+tier = 2
+name = "English to Turkish"
+bookname = "en-tr"
+basename = "en-tr"
+description = """\
+English to Turkish, built from the English Wiktionary's translation \
+tables. Includes an inflection index."""
+
+[[enrich]]
+source = "wikt-en-tr"
+add_new_headwords = true
+
+[inflections]
+wordnet_exceptions = "pwn30"
+rules = true
+from_sources = ["wikt-en-tr"]
+
+[benchmark]
+frequency_list = "freq/en_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 English top 50k (hermitdave/FrequencyWords)"

@@ -1,0 +1,25 @@
+# No Ukrainian wordnet in OMW 1.4 and no Ukrainian edition on kaikki.
+# Cyrillic stress marks are stripped from headwords and forms, as in ru-en:
+# no book writes them, so an index that keeps them matches nothing.
+
+id = "uk-en"
+source_lang = "uk"
+target_lang = "en"
+tier = 2
+name = "Ukrainian to English"
+bookname = "uk-en"
+basename = "uk-en"
+description = """\
+Ukrainian to English, built from the Ukrainian section of the English \
+Wiktionary. Includes an inflection index."""
+
+[[enrich]]
+source = "wikt-uk-en"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-uk-en"]
+
+[benchmark]
+frequency_list = "freq/uk_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 Ukrainian top 50k (hermitdave/FrequencyWords)"

@@ -1,0 +1,31 @@
+# No Turkish wordnet in OMW 1.4. Wiktionary only, like de-en -- but Turkish is
+# one of the two languages added here that kaikki publishes an edition for, so
+# the edition's own translation tables are laid over the English edition's
+# Turkish section.
+
+id = "tr-en"
+source_lang = "tr"
+target_lang = "en"
+tier = 2
+name = "Turkish to English"
+bookname = "tr-en"
+basename = "tr-en"
+description = """\
+Turkish to English, built from the Turkish section of the English \
+Wiktionary and the Turkish edition's own translation tables. Includes an \
+inflection index."""
+
+[[enrich]]
+source = "wikt-tr-en"
+add_new_headwords = true
+
+[[enrich]]
+source = "wikt-tr-to-en"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-tr-en", "wikt-tr-def"]
+
+[benchmark]
+frequency_list = "freq/tr_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 Turkish top 50k (hermitdave/FrequencyWords)"

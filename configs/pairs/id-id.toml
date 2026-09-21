@@ -1,0 +1,42 @@
+# Monolingual: Indonesian described in Indonesian. Nothing here is translated.
+#
+# Mostly a thesaurus, like ar-ar, and for the same reason. Wordnet Bahasa
+# carries only 4,139 Indonesian definitions, so most pivot senses are a bare
+# synonym set, and the pivot drops a word from its own synset -- a synset whose
+# only Indonesian member is the headword yields nothing at all. "kucing"
+# appears once in the wordnet and has no page in the Indonesian Wiktionary, so
+# it is absent; "anjing" keeps only the senses that have a synonym.
+#
+# The Indonesian Wiktionary supplies the definitions it does have, over the
+# top. It is small -- 33,751 entries -- but it is the only prose available.
+
+id = "id-id"
+source_lang = "id"
+target_lang = "id"
+tier = 2
+name = "Indonesian monolingual"
+bookname = "id-id"
+basename = "id-id"
+description = """\
+Indonesian described in Indonesian, from Wordnet Bahasa and the Indonesian \
+Wiktionary. Mostly synonym sets, with a definition where one of the two \
+sources has one; nothing is translated. Includes an inflection index."""
+
+[pivot]
+source_side = "omw-id"
+target_side = "omw-id"
+gloss_providers = ["omw-id"]
+gloss_langs = ["id"]
+keep_gloss_only = false
+max_translations = 6
+
+[[enrich]]
+source = "wikt-id-def"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-id-def", "wikt-id-en"]
+
+[benchmark]
+frequency_list = "freq/id_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 Indonesian top 50k (hermitdave/FrequencyWords)"

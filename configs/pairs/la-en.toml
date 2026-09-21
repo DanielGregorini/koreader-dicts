@@ -1,0 +1,25 @@
+# No Latin wordnet in OMW 1.4 and no Latin edition on kaikki, but the English
+# edition's Latin section is the largest of any language added here.
+#
+# No [benchmark]: OpenSubtitles has no Latin subtitles, so hermitdave
+# publishes no Latin frequency list and there is nothing honest to measure
+# coverage against. This pair ships with no coverage figure rather than one
+# taken from a corpus that does not represent the language.
+
+id = "la-en"
+source_lang = "la"
+target_lang = "en"
+tier = 2
+name = "Latin to English"
+bookname = "la-en"
+basename = "la-en"
+description = """\
+Latin to English, built from the Latin section of the English \
+Wiktionary. Includes an inflection index."""
+
+[[enrich]]
+source = "wikt-la-en"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-la-en"]

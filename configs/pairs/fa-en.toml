@@ -1,0 +1,25 @@
+# No Persian wordnet in OMW 1.4 and no Persian edition on kaikki. Persian
+# vocalisation is stripped from headwords the same way Arabic's is, so a
+# word written with diacritics in Wiktionary is still found without them.
+
+id = "fa-en"
+source_lang = "fa"
+target_lang = "en"
+tier = 2
+name = "Persian to English"
+bookname = "fa-en"
+basename = "fa-en"
+description = """\
+Persian to English, built from the Persian section of the English \
+Wiktionary. Includes an inflection index."""
+
+[[enrich]]
+source = "wikt-fa-en"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-fa-en"]
+
+[benchmark]
+frequency_list = "freq/fa_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 Persian top 50k (hermitdave/FrequencyWords)"

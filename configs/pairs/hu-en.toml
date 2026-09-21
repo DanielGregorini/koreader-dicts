@@ -1,0 +1,25 @@
+# No Hungarian wordnet in OMW 1.4 and no Hungarian edition on kaikki. The
+# English edition's Hungarian section is the second largest of any language
+# added here, and Hungarian's case system means most of it is form tables.
+
+id = "hu-en"
+source_lang = "hu"
+target_lang = "en"
+tier = 2
+name = "Hungarian to English"
+bookname = "hu-en"
+basename = "hu-en"
+description = """\
+Hungarian to English, built from the Hungarian section of the English \
+Wiktionary. Includes an inflection index."""
+
+[[enrich]]
+source = "wikt-hu-en"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-hu-en"]
+
+[benchmark]
+frequency_list = "freq/hu_50k.txt"
+frequency_list_name = "OpenSubtitles 2018 Hungarian top 50k (hermitdave/FrequencyWords)"

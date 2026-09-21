@@ -1,0 +1,26 @@
+# No Hindi wordnet in OMW 1.4 and no Hindi edition on kaikki, so the English
+# edition's Hindi section is the whole source. hermitdave publishes no pruned
+# 50k list for Hindi, only the full one, which is 21,309 words and includes
+# the danda as a token; the top-10k figure is measured against that.
+
+id = "hi-en"
+source_lang = "hi"
+target_lang = "en"
+tier = 2
+name = "Hindi to English"
+bookname = "hi-en"
+basename = "hi-en"
+description = """\
+Hindi to English, built from the Hindi section of the English \
+Wiktionary. Includes an inflection index."""
+
+[[enrich]]
+source = "wikt-hi-en"
+add_new_headwords = true
+
+[inflections]
+from_sources = ["wikt-hi-en"]
+
+[benchmark]
+frequency_list = "freq/hi_full.txt"
+frequency_list_name = "OpenSubtitles 2018 Hindi (hermitdave/FrequencyWords)"
