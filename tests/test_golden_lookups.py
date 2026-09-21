@@ -55,6 +55,33 @@ GOLDEN = [
     ("ja-ja", "食べた", "飲み込む"),
     ("es-es", "corrieron", "Desplazarse rápidamente"),
     ("ar-ar", "بيت", "مَنْزِل"),
+    # Indonesian, Hindi, Hungarian, Ukrainian, Persian, Turkish, Latin.
+    # Every X-en line here is an inflected form where the language has one in
+    # its tables: gitti and koştu are finite verbs, kutyak and sobaky are
+    # plurals, canem is an accusative. They reach the entry only through .syn.
+    ("id-en", "kucing", "cat"),
+    ("id-en", "anjing", "dog"),
+    ("en-id", "dog", "anjing"),
+    ("en-id", "geese", "angsa"),
+    ("id-id", "rumah", "kediaman"),
+    ("tr-en", "gitti", "to go"),
+    ("tr-en", "koştu", "to run"),
+    ("en-tr", "dog", "köpek"),
+    ("tr-tr", "köpek", "Köpekgillerden"),
+    ("hu-en", "kutyák", "dog"),
+    ("en-hu", "dog", "kutya"),
+    ("uk-en", "собаки", "dog"),
+    ("en-uk", "dog", "пес"),
+    ("fa-en", "سگ", "dog"),
+    ("fa-en", "رفت", "to go"),
+    ("en-fa", "dog", "سگ"),
+    ("hi-en", "कुत्ता", "dog"),
+    ("en-hi", "dog", "कुत्ता"),
+    ("la-en", "canem", "dog"),
+    ("la-en", "currit", "to run"),
+    ("en-la", "dog", "canis"),
+    ("en-la", "geese", "ānser"),
+    ("en-cs", "dog", "pes"),
 ]
 
 # Things that must never appear in a rendered entry.
